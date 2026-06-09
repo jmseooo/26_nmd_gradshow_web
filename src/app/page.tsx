@@ -97,8 +97,8 @@ export default function Home() {
 
             {/* 우측: 메뉴 링크 */}
             <div
-              className="flex items-center flex-wrap justify-end"
-              style={{ gap: "clamp(8px, 2.92vw, 42px)", paddingTop: "clamp(4px, 0.56vw, 8px)" }}
+              className="flex items-center"
+              style={{ paddingTop: "clamp(4px, 0.56vw, 8px)" }}
             >
               {navLinks.map((item) =>
                 item === "거점" ? (
@@ -108,7 +108,8 @@ export default function Home() {
                     style={{
                       backgroundColor: "#aedce9",
                       borderRadius: 100,
-                      padding: "clamp(4px, 0.69vw, 10px) clamp(6px, 0.83vw, 12px)",
+                      padding: "clamp(5px, 0.69vw, 10px) clamp(6px, 0.83vw, 12px)",
+                      width: "clamp(60px, 9.375vw, 135px)",
                     }}
                   >
                     <p className="whitespace-nowrap text-center" style={txt(30, 800, "#38b3d6")}>
@@ -116,13 +117,18 @@ export default function Home() {
                     </p>
                   </div>
                 ) : (
-                  <p
+                  <div
                     key={item}
-                    className="whitespace-nowrap text-center cursor-pointer"
-                    style={txt(30, 800, "white")}
+                    className="flex items-center justify-center cursor-pointer"
+                    style={{
+                      width: "clamp(60px, 9.375vw, 135px)",
+                      height: "clamp(30px, 4.51vw, 65px)",
+                    }}
                   >
-                    {item}
-                  </p>
+                    <p className="whitespace-nowrap text-center" style={txt(30, 800, "white")}>
+                      {item}
+                    </p>
+                  </div>
                 )
               )}
             </div>
