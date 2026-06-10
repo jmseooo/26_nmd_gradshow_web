@@ -84,8 +84,8 @@ export default function Home() {
         </div>
 
         {/* 레이어 3: Vector 장식 2 */}
-        <div className="absolute inset-[65.06%_20.76%_-16.35%_20.76%]">
-          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector1} />
+        <div className="absolute" style={{ left: "20.76%", top: "65.06%", width: "58.48%" }}>
+          <img alt="" className="block w-full h-auto" src={imgVector1} />
         </div>
 
         {/* 네비게이션 바 */}
