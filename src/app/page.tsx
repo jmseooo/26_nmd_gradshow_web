@@ -76,10 +76,6 @@ export default function Home() {
           <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-[1440px]">
             <img alt="" className="absolute block inset-0 max-w-none size-full" src={img1} />
           </div>
-          {/* Vector 장식 */}
-          <div className="absolute inset-[65.06%_20.76%_-16.35%_20.76%]">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
-          </div>
         </div>
 
         {/* 레이어 2: 네트워크 오버레이 */}
