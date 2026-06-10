@@ -84,14 +84,6 @@ export default function Home() {
           />
         </div>
 
-        {/* 지구본 에셋 */}
-        <img
-          alt=""
-          src="/nmd_asset02.png"
-          className="absolute object-contain pointer-events-none select-none"
-          style={{ left: "20.76%", top: "14.2%", width: "58.5%", height: "77.2%" }}
-        />
-
         {/* 레이어 2 — 오버레이 배경 */}
         <img
           alt=""
