@@ -1,6 +1,13 @@
 import type { CSSProperties } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 
+/* ─── 배경 이미지 ────────────────────────────────────────────────── */
+
+const img1 = "https://www.figma.com/api/mcp/asset/3d8e2f49-628a-4a9c-9d2e-d1c561bc931d";
+const imgVector = "https://www.figma.com/api/mcp/asset/e08550b7-3bdd-48fc-a58e-b851f39be9bc";
+const img2 = "https://www.figma.com/api/mcp/asset/291546da-52c6-4d23-9d55-db5b73ba6a38";
+const imgVector1 = "https://www.figma.com/api/mcp/asset/f0113058-7e60-4632-9c93-38cc6f764c8c";
+
 /* ─── 정적 데이터 ─────────────────────────────────────────────────── */
 
 const chatBubbles = [
@@ -63,42 +70,27 @@ export default function Home() {
         className="relative overflow-hidden"
         style={{ width: "100%", height: "936px", backgroundColor: "#0a99d1" }}
       >
-        {/* 레이어 1 — overflow hidden 클리핑 컨테이너 */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ left: 0, top: 0, width: "1440px", height: "936px", backgroundColor: "#0fa7d2" }}
-        >
-          {/* 자식 A — 배경 일러스트 */}
-          <img
-            alt=""
-            src="/assets/hero-illust.svg"
-            className="absolute pointer-events-none select-none"
-            style={{ width: "1440px", height: "1444.826px", left: 0, top: "-278.92px" }}
-          />
-          {/* 자식 B — Vector 하단 장식 */}
-          <img
-            alt=""
-            src="/assets/hero-vec1.svg"
-            className="absolute pointer-events-none select-none"
-            style={{ top: "65.06%", right: "20.76%", bottom: "-16.35%", left: "20.76%" }}
-          />
+        {/* 레이어 1: overflow-clip 컨테이너 */}
+        <div className="absolute bg-[#0fa7d2] h-[936px] left-0 overflow-clip top-0 w-[1440px]">
+          {/* 배경 일러스트 */}
+          <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-[1440px]">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={img1} />
+          </div>
+          {/* Vector 장식 */}
+          <div className="absolute inset-[65.06%_20.76%_-16.35%_20.76%]">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
+          </div>
         </div>
 
-        {/* 레이어 2 — 오버레이 배경 */}
-        <img
-          alt=""
-          src="/assets/hero-overlay.svg"
-          className="absolute pointer-events-none select-none"
-          style={{ width: "1440px", height: "1444.826px", left: 0, top: "-278.92px" }}
-        />
+        {/* 레이어 2: 네트워크 오버레이 */}
+        <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-[1440px]">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={img2} />
+        </div>
 
-        {/* 레이어 3 — Vector 장식 2 */}
-        <img
-          alt=""
-          src="/assets/hero-vec2.svg"
-          className="absolute pointer-events-none select-none"
-          style={{ top: "65.06%", right: "20.76%", bottom: "-16.35%", left: "20.76%" }}
-        />
+        {/* 레이어 3: Vector 장식 2 */}
+        <div className="absolute inset-[65.06%_20.76%_-16.35%_20.76%]">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector1} />
+        </div>
 
         {/* 네비게이션 바 */}
         <div className="absolute content-stretch flex items-start justify-between left-[80px] top-[101px] w-[1280px]">
