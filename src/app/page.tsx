@@ -4,13 +4,13 @@ import ScrollToTop from "./components/ScrollToTop";
 /* ─── 정적 데이터 ─────────────────────────────────────────────────── */
 
 const chatBubbles = [
-  { text: "여름 졸전 멋있다",          w: "61.5%" },
-  { text: "교수님...",                  w: "37.9%" },
-  { text: "여름 졸전 멋있다",          w: "61.5%" },
-  { text: "교수님...",                  w: "37.9%" },
-  { text: "졸준위 고생했어요 사랑해!!!", w: "93.8%" },
-  { text: "첨단미디어디자인 가고 싶어요", w: "100%" },
-  { text: "전시 잘 봤어요. 멋져요",     w: "77.6%" },
+  { text: "여름 졸전 멋있다",           w: "99px"  },
+  { text: "교수님...",                   w: "61px"  },
+  { text: "여름 졸전 멋있다",           w: "99px"  },
+  { text: "교수님...",                   w: "61px"  },
+  { text: "졸준위 고생했어요 사랑해!!!", w: "151px" },
+  { text: "첨단미디어디자인 가고 싶어요", w: "161px" },
+  { text: "전시 잘 봤어요. 멋져요",      w: "125px" },
 ];
 
 const navLinks = ["거점", "작품", "디자이너", "방명록", "현장"];
@@ -61,129 +61,156 @@ export default function Home() {
       ══════════════════════════════════════════════════════════ */}
       <section
         className="relative overflow-hidden"
-        style={{ backgroundColor: "#0a99d1", height: "min(100vh, clamp(420px, 65vw, 936px))" }}
+        style={{ width: "100%", height: "936px", backgroundColor: "#0a99d1" }}
       >
-        {/* 배경 클리핑 컨테이너 (레이어 1 + 네트워크 그래프) */}
-        <div className="absolute inset-0 overflow-hidden" style={{ backgroundColor: "#0fa7d2" }}>
-          <img alt="" src="/assets/hero-bg1.svg"
+        {/* 레이어 1 — overflow hidden 클리핑 컨테이너 */}
+        <div
+          className="absolute overflow-hidden"
+          style={{ left: 0, top: 0, width: "1440px", height: "936px", backgroundColor: "#0fa7d2" }}
+        >
+          {/* 자식 A — 배경 일러스트 */}
+          <img
+            alt=""
+            src="/assets/hero-illust.svg"
             className="absolute pointer-events-none select-none"
-            style={{ width: "100%", height: "clamp(650px, 100.335vw, 1444.826px)", left: 0, top: "clamp(-278.92px, -19.369vw, 0px)" }} />
-          <img alt="" src="/assets/hero-vector.svg"
+            style={{ width: "1440px", height: "1444.826px", left: 0, top: "-278.92px" }}
+          />
+          {/* 자식 B — Vector 하단 장식 */}
+          <img
+            alt=""
+            src="/assets/hero-vec1.svg"
             className="absolute pointer-events-none select-none"
-            style={{ inset: "65.06% 20.76% -16.35% 20.76%" }} />
-          <img alt="" src="/assets/hero-network.svg"
-            className="absolute pointer-events-none select-none"
-            style={{ left: "20.76%", top: "clamp(60px, 9.236vw, 133px)", width: "58.52%", height: "clamp(325px, 50.208vw, 723px)" }} />
+            style={{ top: "65.06%", right: "20.76%", bottom: "-16.35%", left: "20.76%" }}
+          />
         </div>
 
-        {/* 레이어 3 - 오버레이 */}
-        <img alt="" src="/assets/hero-bg3.svg"
-          className="absolute pointer-events-none select-none"
-          style={{ width: "100%", height: "clamp(650px, 100.335vw, 1444.826px)", left: 0, top: "clamp(-278.92px, -19.369vw, 0px)" }} />
+        {/* 지구본 에셋 */}
+        <img
+          alt=""
+          src="/nmd_asset02.png"
+          className="absolute object-contain pointer-events-none select-none"
+          style={{ left: "20.76%", top: "14.2%", width: "58.5%", height: "77.2%" }}
+        />
 
-        {/* Vector 장식 */}
-        <img alt="" src="/assets/hero-vector.svg"
+        {/* 레이어 2 — 오버레이 배경 */}
+        <img
+          alt=""
+          src="/assets/hero-overlay.svg"
           className="absolute pointer-events-none select-none"
-          style={{ inset: "65.06% 20.76% -16.35% 20.76%" }} />
+          style={{ width: "1440px", height: "1444.826px", left: 0, top: "-278.92px" }}
+        />
 
-        {/* 말풍선 */}
+        {/* 레이어 3 — Vector 장식 2 */}
+        <img
+          alt=""
+          src="/assets/hero-vec2.svg"
+          className="absolute pointer-events-none select-none"
+          style={{ top: "65.06%", right: "20.76%", bottom: "-16.35%", left: "20.76%" }}
+        />
+
+        {/* 네비게이션 바 */}
+        <div className="absolute content-stretch flex items-start justify-between left-[80px] top-[101px] w-[1280px]">
+          {/* 좌측 블록 */}
+          <div className="flex flex-col" style={{ width: "520.586px", height: "227px" }}>
+            <div style={{ padding: "10px 28px" }}>
+              <p
+                style={{
+                  fontSize: "24px",
+                  fontWeight: 600,
+                  color: "white",
+                  letterSpacing: "-0.48px",
+                  lineHeight: 1.5,
+                }}
+              >
+                서울여자대학교 첨단미디어디자인전공<br />
+                제2회 졸업전시
+              </p>
+            </div>
+            <div className="relative overflow-hidden" style={{ width: "520px", height: "135px" }}>
+              <img
+                alt="우리의 거점"
+                src="/assets/hero-title.png"
+                className="absolute"
+                style={{ left: "26px", top: "24px", width: "468px", height: "85.5px", objectFit: "cover" }}
+              />
+            </div>
+          </div>
+
+          {/* 우측 메뉴 */}
+          <div className="flex items-center">
+            <div
+              className="flex items-center justify-center"
+              style={{ width: "135px", backgroundColor: "#aedce9", borderRadius: "100px", padding: "10px 12px" }}
+            >
+              <p style={{ fontSize: "30px", fontWeight: 800, color: "#38b3d6", letterSpacing: "-0.6px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
+                거점
+              </p>
+            </div>
+            {["작품", "디자이너", "방명록", "현장"].map((item) => (
+              <div
+                key={item}
+                className="flex items-center justify-center"
+                style={{ width: "135px", height: "65px" }}
+              >
+                <p style={{ fontSize: "30px", fontWeight: 800, color: "white", letterSpacing: "-0.6px", lineHeight: 1.5, whiteSpace: "nowrap", textAlign: "center" }}>
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 말풍선 컨테이너 */}
         <div
           className="absolute flex flex-col items-end"
-          style={{ gap: "clamp(5px, 0.694vw, 10px)", left: "83.264%", top: "clamp(216px, 33.333vw, 480px)", width: "11.181%" }}
+          style={{ left: "1199px", top: "480px", width: "161px", gap: "10px" }}
         >
           {chatBubbles.map(({ text, w }, i) => (
             <div
               key={i}
               className="flex items-center justify-center"
               style={{
-                backdropFilter: "blur(2px)",
-                backgroundColor: "rgba(255,255,255,0.8)",
-                borderRadius: 100,
-                boxShadow: "0px 0px 10px 0px rgba(0,184,238,0.24)",
-                height: "clamp(17px, 2.639vw, 38px)",
-                padding: "0 clamp(5px, 0.694vw, 10px)",
-                whiteSpace: "nowrap",
                 width: w,
+                height: "38px",
+                padding: "10px",
+                borderRadius: "100px",
+                backgroundColor: "rgba(255,255,255,0.8)",
+                backdropFilter: "blur(2px)",
+                boxShadow: "0px 0px 10px 0px rgba(0,184,238,0.24)",
+                whiteSpace: "nowrap",
               }}
             >
-              <p style={txt(12, 600, "#202024", 0)}>{text}</p>
+              <p style={{ fontSize: "12px", fontWeight: 600, color: "#202024", textAlign: "center" }}>
+                {text}
+              </p>
             </div>
           ))}
         </div>
 
         {/* 방명록 입력창 */}
         <div
-          className="absolute flex items-center rounded-full"
+          className="absolute flex items-center justify-center"
           style={{
+            left: "993px",
+            top: "822px",
+            width: "367px",
+            height: "53px",
             backgroundColor: "white",
-            left: "68.958%",
-            top: "clamp(370px, 57.083vw, 822px)",
-            width: "25.486%",
-            height: "clamp(24px, 3.681vw, 53px)",
-            padding: "0 clamp(6px, 0.972vw, 14px) 0 clamp(9px, 1.389vw, 20px)",
+            borderRadius: "100px",
+            padding: "10px",
+            gap: "10px",
           }}
         >
-          <p className="flex-1 whitespace-nowrap" style={txt(18, 600, "#828282")}>
+          <p style={{ fontSize: "18px", fontWeight: 600, color: "#828282", letterSpacing: "-0.36px", whiteSpace: "nowrap" }}>
             남기고 싶은 말이 있나요?
           </p>
           <img
             alt="보내기"
             src="/assets/hero-send.svg"
-            className="flex-shrink-0"
-            style={{ width: "clamp(11px, 1.667vw, 24px)", height: "clamp(11px, 1.667vw, 24px)" }} />
+            className="absolute"
+            style={{ left: "328px", top: "14.5px", width: "24px", height: "24px" }}
+          />
         </div>
-
-        {/* 네비게이션 */}
-        <nav
-          className="absolute flex items-start justify-between"
-          style={{ left: "5.556%", top: "clamp(45px, 7.014vw, 101px)", width: "88.889%" }}
-        >
-          {/* 좌측: 학교명 + 타이틀 이미지 */}
-          <div className="flex flex-col items-start">
-            <p style={{ ...txt(24, 600, "white"), padding: "clamp(5px, 0.694vw, 10px) clamp(13px, 1.944vw, 28px)" }}>
-              서울여자대학교 첨단미디어디자인전공<br />
-              제2회 졸업전시
-            </p>
-            <img
-              alt="우리의 거점"
-              src="/assets/hero-title.png"
-              style={{
-                marginLeft: "clamp(12px, 1.806vw, 26px)",
-                marginTop: "clamp(11px, 1.667vw, 24px)",
-                width: "clamp(211px, 32.5vw, 468px)",
-                height: "clamp(38px, 5.938vw, 85.5px)",
-                objectFit: "cover",
-              }}
-            />
-          </div>
-
-          {/* 우측: 메뉴 */}
-          <div className="flex items-center" style={{ paddingTop: "clamp(4px, 0.556vw, 8px)" }}>
-            {navLinks.map((item) =>
-              item === "거점" ? (
-                <div
-                  key={item}
-                  className="flex items-center justify-center rounded-full"
-                  style={{
-                    backgroundColor: "#aedce9",
-                    padding: "clamp(5px, 0.694vw, 10px) clamp(5px, 0.833vw, 12px)",
-                    width: "clamp(61px, 9.375vw, 135px)",
-                  }}
-                >
-                  <p className="whitespace-nowrap text-center" style={txt(30, 800, "#38b3d6")}>{item}</p>
-                </div>
-              ) : (
-                <div
-                  key={item}
-                  className="flex items-center justify-center cursor-pointer"
-                  style={{ width: "clamp(61px, 9.375vw, 135px)", height: "clamp(29px, 4.514vw, 65px)" }}
-                >
-                  <p className="whitespace-nowrap text-center" style={txt(30, 800, "white")}>{item}</p>
-                </div>
-              )
-            )}
-          </div>
-        </nav>
       </section>
 
       {/* ══════════════════════════════════════════════════════════
