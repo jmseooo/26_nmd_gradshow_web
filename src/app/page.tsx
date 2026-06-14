@@ -68,10 +68,10 @@ export default function Home() {
       ══════════════════════════════════════════════════════════ */}
       <section
         className="relative overflow-hidden"
-        style={{ width: "100%", height: "936px", backgroundColor: "#0a99d1" }}
+        style={{ width: "100%", height: "100vh", backgroundColor: "#0a99d1" }}
       >
         {/* 레이어 1: overflow-clip 컨테이너 */}
-        <div className="absolute bg-[#0fa7d2] h-[936px] left-0 overflow-clip top-0 w-[1440px]">
+        <div className="absolute bg-[#0fa7d2] h-full left-0 overflow-clip top-0 w-[1440px]">
           {/* 배경 일러스트 */}
           <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-[1440px]">
             <img alt="" className="absolute block inset-0 max-w-none size-full" src={img1} />
@@ -143,7 +143,7 @@ export default function Home() {
         {/* 말풍선 컨테이너 */}
         <div
           className="absolute flex flex-col items-end"
-          style={{ left: "1199px", top: "480px", width: "161px", gap: "10px" }}
+          style={{ left: "1199px", top: "44%", width: "161px", gap: "10px" }}
         >
           {chatBubbles.map(({ text, w }, i) => (
             <div
@@ -172,7 +172,7 @@ export default function Home() {
           className="absolute flex items-center justify-center"
           style={{
             left: "993px",
-            top: "822px",
+            top: "87.82%",
             width: "367px",
             height: "53px",
             backgroundColor: "white",
