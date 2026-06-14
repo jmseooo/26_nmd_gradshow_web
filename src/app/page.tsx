@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import ScrollToTop from "./components/ScrollToTop";
+import CategorySlider from "./components/CategorySlider";
 
 /* ─── 배경 이미지 ────────────────────────────────────────────────── */
 
@@ -21,8 +22,6 @@ const chatBubbles = [
 ];
 
 const navLinks = ["거점", "작품", "디자이너", "방명록", "현장"];
-
-const trackDots = ["#e99fa9", "#e7b871", "#b8d870", "#9898c8"];
 
 const committeeLeft = [
   { role: "위원장", name: "김지유" },
@@ -220,100 +219,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════════
           SECTION 3 · 카테고리 슬라이더
       ══════════════════════════════════════════════════════════ */}
-      <section
-        className="bg-white"
-        style={{ padding: "clamp(32px, 5.56vw, 80px) clamp(16px, 4.44vw, 64px)" }}
-      >
-        {/* 트랙 레이블 + 컬러 도트 */}
-        <div className="flex flex-col items-center" style={{ gap: "clamp(6px, 0.56vw, 8px)", marginBottom: "clamp(20px, 3.47vw, 50px)" }}>
-          <p style={txt(12, 600, "black")}>UX</p>
-          <div className="flex items-center" style={{ gap: "clamp(10px, 1.53vw, 22px)" }}>
-            {trackDots.map((color) => (
-              <div
-                key={color}
-                className="rounded-full flex-shrink-0"
-                style={{
-                  backgroundColor: color,
-                  width: "clamp(14px, 2.08vw, 30px)",
-                  height: "clamp(14px, 2.08vw, 30px)",
-                }}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* 슬라이더 영역 */}
-        <div className="flex items-center" style={{ gap: "clamp(8px, 1.11vw, 16px)" }}>
-          {/* 이전 화살표 */}
-          <div
-            className="flex-shrink-0"
-            style={{ width: "clamp(32px, 4.44vw, 64px)", height: "clamp(32px, 4.44vw, 64px)", transform: "rotate(180deg)" }}
-          >
-            <img alt="이전" src="/assets/arrow-forward.svg" className="w-full h-full" />
-          </div>
-
-          {/* 핑크 카드 */}
-          <div className="flex-1 overflow-x-auto">
-            <div style={{ backgroundColor: "#ffeef0", minWidth: "480px" }}>
-              {/* 수평 구분선 */}
-              <div style={{ position: "relative", height: "clamp(40px, 4.24vw, 61px)", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full" style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }} />
-                </div>
-                {/* 열 헤더 */}
-                <div className="absolute inset-0 grid" style={{ gridTemplateColumns: "1fr 2fr 1fr" }}>
-                  {["UX", "개요", "교수님"].map((h) => (
-                    <p key={h} className="flex items-center justify-center whitespace-nowrap" style={txt(18, 800, "black")}>
-                      {h}
-                    </p>
-                  ))}
-                </div>
-              </div>
-
-              {/* 데이터 행 */}
-              <div
-                className="grid items-start"
-                style={{
-                  gridTemplateColumns: "1fr 2fr 1fr",
-                  padding: "clamp(16px, 5.76vw, 83px) 0",
-                }}
-              >
-                {/* UX 열 */}
-                <div className="flex flex-col items-center" style={{ gap: "clamp(12px, 4.17vw, 60px)", padding: "0 clamp(8px, 1.11vw, 16px)" }}>
-                  <p className="whitespace-nowrap underline" style={txt(18, 600, "black")}>작품, 3개</p>
-                  <div className="flex flex-col items-center" style={{ gap: "clamp(4px, 0.56vw, 8px)" }}>
-                    <p className="whitespace-nowrap" style={txt(18, 600, "black")}>참여자, 4명</p>
-                    {["성이름", "성이름", "성이름", "성이름"].map((name, i) => (
-                      <p key={i} className="whitespace-nowrap" style={txt(18, 200, "#828282")}>{name}</p>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 개요 열 */}
-                <div style={{ padding: "0 clamp(10px, 2.08vw, 30px)" }}>
-                  <p style={{ ...txt(12, 400, "#63636e"), lineHeight: 1.7 }}>
-                    어쩌구 그래서 이런 것을 전시합니다 그래서 이런 것을 준비했는데 예쁘게 봐주세요
-                    어쩌구 그래서 이런 것을 전시합니다 그래서 이런 것을 준비했는데 예쁘게 봐주세요
-                  </p>
-                </div>
-
-                {/* 교수님 열 */}
-                <div className="flex justify-center" style={{ padding: "0 clamp(8px, 1.11vw, 16px)" }}>
-                  <p className="whitespace-nowrap" style={txt(18, 400, "black")}>유영재 교수님</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 다음 화살표 */}
-          <div
-            className="flex-shrink-0"
-            style={{ width: "clamp(32px, 4.44vw, 64px)", height: "clamp(32px, 4.44vw, 64px)" }}
-          >
-            <img alt="다음" src="/assets/arrow-forward.svg" className="w-full h-full" />
-          </div>
-        </div>
-      </section>
+      <CategorySlider />
 
       {/* ══════════════════════════════════════════════════════════
           SECTION 4 · 졸업전시위원회
