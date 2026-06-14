@@ -30,7 +30,7 @@ export default function CategorySlider() {
   const cat = categories[active];
 
   return (
-    <section className="bg-white" style={{ padding: "clamp(32px, 5.56vw, 80px) clamp(16px, 4.44vw, 64px)" }}>
+    <section className="bg-white" style={{ padding: "clamp(32px, 5.56vw, 80px) 0" }}>
       <style>{`
         @keyframes cat-slide-up {
           from { opacity: 0; transform: translateY(32px); }
@@ -83,8 +83,14 @@ export default function CategorySlider() {
         </div>
       </div>
 
-      {/* 슬라이더 */}
-      <div className="flex items-center" style={{ gap: "clamp(8px, 1.11vw, 16px)" }}>
+      {/* 슬라이더 — 화살표·카드 가운데 정렬, 양쪽 여백 134px */}
+      <div
+        className="flex items-center justify-center"
+        style={{
+          padding: "0 clamp(24px, 9.31vw, 134px)",
+          gap: "clamp(16px, 7.15vw, 103px)",
+        }}
+      >
         {/* 이전 화살표 */}
         <button
           onClick={() => go(-1)}
@@ -102,11 +108,16 @@ export default function CategorySlider() {
           <img alt="이전" src="/assets/arrow-forward.svg" style={{ width: "100%", height: "100%" }} />
         </button>
 
-        {/* 카드 (key 바뀌면 슬라이드업 애니메이션 재생) */}
+        {/* 카드: 838px 고정 너비, key 바뀌면 슬라이드업 */}
         <div
           key={active}
-          className="cat-slide-up flex-1"
-          style={{ backgroundColor: cat.cardBg, minWidth: "480px", overflow: "hidden" }}
+          className="cat-slide-up"
+          style={{
+            backgroundColor: cat.cardBg,
+            width: "clamp(300px, 58.19vw, 838px)",
+            flexShrink: 0,
+            overflow: "hidden",
+          }}
         >
           {/* 헤더 행 */}
           <div
@@ -121,10 +132,7 @@ export default function CategorySlider() {
                 key={h}
                 style={{
                   ...txt(18, 800, "black"),
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "clamp(10px, 1.32vw, 19px) 0",
+                  padding: "clamp(10px, 1.32vw, 19px) clamp(12px, 2.78vw, 40px)",
                   whiteSpace: "nowrap",
                 }}
               >
@@ -144,13 +152,13 @@ export default function CategorySlider() {
           >
             {/* 왼쪽: 작품·참여자 */}
             <div
-              className="flex flex-col items-center"
-              style={{ gap: "clamp(12px, 4.17vw, 60px)", padding: "0 clamp(8px, 1.11vw, 16px)" }}
+              className="flex flex-col items-start"
+              style={{ gap: "clamp(12px, 4.17vw, 60px)", padding: "0 clamp(12px, 2.78vw, 40px)" }}
             >
               <p className="whitespace-nowrap underline" style={txt(18, 600, "black")}>
                 작품, 3개
               </p>
-              <div className="flex flex-col items-center" style={{ gap: "clamp(4px, 0.56vw, 8px)" }}>
+              <div className="flex flex-col items-start" style={{ gap: "clamp(4px, 0.56vw, 8px)" }}>
                 <p className="whitespace-nowrap" style={txt(18, 600, "black")}>참여자, 4명</p>
                 {["성이름", "성이름", "성이름", "성이름"].map((name, j) => (
                   <p key={j} className="whitespace-nowrap" style={txt(18, 200, "#828282")}>
@@ -169,7 +177,7 @@ export default function CategorySlider() {
             </div>
 
             {/* 오른쪽: 교수님 */}
-            <div className="flex justify-center" style={{ padding: "0 clamp(8px, 1.11vw, 16px)" }}>
+            <div style={{ padding: "0 clamp(12px, 2.78vw, 40px)" }}>
               <p className="whitespace-nowrap" style={txt(18, 400, "black")}>유영재 교수님</p>
             </div>
           </div>
