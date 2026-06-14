@@ -325,53 +325,61 @@ export default function Home() {
           padding: "clamp(32px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) clamp(32px, 4.44vw, 64px)",
         }}
       >
-        {/* 헤더 행 */}
-        <div className="flex items-start justify-between" style={{ marginBottom: "clamp(24px, 3.68vw, 53px)" }}>
+        {/* 헤더 행 — 타이틀 가운데, 뱃지 오른쪽 */}
+        <div className="flex items-start" style={{ marginBottom: "clamp(24px, 3.68vw, 53px)" }}>
+          <div style={{ flex: 1 }} />
           <p className="whitespace-nowrap" style={txt(40, 800, "#2174a4")}>졸업전시위원회</p>
-          <div
-            className="flex items-center justify-center flex-shrink-0"
-            style={{
-              backgroundColor: "#a8e6f8",
-              borderRadius: 18,
-              padding: "clamp(4px, 0.42vw, 6px) clamp(8px, 0.69vw, 10px)",
-            }}
-          >
-            <p className="whitespace-nowrap" style={txt(12, 600, "#007aa3")}>졸업전시위원회 인터뷰 보러가기</p>
+          <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
+            <div
+              className="flex items-center justify-center flex-shrink-0"
+              style={{ backgroundColor: "#a8e6f8", borderRadius: 18, padding: "clamp(4px, 0.42vw, 6px) clamp(8px, 0.69vw, 10px)" }}
+            >
+              <p className="whitespace-nowrap" style={txt(12, 600, "#007aa3")}>졸업전시위원회 인터뷰 보러가기</p>
+            </div>
           </div>
         </div>
 
-        {/* 위원 목록 */}
-        <div className="grid grid-cols-3" style={{ gap: "clamp(16px, 2.22vw, 32px)" }}>
-          {/* 위원장·부위원장 */}
-          <div className="flex flex-col" style={{ gap: "clamp(10px, 1.46vw, 21px)" }}>
-            {committeeLeft.map((m, i) => (
-              <div key={i} className="flex items-center flex-wrap" style={{ gap: "clamp(4px, 0.83vw, 12px)" }}>
-                <p className="whitespace-nowrap" style={txt(24, 800, "black")}>{m.role}</p>
-                <p className="whitespace-nowrap" style={txt(24, 600, "black")}>{m.name}</p>
-              </div>
-            ))}
-            <p style={txt(12, 600, "black")}>23</p>
+        {/* 위원 목록 — 3그룹 가운데 정렬 */}
+        <div className="flex justify-center" style={{ gap: "clamp(40px, 6.25vw, 90px)" }}>
+          {/* 위원장·부위원장 — 역할명 우측 정렬 grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "max-content max-content", columnGap: "clamp(4px, 0.83vw, 12px)", rowGap: "clamp(10px, 1.46vw, 21px)", alignContent: "start" }}>
+            <p className="whitespace-nowrap text-right" style={txt(24, 800, "black")}>위원장</p>
+            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김지유</p>
+            <p className="whitespace-nowrap text-right" style={txt(24, 800, "black")}>부위원장</p>
+            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>
+              김도연<span style={{ fontSize: "12px", fontWeight: 600, verticalAlign: "baseline" }}>23</span>
+            </p>
           </div>
 
-          {/* 기획팀 */}
-          <div className="flex flex-col" style={{ gap: "clamp(10px, 1.46vw, 21px)" }}>
-            {committeeMid.map((m, i) => (
-              <div key={i} className="flex items-center flex-wrap" style={{ gap: "clamp(4px, 0.83vw, 12px)" }}>
-                <p className="whitespace-nowrap" style={txt(24, 800, "black")}>{m.role}</p>
-                <p className="whitespace-nowrap" style={txt(24, 600, "black")}>{m.name}</p>
-              </div>
-            ))}
-            <p style={txt(12, 600, "black")}>22</p>
+          {/* 기획팀 — 좌측 정렬 */}
+          <div className="flex flex-col items-start" style={{ gap: "clamp(10px, 1.46vw, 21px)" }}>
+            <div className="flex items-center" style={{ gap: "clamp(4px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 800, "black")}>기획팀장</p>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김채현</p>
+            </div>
+            <div className="flex items-baseline" style={{ gap: "clamp(4px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 800, "black")}>기획팀원</p>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김도연</p>
+              <p className="whitespace-nowrap" style={txt(12, 600, "black")}>22</p>
+            </div>
           </div>
 
-          {/* 디자인팀 */}
-          <div className="flex flex-col" style={{ gap: "clamp(10px, 1.46vw, 21px)" }}>
-            {committeeRight.map((m, i) => (
-              <div key={i} className="flex items-center flex-wrap" style={{ gap: m.role ? "clamp(4px, 0.83vw, 12px)" : "0" }}>
-                {m.role && <p className="whitespace-nowrap" style={txt(24, 800, "black")}>{m.role}</p>}
-                <p className="whitespace-nowrap" style={txt(24, 600, "black")}>{m.name}</p>
-              </div>
-            ))}
+          {/* 디자인팀 — 좌측 정렬, 이름만 우측 정렬 */}
+          <div className="flex flex-col items-start" style={{ gap: "clamp(10px, 1.46vw, 21px)" }}>
+            <div className="flex items-center" style={{ gap: "clamp(4px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 800, "black")}>디자인팀장</p>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김지아</p>
+            </div>
+            <div className="flex items-center" style={{ gap: "clamp(4px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 800, "black")}>디자인팀원</p>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>서한이</p>
+            </div>
+            <div className="flex justify-end" style={{ width: "clamp(80px, 12.15vw, 175px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>윤내경</p>
+            </div>
+            <div className="flex justify-end" style={{ width: "clamp(80px, 12.15vw, 175px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>진민서</p>
+            </div>
           </div>
         </div>
       </section>
