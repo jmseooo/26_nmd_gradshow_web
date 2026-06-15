@@ -132,7 +132,7 @@ export default function CategorySlider() {
                 key={h}
                 style={{
                   ...txt(18, 800, "black"),
-                  padding: "clamp(10px, 1.32vw, 19px) clamp(12px, 2.78vw, 40px)",
+                  padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 4.17vw, 60px)",
                   whiteSpace: "nowrap",
                 }}
               >
@@ -153,7 +153,7 @@ export default function CategorySlider() {
             {/* 왼쪽: 작품·참여자 */}
             <div
               className="flex flex-col items-start"
-              style={{ gap: "clamp(12px, 4.17vw, 60px)", padding: "0 clamp(12px, 2.78vw, 40px)" }}
+              style={{ gap: "clamp(12px, 4.17vw, 60px)", padding: "0 clamp(16px, 4.17vw, 60px)" }}
             >
               <p className="whitespace-nowrap underline" style={txt(18, 600, "black")}>
                 작품, 3개
@@ -177,7 +177,7 @@ export default function CategorySlider() {
             </div>
 
             {/* 오른쪽: 교수님 */}
-            <div style={{ padding: "0 clamp(12px, 2.78vw, 40px)" }}>
+            <div style={{ padding: "0 clamp(16px, 4.17vw, 60px)" }}>
               <p className="whitespace-nowrap" style={txt(18, 400, "black")}>유영재 교수님</p>
             </div>
           </div>
