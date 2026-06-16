@@ -13,27 +13,38 @@ const NAV_HREFS: Record<string, string> = {
 };
 
 interface Props {
-  activeItem?: string; // pill 표시할 항목 (기본: "거점")
-  isLight?: boolean;   // true → 라이트 색상 / false → 다크 색상
-  compact?: boolean;   // true → 작품 등 서브페이지용 축소 nav (Figma 70:2832)
+  activeItem?: string;
+  isLight?: boolean;
+  compact?: boolean;
 }
 
 export default function NavBar({ activeItem = "거점", isLight = true, compact = false }: Props) {
   const allItems = ["거점", "작품", "디자이너", "방명록", "현장"];
 
-  // 라이트 모드 타이틀 이미지 필터 (#61b0d0)
   const titleFilter =
     "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
 
+  // 1440px 기준 → clamp
+  // 메뉴 폰트: 30px max
+  const navFontSize = "clamp(13px, 2.08vw, 30px)";
+  // 메뉴 아이템 너비: 135px max
+  const navItemW   = "clamp(50px, 9.38vw, 135px)";
+  // 메뉴 아이템 높이: 65px max
+  const navItemH   = "clamp(28px, 4.51vw, 65px)";
+  // 활성 pill 패딩
+  const pillPadV   = "clamp(4px, 0.69vw, 10px)";
+  const pillPadH   = "clamp(5px, 0.83vw, 12px)";
+
   return (
-    <div className="flex items-start justify-between w-full">
-      {/* ── 좌측: 학교명 + 타이틀 ────────────────────────── */}
+    <div className="flex items-center justify-between w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)" }}>
+
+      {/* ── 좌측 ────────────────────────────────────────── */}
       {compact ? (
-        /* Figma 70:2832-2834 — 서브페이지용 컴팩트 버전 */
-        <div className="flex flex-col" style={{ padding: "0 28px", gap: "8px" }}>
+        /* 서브페이지용 컴팩트 버전 (Figma 70:2832) */
+        <div className="flex flex-col flex-shrink-0" style={{ gap: "clamp(4px, 0.56vw, 8px)" }}>
           <p
             style={{
-              fontSize: "12px",
+              fontSize: "clamp(9px, 0.83vw, 12px)",
               fontWeight: 600,
               color: "black",
               letterSpacing: "-0.24px",
@@ -44,13 +55,12 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             서울여자대학교 첨단미디어디자인전공<br />
             제2회 졸업전시
           </p>
-          {/* 38px 높이로 스케일 다운 (원본 85.5px 기준 → 468×85.5 → 208×38) */}
           <img
             alt="우리의 거점"
             src="/assets/hero-title.png"
             style={{
-              width: "208px",
-              height: "38px",
+              width: "clamp(90px, 14.44vw, 208px)",
+              height: "clamp(17px, 2.64vw, 38px)",
               objectFit: "cover",
               filter: titleFilter,
             }}
@@ -58,29 +68,43 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         </div>
       ) : (
         /* 히어로용 풀사이즈 버전 */
-        <div className="flex flex-col" style={{ width: "520.586px", height: "227px" }}>
-          <div style={{ padding: "10px 28px" }}>
+        <div
+          className="flex flex-col flex-shrink-0"
+          style={{ width: "clamp(180px, 36.15vw, 520px)" }}
+        >
+          <div style={{ padding: "clamp(4px, 0.69vw, 10px) clamp(10px, 1.94vw, 28px)" }}>
             <p
               style={{
-                fontSize: "24px",
+                fontSize: "clamp(11px, 1.67vw, 24px)",
                 fontWeight: 600,
                 color: isLight ? "black" : "white",
                 letterSpacing: "-0.48px",
                 lineHeight: 1.5,
                 transition: `color ${T}`,
+                whiteSpace: "nowrap",
               }}
             >
               서울여자대학교 첨단미디어디자인전공<br />
               제2회 졸업전시
             </p>
           </div>
-          <div className="relative overflow-hidden" style={{ width: "520px", height: "135px" }}>
+          <div
+            className="relative overflow-hidden"
+            style={{
+              width: "clamp(180px, 36.11vw, 520px)",
+              height: "clamp(33px, 9.38vw, 135px)",
+            }}
+          >
             <img
               alt="우리의 거점"
               src="/assets/hero-title.png"
               className="absolute"
               style={{
-                left: "26px", top: "24px", width: "468px", height: "85.5px", objectFit: "cover",
+                left: "clamp(10px, 1.81vw, 26px)",
+                top: "clamp(10px, 1.67vw, 24px)",
+                width: "clamp(140px, 32.5vw, 468px)",
+                height: "clamp(26px, 5.94vw, 85.5px)",
+                objectFit: "cover",
                 filter: isLight ? titleFilter : "none",
                 transition: `filter ${T}`,
               }}
@@ -90,10 +114,9 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
       )}
 
       {/* ── 우측: 메뉴 아이템 ────────────────────────────── */}
-      <div className="flex items-center">
+      <div className="flex items-center flex-shrink-0" style={{ gap: "0" }}>
         {allItems.map((item) => {
           const isActive = item === activeItem;
-          // 거점이 활성이고 다크 모드 → #aedce9 / 그 외 → #38b3d6
           const pillBg   = isActive && item === "거점" && !isLight ? "#aedce9" : "#38b3d6";
           const pillText = isActive && item === "거점" && !isLight ? "#38b3d6" : "#f7f7f7";
 
@@ -104,20 +127,20 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
               style={
                 isActive
                   ? {
-                      width: "135px",
+                      minWidth: navItemW,
                       backgroundColor: pillBg,
                       borderRadius: "100px",
-                      padding: "10px 12px",
+                      padding: `${pillPadV} ${pillPadH}`,
                       transition: `background-color ${T}`,
                     }
-                  : { width: "135px", height: "65px" }
+                  : { minWidth: navItemW, height: navItemH }
               }
               onClick={(e) => e.stopPropagation()}
             >
               <Link href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
                 <p
                   style={{
-                    fontSize: "30px",
+                    fontSize: navFontSize,
                     fontWeight: 800,
                     color: isActive
                       ? pillText
