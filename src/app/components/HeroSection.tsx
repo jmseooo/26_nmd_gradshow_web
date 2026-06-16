@@ -41,13 +41,13 @@ export default function HeroSection() {
         className="absolute inset-0"
         style={{ opacity: isLight ? 0 : 1, transition: `opacity ${T}`, pointerEvents: "none" }}
       >
-        <div className="absolute bg-[#0fa7d2] h-full left-0 overflow-clip top-0 w-[1440px]">
-          <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-[1440px]">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={img1Dark} />
+        <div className="absolute bg-[#0fa7d2] h-full left-0 overflow-clip top-0 w-full">
+          <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-full">
+            <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img1Dark} />
           </div>
         </div>
-        <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-[1440px]">
-          <img alt="" className="absolute block inset-0 max-w-none size-full" src={img2} />
+        <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-full">
+          <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img2} />
         </div>
       </div>
 
@@ -56,8 +56,8 @@ export default function HeroSection() {
         className="absolute inset-0"
         style={{ opacity: isLight ? 1 : 0, transition: `opacity ${T}`, pointerEvents: "none" }}
       >
-        <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-[1440px]">
-          <img alt="" className="absolute block inset-0 max-w-none size-full" src={img1Light} />
+        <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-full">
+          <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img1Light} />
         </div>
         <div
           className="absolute inset-0"
