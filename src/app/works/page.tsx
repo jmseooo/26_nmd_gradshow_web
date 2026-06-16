@@ -67,7 +67,7 @@ export default function WorksPage() {
       <div
         className="flex items-center"
         style={{
-          padding: "clamp(20px, 4.17vw, 60px) clamp(16px, 5.56vw, 80px) 0",
+          padding: "clamp(20px, 6.53vw, 94px) clamp(16px, 5.56vw, 80px) 0",
           gap: "clamp(30px, 6.25vw, 90px)",
         }}
       >
@@ -91,7 +91,7 @@ export default function WorksPage() {
       </div>
 
       {/* ── 작품 카드 그리드 ───────────────────────────── */}
-      <div style={{ padding: "clamp(20px, 3.96vw, 57px) clamp(16px, 5.56vw, 80px)" }}>
+      <div style={{ padding: "clamp(16px, 3.19vw, 46px) clamp(16px, 5.56vw, 80px)" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",

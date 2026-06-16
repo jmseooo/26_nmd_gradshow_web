@@ -33,7 +33,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const navGap      = "clamp(4px, 0.69vw, 10px)";        // gap 10px
 
   return (
-    <div className="flex items-center justify-between w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)" }}>
+    <div className="flex items-start justify-between w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)" }}>
 
       {/* ── 좌측 ────────────────────────────────────────── */}
       {compact ? (
