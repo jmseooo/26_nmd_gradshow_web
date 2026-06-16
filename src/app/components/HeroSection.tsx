@@ -119,7 +119,7 @@ export default function HeroSection() {
           left: "993px", top: "87.82%",
           width: "367px", height: "53px",
           backgroundColor: "white", borderRadius: "100px",
-          padding: "10px 14px", gap: "8px",
+          padding: "0 16px 0 24px",
         }}
       >
         <input
@@ -141,7 +141,7 @@ export default function HeroSection() {
         <img
           alt="보내기"
           src="/assets/hero-send.svg"
-          style={{ width: "24px", height: "24px", flexShrink: 0, cursor: "pointer" }}
+          style={{ width: "22px", height: "22px", flexShrink: 0, cursor: "pointer" }}
         />
       </div>
     </section>
