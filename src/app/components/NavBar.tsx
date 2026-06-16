@@ -24,16 +24,13 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const titleFilter =
     "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
 
-  // 1440px 기준 → clamp
-  // 메뉴 폰트: 30px max
-  const navFontSize = "clamp(13px, 2.08vw, 30px)";
-  // 메뉴 아이템 너비: 135px max
-  const navItemW   = "clamp(50px, 9.38vw, 135px)";
-  // 메뉴 아이템 높이: 65px max
-  const navItemH   = "clamp(28px, 4.51vw, 65px)";
-  // 활성 pill 패딩
-  const pillPadV   = "clamp(4px, 0.69vw, 10px)";
-  const pillPadH   = "clamp(5px, 0.83vw, 12px)";
+  // 1440px 기준 → clamp (Figma 70:2835)
+  const navFontSize = "clamp(13px, 2.08vw, 30px)";       // 30px
+  const pillW       = "clamp(60px, 9.38vw, 135px)";      // 거점·작품 고정 폭 135px
+  const pillPadV    = "clamp(4px, 0.69vw, 10px)";        // py 10px
+  const pillPadH    = "clamp(5px, 0.83vw, 12px)";        // px 12px (pill 슬롯)
+  const textPadH    = "clamp(12px, 2.08vw, 30px)";       // px 30px (디자이너·방명록·현장)
+  const navGap      = "clamp(4px, 0.69vw, 10px)";        // gap 10px
 
   return (
     <div className="flex items-center justify-between w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)" }}>
@@ -55,16 +52,19 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             서울여자대학교 첨단미디어디자인전공<br />
             제2회 졸업전시
           </p>
-          <img
-            alt="우리의 거점"
-            src="/assets/hero-title.png"
-            style={{
-              width: "clamp(90px, 14.44vw, 208px)",
-              height: "clamp(17px, 2.64vw, 38px)",
-              objectFit: "cover",
-              filter: titleFilter,
-            }}
-          />
+          <Link href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
+            <img
+              alt="우리의 거점"
+              src="/assets/hero-title.png"
+              style={{
+                width: "clamp(90px, 14.44vw, 208px)",
+                height: "clamp(17px, 2.64vw, 38px)",
+                objectFit: "cover",
+                filter: titleFilter,
+                cursor: "pointer",
+              }}
+            />
+          </Link>
         </div>
       ) : (
         /* 히어로용 풀사이즈 버전 */
@@ -114,27 +114,28 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
       )}
 
       {/* ── 우측: 메뉴 아이템 ────────────────────────────── */}
-      <div className="flex items-center flex-shrink-0" style={{ gap: "0" }}>
+      <div className="flex items-center flex-shrink-0" style={{ gap: navGap }}>
         {allItems.map((item) => {
-          const isActive = item === activeItem;
-          const pillBg   = isActive && item === "거점" && !isLight ? "#aedce9" : "#38b3d6";
-          const pillText = isActive && item === "거점" && !isLight ? "#38b3d6" : "#f7f7f7";
+          const isActive  = item === activeItem;
+          const isPillSlot = item === "거점" || item === "작품"; // 고정 폭 슬롯
+          const pillBg    = isActive && item === "거점" && !isLight ? "#aedce9" : "#38b3d6";
+          const pillText  = isActive && item === "거점" && !isLight ? "#38b3d6" : "#f7f7f7";
 
           return (
             <div
               key={item}
               className="flex items-center justify-center"
-              style={
-                isActive
-                  ? {
-                      minWidth: navItemW,
-                      backgroundColor: pillBg,
-                      borderRadius: "100px",
-                      padding: `${pillPadV} ${pillPadH}`,
-                      transition: `background-color ${T}`,
-                    }
-                  : { minWidth: navItemW, height: navItemH }
-              }
+              style={{
+                // pill 슬롯(거점·작품): 135px 고정 폭 + 12px 수평 패딩
+                // 나머지(디자이너·방명록·현장): 폭 auto + 30px 수평 패딩
+                ...(isPillSlot
+                  ? { width: pillW, padding: `${pillPadV} ${pillPadH}` }
+                  : { padding: `${pillPadV} ${textPadH}` }),
+                borderRadius: "100px",
+                backgroundColor: isActive ? pillBg : "transparent",
+                transition: `background-color ${T}`,
+                flexShrink: 0,
+              }}
               onClick={(e) => e.stopPropagation()}
             >
               <Link href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
