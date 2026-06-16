@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import CategorySlider from "./components/CategorySlider";
+import ScrollReveal from "./components/ScrollReveal";
 
 /* ─── 배경 이미지 ────────────────────────────────────────────────── */
 
@@ -195,35 +196,40 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════════
           SECTION 2 · 텍스트 섹션
       ══════════════════════════════════════════════════════════ */}
-      <section
-        className="relative overflow-hidden bg-white flex items-center justify-center"
-        style={{ minHeight: "clamp(180px, 25vw, 360px)", padding: "clamp(32px, 4vw, 60px) 16px" }}
-      >
-        <div className="absolute inset-0 pointer-events-none opacity-20">
-          <img alt="" src="/assets/img3.svg" className="w-full h-full object-cover" />
-        </div>
-        <div className="relative text-center">
-          <p style={txt(18, 400, "#2174a4")}>
-            각자의 방향으로 흘러가던 우리는 수많은 고민과 흔들림 끝에 이곳에 잠시 모였습니다.
-          </p>
-          <p style={txt(18, 400, "#2174a4")}>
-            이곳은 완벽한 도착지가 아니라, 다음 흐름을 준비하는{" "}
-            <span style={{ fontWeight: 600 }}>우리의 거점</span>입니다.
-          </p>
-          <p style={{ ...txt(18, 400, "#2174a4"), marginTop: "clamp(16px, 1.88vw, 27px)" }}>
-            그리고 지금, 우리는 그 출발점에 서 있습니다.
-          </p>
-        </div>
-      </section>
+      <ScrollReveal>
+        <section
+          className="relative overflow-hidden bg-white flex items-center justify-center"
+          style={{ minHeight: "clamp(180px, 25vw, 360px)", padding: "clamp(32px, 4vw, 60px) 16px" }}
+        >
+          <div className="absolute inset-0 pointer-events-none opacity-20">
+            <img alt="" src="/assets/img3.svg" className="w-full h-full object-cover" />
+          </div>
+          <div className="relative text-center">
+            <p style={txt(18, 400, "#2174a4")}>
+              각자의 방향으로 흘러가던 우리는 수많은 고민과 흔들림 끝에 이곳에 잠시 모였습니다.
+            </p>
+            <p style={txt(18, 400, "#2174a4")}>
+              이곳은 완벽한 도착지가 아니라, 다음 흐름을 준비하는{" "}
+              <span style={{ fontWeight: 600 }}>우리의 거점</span>입니다.
+            </p>
+            <p style={{ ...txt(18, 400, "#2174a4"), marginTop: "clamp(16px, 1.88vw, 27px)" }}>
+              그리고 지금, 우리는 그 출발점에 서 있습니다.
+            </p>
+          </div>
+        </section>
+      </ScrollReveal>
 
       {/* ══════════════════════════════════════════════════════════
           SECTION 3 · 카테고리 슬라이더
       ══════════════════════════════════════════════════════════ */}
-      <CategorySlider />
+      <ScrollReveal>
+        <CategorySlider />
+      </ScrollReveal>
 
       {/* ══════════════════════════════════════════════════════════
           SECTION 4 · 졸업전시위원회
       ══════════════════════════════════════════════════════════ */}
+      <ScrollReveal>
       <section
         className="relative overflow-hidden"
         style={{
@@ -289,10 +295,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ══════════════════════════════════════════════════════════
           SECTION 5 · 협찬
       ══════════════════════════════════════════════════════════ */}
+      <ScrollReveal>
       <section style={{ padding: "clamp(32px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px)" }}>
         <p
           className="text-center whitespace-nowrap"
@@ -322,10 +330,12 @@ export default function Home() {
           ))}
         </div>
       </section>
+      </ScrollReveal>
 
       {/* ══════════════════════════════════════════════════════════
           SECTION 6 · 푸터
       ══════════════════════════════════════════════════════════ */}
+      <ScrollReveal>
       <footer
         className="flex items-center"
         style={{
@@ -344,6 +354,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      </ScrollReveal>
 
       <ScrollToTop />
     </div>
