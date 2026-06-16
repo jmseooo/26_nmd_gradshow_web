@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import NavBar from "./NavBar";
 
 /* ─── 배경 이미지 ─────────────────────────────────────────────── */
 const img1Dark  = "https://www.figma.com/api/mcp/asset/3d8e2f49-628a-4a9c-9d2e-d1c561bc931d";
@@ -81,85 +82,8 @@ export default function HeroSection() {
       </div>
 
       {/* ── 네비게이션 바 ──────────────────────────────── */}
-      <div className="absolute content-stretch flex items-start justify-between left-[80px] top-[101px] w-[1280px]">
-        {/* 좌측: 학교명 + 타이틀 */}
-        <div className="flex flex-col" style={{ width: "520.586px", height: "227px" }}>
-          <div style={{ padding: "10px 28px" }}>
-            <p
-              style={{
-                fontSize: "24px",
-                fontWeight: 600,
-                color: isLight ? "black" : "white",
-                letterSpacing: "-0.48px",
-                lineHeight: 1.5,
-                transition: `color ${T}`,
-              }}
-            >
-              서울여자대학교 첨단미디어디자인전공<br />
-              제2회 졸업전시
-            </p>
-          </div>
-          <div className="relative overflow-hidden" style={{ width: "520px", height: "135px" }}>
-            <img
-              alt="우리의 거점"
-              src="/assets/hero-title.png"
-              className="absolute"
-              style={{
-                left: "26px", top: "24px", width: "468px", height: "85.5px", objectFit: "cover",
-                filter: isLight
-                  ? "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)"
-                  : "none",
-                transition: `filter ${T}`,
-              }}
-            />
-          </div>
-        </div>
-
-        {/* 우측 메뉴 */}
-        <div className="flex items-center">
-          {/* 거점 */}
-          <div
-            className="flex items-center justify-center"
-            style={{
-              width: "135px",
-              backgroundColor: isLight ? "#38b3d6" : "#aedce9",
-              borderRadius: "100px",
-              padding: "10px 12px",
-              transition: `background-color ${T}`,
-            }}
-          >
-            <p
-              style={{
-                fontSize: "30px", fontWeight: 800,
-                color: isLight ? "#f7f7f7" : "#38b3d6",
-                letterSpacing: "-0.6px", lineHeight: 1.5, whiteSpace: "nowrap",
-                transition: `color ${T}`,
-              }}
-            >
-              거점
-            </p>
-          </div>
-
-          {["작품", "디자이너", "방명록", "현장"].map((item) => (
-            <div
-              key={item}
-              className="flex items-center justify-center"
-              style={{ width: "135px", height: "65px" }}
-            >
-              <p
-                style={{
-                  fontSize: "30px", fontWeight: 800,
-                  color: isLight ? "black" : "white",
-                  letterSpacing: "-0.6px", lineHeight: 1.5,
-                  whiteSpace: "nowrap", textAlign: "center",
-                  transition: `color ${T}`,
-                }}
-              >
-                {item}
-              </p>
-            </div>
-          ))}
-        </div>
+      <div className="absolute left-[80px] top-[101px] w-[1280px]">
+        <NavBar activeItem="거점" isLight={isLight} />
       </div>
 
       {/* ── 말풍선 ────────────────────────────────────── */}
