@@ -113,23 +113,35 @@ export default function HeroSection() {
 
       {/* ── 방명록 입력창 ─────────────────────────────── */}
       <div
-        className="absolute flex items-center justify-center"
+        className="absolute flex items-center"
         onClick={(e) => e.stopPropagation()}
         style={{
           left: "993px", top: "87.82%",
           width: "367px", height: "53px",
           backgroundColor: "white", borderRadius: "100px",
-          padding: "10px", gap: "10px",
+          padding: "10px 14px", gap: "8px",
         }}
       >
-        <p style={{ fontSize: "18px", fontWeight: 600, color: "#828282", letterSpacing: "-0.36px", whiteSpace: "nowrap" }}>
-          남기고 싶은 말이 있나요?
-        </p>
+        <input
+          type="text"
+          className="guestbook"
+          placeholder="남기고 싶은 말이 있나요?"
+          style={{
+            flex: 1,
+            border: "none",
+            outline: "none",
+            background: "transparent",
+            fontSize: "18px",
+            fontWeight: 600,
+            color: "#202024",
+            letterSpacing: "-0.36px",
+            fontFamily: "inherit",
+          }}
+        />
         <img
           alt="보내기"
           src="/assets/hero-send.svg"
-          className="absolute"
-          style={{ left: "328px", top: "14.5px", width: "24px", height: "24px" }}
+          style={{ width: "24px", height: "24px", flexShrink: 0, cursor: "pointer" }}
         />
       </div>
     </section>
