@@ -16,21 +16,7 @@ export default function TransitionLink({ href, children, style, className }: Pro
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (href === "#") return;
-
-    const wrapper = document.getElementById("page-wrapper");
-    if (!wrapper) {
-      router.push(href);
-      return;
-    }
-
-    const anim = wrapper.animate(
-      [
-        { opacity: 1, transform: "translateY(0)" },
-        { opacity: 0, transform: "translateY(-10px)" },
-      ],
-      { duration: 220, easing: "ease-in", fill: "forwards" }
-    );
-    anim.onfinish = () => router.push(href);
+    router.push(href);
   };
 
   return (
