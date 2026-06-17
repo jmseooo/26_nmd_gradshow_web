@@ -5,8 +5,13 @@ import type { CSSProperties } from "react";
 import ScrollToTop from "../components/ScrollToTop";
 import NavBar from "../components/NavBar";
 
-/* ─── 호버 에셋 ───────────────────────────────────────────────── */
-const imgEllipse = "https://www.figma.com/api/mcp/asset/447bea0e-02e6-4f2c-b659-7ae5d4c243da";
+/* ─── 카테고리 컬러 맵 ────────────────────────────────────────── */
+const categoryColor: Record<string, string> = {
+  XR:     "#b8d870",
+  MOTION: "#e7b871",
+  UI:     "#e99fa9",
+  UX:     "#9898c8",
+};
 
 /* ─── 텍스트 스타일 헬퍼 ──────────────────────────────────────── */
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
@@ -22,10 +27,10 @@ function txt(size: number, weight: number, color: string, tracking = -0.02): CSS
 
 /* ─── 데이터 ──────────────────────────────────────────────────── */
 const filterTabs = [
-  { label: "XR",     count: 10, color: "#E6F6C3" },
-  { label: "MOTION", count: 2,  color: "#FFEACA" },
-  { label: "UI",     count: 3,  color: "#FFEEF0" },
-  { label: "UX",     count: 8,  color: "#EEEEFF" },
+  { label: "XR",     count: 10, color: "#b8d870" },
+  { label: "MOTION", count: 2,  color: "#e7b871" },
+  { label: "UI",     count: 3,  color: "#e99fa9" },
+  { label: "UX",     count: 8,  color: "#9898c8" },
 ];
 
 // 작품명은 추후 수정 예정 — name: "" 이면 빈 카드로 표시
@@ -106,44 +111,39 @@ export default function WorksPage() {
                 backgroundColor: "#f3f3f3",
                 borderRadius: "clamp(12px, 1.67vw, 24px)",
                 aspectRatio: "408 / 229.527",
-                cursor: work.name ? "pointer" : "default",
+                cursor: "pointer",
               }}
-              onMouseEnter={() => work.name && setHoveredId(work.id)}
+              onMouseEnter={() => setHoveredId(work.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
               {/* 호버 오버레이 (딤 + 원형 배지) */}
-              {work.name && (
+              <div
+                className="absolute inset-0 flex items-center justify-center"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, rgba(0,0,0,0.6) 20.652%, rgba(0,48,61,0.6) 72.717%, rgba(33,116,164,0.6) 124.78%)",
+                  opacity: hoveredId === work.id ? 1 : 0,
+                  transition: "opacity 0.3s ease",
+                  pointerEvents: "none",
+                }}
+              >
                 <div
-                  className="absolute inset-0 flex items-center justify-center"
+                  className="flex items-center justify-center"
                   style={{
-                    background:
-                      "linear-gradient(to bottom, rgba(0,0,0,0.6) 20.652%, rgba(0,48,61,0.6) 72.717%, rgba(33,116,164,0.6) 124.78%)",
-                    opacity: hoveredId === work.id ? 1 : 0,
-                    transition: "opacity 0.3s ease",
-                    pointerEvents: "none",
+                    width: "clamp(60px, 7.08vw, 102px)",
+                    height: "clamp(60px, 7.08vw, 102px)",
+                    borderRadius: "50%",
+                    backgroundColor: categoryColor[work.category],
+                    flexShrink: 0,
                   }}
                 >
-                  <div
-                    className="relative flex items-center justify-center"
-                    style={{ width: "clamp(60px, 7.08vw, 102px)", height: "clamp(60px, 7.08vw, 102px)" }}
-                  >
-                    <img
-                      src={imgEllipse}
-                      alt=""
-                      className="absolute inset-0 w-full h-full"
-                      style={{ objectFit: "cover" }}
-                    />
-                    <p style={{
-                      ...txt(24, 600, "white"),
-                      position: "relative",
-                      zIndex: 1,
-                      textAlign: "center",
-                    }}>
+                  {work.name && (
+                    <p style={{ ...txt(24, 600, "white"), textAlign: "center" }}>
                       {work.name}
                     </p>
-                  </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>

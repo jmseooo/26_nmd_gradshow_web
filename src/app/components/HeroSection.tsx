@@ -4,10 +4,10 @@ import { useState, useRef, useEffect } from "react";
 import NavBar from "./NavBar";
 
 /* ─── 배경 이미지 ─────────────────────────────────────────────── */
-const img1Dark  = "https://www.figma.com/api/mcp/asset/3d8e2f49-628a-4a9c-9d2e-d1c561bc931d";
-const img1Light = "https://www.figma.com/api/mcp/asset/d52e1b7c-03ff-4ae1-bbf9-e2bef6e5d71e";
-const img2      = "https://www.figma.com/api/mcp/asset/291546da-52c6-4d23-9d55-db5b73ba6a38";
-const imgVector1 = "https://www.figma.com/api/mcp/asset/f0113058-7e60-4632-9c93-38cc6f764c8c";
+const img1Dark   = "/assets/hero-bg1.svg";
+const img1Light  = "/nmd_asset01.png";
+const img2       = "/assets/hero-bg3.svg";
+const imgVector1 = "/assets/hero-vector.svg";
 
 const INITIAL_BUBBLES: string[] = [];
 
