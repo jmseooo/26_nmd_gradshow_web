@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_figma_figma__get_design_context",
+      "mcp__plugin_figma_figma__get_screenshot",
+      "mcp__plugin_figma_figma__get_metadata",
+      "mcp__figma-mcp-for-claude__get_design_context",
+      "mcp__figma-mcp-for-claude__get_node_info",
+      "mcp__figma-mcp-for-claude__get_selection",
+      "mcp__figma-mcp-for-claude__get_document_info",
+      "mcp__figma-mcp-for-claude__get_nodes_info",
+      "Bash(npx tsc --noEmit 2>&1)"
+    ]
+  }
+}

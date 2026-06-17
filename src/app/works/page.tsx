@@ -22,10 +22,10 @@ function txt(size: number, weight: number, color: string, tracking = -0.02): CSS
 
 /* ─── 데이터 ──────────────────────────────────────────────────── */
 const filterTabs = [
-  { label: "UI",     count: 3  },
-  { label: "XR",     count: 10 },
-  { label: "UX",     count: 8  },
-  { label: "MOTION", count: 2  },
+  { label: "XR",     count: 10, color: "#E6F6C3" },
+  { label: "MOTION", count: 2,  color: "#FFEACA" },
+  { label: "UI",     count: 3,  color: "#FFEEF0" },
+  { label: "UX",     count: 8,  color: "#EEEEFF" },
 ];
 
 // 작품명은 추후 수정 예정 — name: "" 이면 빈 카드로 표시
@@ -68,10 +68,10 @@ export default function WorksPage() {
         className="flex items-center"
         style={{
           padding: "clamp(20px, 6.53vw, 94px) clamp(16px, 5.56vw, 80px) 0",
-          gap: "clamp(30px, 6.25vw, 90px)",
+          gap: "clamp(16px, 2.78vw, 40px)",
         }}
       >
-        {filterTabs.map(({ label, count }) => {
+        {filterTabs.map(({ label, count, color }) => {
           const isActive = activeFilter === label;
           return (
             <button
@@ -80,8 +80,9 @@ export default function WorksPage() {
               style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
             >
               <p style={{
-                ...txt(30, 800, isActive ? "#e99fa9" : "black"),
+                ...txt(30, 800, isActive ? color : "black"),
                 whiteSpace: "nowrap",
+                transition: "color 0.2s ease",
               }}>
                 {label}&nbsp;{count}
               </p>
