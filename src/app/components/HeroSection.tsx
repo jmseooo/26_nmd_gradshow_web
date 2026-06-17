@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import NavBar from "./NavBar";
 
 /* ─── 배경 이미지 ─────────────────────────────────────────────── */
@@ -13,16 +13,21 @@ const INITIAL_BUBBLES: string[] = [];
 
 const T = "0.5s ease";
 
+type Bubble = { id: number; text: string };
+let nextId = 0;
+
 export default function HeroSection() {
   const [isLight, setIsLight] = useState(false);
-  const [bubbles, setBubbles] = useState<string[]>(INITIAL_BUBBLES);
+  const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => { inputRef.current?.focus(); }, []);
 
   const submitMessage = () => {
     const text = inputValue.trim();
     if (!text) return;
-    setBubbles((prev) => [...prev.slice(-8), text]);
+    setBubbles((prev) => [...prev.slice(-8), { id: nextId++, text }]);
     setInputValue("");
     inputRef.current?.focus();
   };
@@ -91,34 +96,45 @@ export default function HeroSection() {
 
       {/* ── 말풍선 ────────────────────────────────────── */}
       <style>{`
-        @keyframes bubble-pop {
-          from { opacity: 0; transform: scale(0.8) translateY(6px); }
-          to   { opacity: 1; transform: scale(1)   translateY(0);   }
+        @keyframes bubble-rise {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
       <div
-        className="absolute flex flex-col items-end"
-        style={{ left: "1199px", top: "44%", width: "200px", gap: "10px" }}
+        className="absolute"
+        style={{ left: "1199px", bottom: "18%", width: "200px", height: "432px" }}
       >
-        {bubbles.map((text, i) => (
-          <div
-            key={`${i}-${text}`}
-            className="flex items-center justify-center"
-            style={{
-              height: "38px", padding: "0 12px",
-              borderRadius: "100px",
-              backgroundColor: "rgba(255,255,255,0.8)",
-              backdropFilter: "blur(2px)",
-              boxShadow: "0px 0px 10px 0px rgba(0,184,238,0.24)",
-              whiteSpace: "nowrap",
-              animation: i === bubbles.length - 1 ? "bubble-pop 0.3s cubic-bezier(0.22,1,0.36,1) both" : "none",
-            }}
-          >
-            <p style={{ fontSize: "12px", fontWeight: 600, color: "#202024", textAlign: "center" }}>
-              {text}
-            </p>
-          </div>
-        ))}
+        {bubbles.map(({ id, text }, i) => {
+          const fromBottom = (bubbles.length - 1 - i) * 48;
+          const isNew = i === bubbles.length - 1;
+          return (
+            <div
+              key={id}
+              style={{
+                position: "absolute",
+                bottom: `${fromBottom}px`,
+                right: 0,
+                transition: "bottom 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                height: "38px", padding: "0 12px",
+                borderRadius: "100px",
+                backgroundColor: "rgba(255,255,255,0.8)",
+                backdropFilter: "blur(2px)",
+                boxShadow: "0px 0px 10px 0px rgba(0,184,238,0.24)",
+                whiteSpace: "nowrap",
+                ...(isNew && {
+                  animation: "bubble-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both",
+                  willChange: "transform, opacity",
+                }),
+              }}
+            >
+              <p style={{ fontSize: "12px", fontWeight: 600, color: "#202024", textAlign: "center" }}>
+                {text}
+              </p>
+            </div>
+          );
+        })}
       </div>
 
       {/* ── 방명록 입력창 ─────────────────────────────── */}
