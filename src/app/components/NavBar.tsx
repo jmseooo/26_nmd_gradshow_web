@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import TransitionLink from "./TransitionLink";
 
 const T = "0.5s ease";
 
@@ -52,7 +52,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             서울여자대학교 첨단미디어디자인전공<br />
             제2회 졸업전시
           </p>
-          <Link href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
+          <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
             <img
               alt="우리의 거점"
               src="/assets/hero-title.png"
@@ -64,7 +64,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                 cursor: "pointer",
               }}
             />
-          </Link>
+          </TransitionLink>
         </div>
       ) : (
         /* 히어로용 풀사이즈 버전 */
@@ -138,7 +138,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <Link href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
+              <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
                 <p
                   style={{
                     fontSize: navFontSize,
@@ -155,7 +155,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                 >
                   {item}
                 </p>
-              </Link>
+              </TransitionLink>
             </div>
           );
         })}
