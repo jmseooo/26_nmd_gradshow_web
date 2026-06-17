@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import NavBar from "./NavBar";
 
 /* ─── 배경 이미지 ─────────────────────────────────────────────── */
@@ -9,20 +9,23 @@ const img1Light = "https://www.figma.com/api/mcp/asset/d52e1b7c-03ff-4ae1-bbf9-e
 const img2      = "https://www.figma.com/api/mcp/asset/291546da-52c6-4d23-9d55-db5b73ba6a38";
 const imgVector1 = "https://www.figma.com/api/mcp/asset/f0113058-7e60-4632-9c93-38cc6f764c8c";
 
-const chatBubbles = [
-  { text: "여름 졸전 멋있다",             w: "99px"  },
-  { text: "교수님...",                     w: "61px"  },
-  { text: "여름 졸전 멋있다",             w: "99px"  },
-  { text: "교수님...",                     w: "61px"  },
-  { text: "졸준위 고생했어요 사랑해!!!",   w: "151px" },
-  { text: "첨단미디어디자인 가고 싶어요", w: "161px" },
-  { text: "전시 잘 봤어요. 멋져요",        w: "125px" },
-];
+const INITIAL_BUBBLES: string[] = [];
 
 const T = "0.5s ease";
 
 export default function HeroSection() {
   const [isLight, setIsLight] = useState(false);
+  const [bubbles, setBubbles] = useState<string[]>(INITIAL_BUBBLES);
+  const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const submitMessage = () => {
+    const text = inputValue.trim();
+    if (!text) return;
+    setBubbles((prev) => [...prev.slice(-8), text]);
+    setInputValue("");
+    inputRef.current?.focus();
+  };
 
   return (
     <section
@@ -87,21 +90,28 @@ export default function HeroSection() {
       </div>
 
       {/* ── 말풍선 ────────────────────────────────────── */}
+      <style>{`
+        @keyframes bubble-pop {
+          from { opacity: 0; transform: scale(0.8) translateY(6px); }
+          to   { opacity: 1; transform: scale(1)   translateY(0);   }
+        }
+      `}</style>
       <div
         className="absolute flex flex-col items-end"
-        style={{ left: "1199px", top: "44%", width: "161px", gap: "10px" }}
+        style={{ left: "1199px", top: "44%", width: "200px", gap: "10px" }}
       >
-        {chatBubbles.map(({ text, w }, i) => (
+        {bubbles.map((text, i) => (
           <div
-            key={i}
+            key={`${i}-${text}`}
             className="flex items-center justify-center"
             style={{
-              width: w, height: "38px", padding: "10px",
+              height: "38px", padding: "0 12px",
               borderRadius: "100px",
               backgroundColor: "rgba(255,255,255,0.8)",
               backdropFilter: "blur(2px)",
               boxShadow: "0px 0px 10px 0px rgba(0,184,238,0.24)",
               whiteSpace: "nowrap",
+              animation: i === bubbles.length - 1 ? "bubble-pop 0.3s cubic-bezier(0.22,1,0.36,1) both" : "none",
             }}
           >
             <p style={{ fontSize: "12px", fontWeight: 600, color: "#202024", textAlign: "center" }}>
@@ -123,9 +133,13 @@ export default function HeroSection() {
         }}
       >
         <input
+          ref={inputRef}
           type="text"
           className="guestbook"
           placeholder="남기고 싶은 말이 있나요?"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => { if (e.key === "Enter") submitMessage(); }}
           style={{
             flex: 1,
             border: "none",
@@ -141,6 +155,7 @@ export default function HeroSection() {
         <img
           alt="보내기"
           src="/assets/hero-send.svg"
+          onClick={submitMessage}
           style={{ width: "22px", height: "22px", flexShrink: 0, cursor: "pointer" }}
         />
       </div>
