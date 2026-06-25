@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import NavBar from "./NavBar";
+import { supabase } from "@/lib/supabase";
 
 /* ─── 배경 이미지 ─────────────────────────────────────────────── */
 const img1Dark   = "/assets/hero-bg1.svg";
@@ -24,12 +25,13 @@ export default function HeroSection() {
 
   useEffect(() => { inputRef.current?.focus(); }, []);
 
-  const submitMessage = () => {
+  const submitMessage = async () => {
     const text = inputValue.trim();
     if (!text) return;
     setBubbles((prev) => [...prev.slice(-8), { id: nextId++, text }]);
     setInputValue("");
     inputRef.current?.focus();
+    await supabase.from("guestbook").insert({ message: text });
   };
 
   return (

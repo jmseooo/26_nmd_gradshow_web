@@ -1,6 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import { useRouter } from "next/navigation";
 import ScrollToTop from "../components/ScrollToTop";
 import NavBar from "../components/NavBar";
 
@@ -31,6 +32,7 @@ const designers = [
 
 /* ─── 페이지 ──────────────────────────────────────────────────── */
 export default function DesignerPage() {
+  const router = useRouter();
   return (
     <div
       className="bg-white min-h-screen overflow-x-hidden relative"
@@ -58,7 +60,7 @@ export default function DesignerPage() {
       <div className="relative" style={{ zIndex: 2 }}>
 
         {/* ── 네비게이션 바 ──────────────────────────────── */}
-        <div style={{ padding: "clamp(40px, 7.01vw, 101px) clamp(16px, 5.56vw, 80px) 0" }}>
+        <div style={{ padding: "clamp(40px, 7.01vw, 101px) clamp(16px, 5.56vw, 80px) 0", backgroundColor: "white" }}>
           <NavBar activeItem="디자이너" isLight={true} compact={true} />
         </div>
 
@@ -84,6 +86,7 @@ export default function DesignerPage() {
                   overflow: "hidden",
                   cursor: "pointer",
                 }}
+                onClick={() => router.push(`/student/${d.id}`)}
               >
                 <p
                   style={{
