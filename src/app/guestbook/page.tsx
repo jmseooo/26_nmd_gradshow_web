@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 import NavBar from "../components/NavBar";
-import ScrollToTop from "../components/ScrollToTop";
 import { supabase, type GuestMessage } from "@/lib/supabase";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
@@ -154,7 +153,6 @@ export default function GuestbookPage() {
         </footer>
       </div>
 
-      <ScrollToTop />
     </div>
   );
 }

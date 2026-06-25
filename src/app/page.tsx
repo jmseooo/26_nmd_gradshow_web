@@ -1,5 +1,4 @@
 import type { CSSProperties } from "react";
-import ScrollToTop from "./components/ScrollToTop";
 import CategorySlider from "./components/CategorySlider";
 import ScrollReveal from "./components/ScrollReveal";
 import HeroSection from "./components/HeroSection";
@@ -205,7 +204,6 @@ export default function Home() {
       </footer>
       </ScrollReveal>
 
-      <ScrollToTop />
     </div>
   );
 }

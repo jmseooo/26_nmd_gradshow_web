@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { CSSProperties } from "react";
-import ScrollToTop from "../components/ScrollToTop";
 import NavBar from "../components/NavBar";
 
 /* ─── 카테고리 컬러 맵 ────────────────────────────────────────── */
@@ -170,7 +169,6 @@ export default function WorksPage() {
         </div>
       </footer>
 
-      <ScrollToTop />
     </div>
   );
 }

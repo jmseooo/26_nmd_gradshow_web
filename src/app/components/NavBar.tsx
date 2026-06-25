@@ -146,19 +146,21 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
     ) : (
       <p
         style={{
-          fontSize: "clamp(11px, 1.67vw, 24px)",
+          fontSize: "clamp(10px, 1.53vw, 22px)",
           fontWeight: 600,
           color: isLight ? "black" : "white",
-          letterSpacing: "-0.48px",
+          letterSpacing: "0",
           lineHeight: 1.5,
           transition: `color ${T}`,
           whiteSpace: "nowrap",
-          padding: "clamp(4px, 0.69vw, 10px) clamp(10px, 1.81vw, 26px)",
+          width: "clamp(140px, 32.5vw, 468px)",
+          marginLeft: "clamp(14px, 2.08vw, 30px)",
+          paddingTop: "clamp(4px, 0.69vw, 10px)",
+          paddingBottom: "clamp(4px, 0.69vw, 10px)",
           marginTop: "clamp(-6px, -0.833vw, -12px)",
         }}
       >
-        서울여자대학교 첨단미디어디자인전공<br />
-        제2회 졸업전시
+        서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
       </p>
     )}
     </>

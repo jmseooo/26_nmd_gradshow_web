@@ -11,12 +11,14 @@ export default function ScrollToTop() {
         padding: "12px",
       }}
       aria-label="맨 위로"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={() => {
+        (document.scrollingElement ?? document.documentElement).scrollTo({ top: 0, behavior: "smooth" });
+      }}
     >
       <img
         alt=""
         className="w-full h-full"
-        style={{ transform: "rotate(-90deg)" }}
+        style={{ transform: "rotate(-90deg)", filter: "brightness(0) invert(1)" }}
         src="/assets/arrow-forward.svg"
       />
     </button>

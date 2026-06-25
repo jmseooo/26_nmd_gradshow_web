@@ -2,7 +2,6 @@
 
 import type { CSSProperties } from "react";
 import { useRouter } from "next/navigation";
-import ScrollToTop from "../components/ScrollToTop";
 import NavBar from "../components/NavBar";
 
 /* ─── 텍스트 스타일 헬퍼 ──────────────────────────────────────── */
@@ -69,9 +68,9 @@ export default function DesignerPage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              columnGap: "clamp(10px, 1.46vw, 21px)",
-              rowGap: "clamp(18px, 2.5vw, 36px)",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              columnGap: "clamp(15px, 2.08vw, 30px)",
+              rowGap: "clamp(15px, 2.08vw, 30px)",
             }}
           >
             {designers.map((d) => (
@@ -80,9 +79,9 @@ export default function DesignerPage() {
                 style={{
                   position: "relative",
                   width: "100%",
-                  aspectRatio: "380 / 505",
+                  aspectRatio: "248 / 330",
                   backgroundColor: "#e6f5f9",
-                  borderRadius: "clamp(12px, 1.67vw, 24px)",
+                  borderRadius: "clamp(9px, 1.25vw, 18px)",
                   overflow: "hidden",
                   cursor: "pointer",
                 }}
@@ -90,10 +89,10 @@ export default function DesignerPage() {
               >
                 <p
                   style={{
-                    ...txt(24, 800, "black"),
+                    ...txt(18, 600, "black"),
                     position: "absolute",
-                    bottom: "clamp(12px, 1.25vw, 18px)",
-                    right: "clamp(16px, 1.67vw, 24px)",
+                    bottom: "clamp(9px, 1.25vw, 18px)",
+                    right: "clamp(20px, 2.22vw, 32px)",
                     whiteSpace: "nowrap",
                   }}
                 >
@@ -126,7 +125,6 @@ export default function DesignerPage() {
         </footer>
       </div>
 
-      <ScrollToTop />
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import type { CSSProperties } from "react";
 import NavBar from "../components/NavBar";
-import ScrollToTop from "../components/ScrollToTop";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
   const min = Math.max(10, Math.round(size * 0.45));
@@ -174,7 +173,6 @@ export default function FieldPage() {
         </footer>
       </div>
 
-      <ScrollToTop />
     </div>
   );
 }
