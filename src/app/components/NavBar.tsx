@@ -38,35 +38,21 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
 
       {/* ── 좌측 ────────────────────────────────────────── */}
       {compact ? (
-        /* 서브페이지용 컴팩트 버전 (Figma 70:2832) */
-        <div className="flex flex-col flex-shrink-0" style={{ gap: "clamp(4px, 0.56vw, 8px)" }}>
-          <p
+        /* 서브페이지용 컴팩트 버전 — 타이틀만, 서브타이틀은 아래에 별도 렌더 */
+        <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0, flexShrink: 0 }}>
+          <img
+            alt="우리의 거점"
+            src="/assets/hero-title.png"
             style={{
-              fontSize: "clamp(9px, 0.83vw, 12px)",
-              fontWeight: 600,
-              color: "black",
-              letterSpacing: "-0.24px",
-              lineHeight: 1.5,
-              whiteSpace: "nowrap",
+              width: "clamp(90px, 14.44vw, 208px)",
+              height: "clamp(17px, 2.64vw, 38px)",
+              objectFit: "cover",
+              filter: titleFilter,
+              cursor: "pointer",
+              display: "block",
             }}
-          >
-            서울여자대학교 첨단미디어디자인전공<br />
-            제2회 졸업전시
-          </p>
-          <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
-            <img
-              alt="우리의 거점"
-              src="/assets/hero-title.png"
-              style={{
-                width: "clamp(90px, 14.44vw, 208px)",
-                height: "clamp(17px, 2.64vw, 38px)",
-                objectFit: "cover",
-                filter: titleFilter,
-                cursor: "pointer",
-              }}
-            />
-          </TransitionLink>
-        </div>
+          />
+        </TransitionLink>
       ) : (
         /* 히어로용 풀사이즈 버전 — 타이틀만, 서브타이틀은 아래에 별도 렌더 */
         <div
@@ -142,8 +128,22 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
       </div>
     </div>
 
-    {/* 서브타이틀 (풀사이즈 전용, flex row 아래) */}
-    {!compact && (
+    {/* 서브타이틀 (flex row 아래, compact·full 모두) */}
+    {compact ? (
+      <p
+        style={{
+          fontSize: "clamp(9px, 0.83vw, 12px)",
+          fontWeight: 600,
+          color: "black",
+          letterSpacing: "-0.24px",
+          lineHeight: 1.5,
+          whiteSpace: "nowrap",
+        }}
+      >
+        서울여자대학교 첨단미디어디자인전공<br />
+        제2회 졸업전시
+      </p>
+    ) : (
       <p
         style={{
           fontSize: "clamp(11px, 1.67vw, 24px)",
@@ -154,6 +154,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
           transition: `color ${T}`,
           whiteSpace: "nowrap",
           padding: "clamp(4px, 0.69vw, 10px) clamp(10px, 1.81vw, 26px)",
+          marginTop: "clamp(-6px, -0.833vw, -12px)",
         }}
       >
         서울여자대학교 첨단미디어디자인전공<br />
