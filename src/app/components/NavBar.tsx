@@ -7,7 +7,7 @@ const T = "0.5s ease";
 const NAV_HREFS: Record<string, string> = {
   거점: "/",
   작품: "/works",
-  디자이너: "#",
+  디자이너: "/designer",
   방명록: "#",
   현장: "#",
 };
