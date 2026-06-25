@@ -22,9 +22,7 @@ function formatDate(iso: string) {
   const yy = String(d.getFullYear()).slice(2);
   const mm = String(d.getMonth() + 1).padStart(2, "0");
   const dd = String(d.getDate()).padStart(2, "0");
-  const hh = String(d.getHours()).padStart(2, "0");
-  const min = String(d.getMinutes()).padStart(2, "0");
-  return `${yy}.${mm}.${dd} ${hh}:${min}`;
+  return `${yy}.${mm}.${dd}`;
 }
 
 export default function GuestbookPage() {
@@ -63,16 +61,6 @@ export default function GuestbookPage() {
       className="bg-white min-h-screen overflow-x-hidden relative"
       style={{ fontFamily: "Pretendard, sans-serif" }}
     >
-      {/* ── 배경 ──────────────────────────────────────────── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-        <div className="absolute w-full" style={{ top: "-278.92px", height: "1444.826px" }}>
-          <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" />
-        </div>
-        <div className="absolute w-full" style={{ top: "1166px", height: "1444.826px" }}>
-          <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" />
-        </div>
-      </div>
-
       {/* ── 컨텐츠 ────────────────────────────────────────── */}
       <div className="relative" style={{ zIndex: 2 }}>
 
@@ -101,34 +89,34 @@ export default function GuestbookPage() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(clamp(220px, 22.22vw, 320px), 1fr))",
-                gap: "clamp(12px, 1.67vw, 24px)",
+                gridTemplateColumns: "repeat(5, 1fr)",
+                gap: "clamp(8px, 1.39vw, 20px)",
               }}
             >
               {messages.map((msg) => (
                 <div
                   key={msg.id}
                   style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.8)",
-                    backdropFilter: "blur(8px)",
-                    borderRadius: "clamp(12px, 1.67vw, 24px)",
-                    padding: "clamp(16px, 1.94vw, 28px)",
-                    boxShadow: "0px 0px 16px 0px rgba(0, 184, 238, 0.12)",
+                    backgroundColor: "#e6f5f9",
+                    aspectRatio: "1",
+                    overflow: "hidden",
                     display: "flex",
                     flexDirection: "column",
-                    gap: "clamp(8px, 1.11vw, 16px)",
+                    padding: "clamp(12px, 1.67vw, 24px) clamp(15px, 2.08vw, 30px)",
+                    gap: "clamp(4px, 0.56vw, 8px)",
                   }}
                 >
                   <p
                     style={{
-                      ...txt(18, 600, "#202024"),
-                      wordBreak: "break-word",
+                      ...txt(14, 600, "#000000"),
                       flex: 1,
+                      wordBreak: "break-word",
+                      overflow: "hidden",
                     }}
                   >
                     {msg.message}
                   </p>
-                  <p style={txt(12, 400, "#9ca3af", -0.01)}>
+                  <p style={{ ...txt(14, 600, "#808b90"), textAlign: "right", flexShrink: 0 }}>
                     {formatDate(msg.created_at)}
                   </p>
                 </div>
