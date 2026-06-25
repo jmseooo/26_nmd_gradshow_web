@@ -35,7 +35,7 @@ export default function FieldPage() {
       style={{ fontFamily: "Pretendard, sans-serif" }}
     >
       {/* ── 배경 ──────────────────────────────────────────── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0, opacity: 0.4 }}>
         <div className="absolute w-full" style={{ top: "-278.92px", height: "1444.826px" }}>
           <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" />
         </div>
@@ -62,7 +62,7 @@ export default function FieldPage() {
       <div className="relative" style={{ zIndex: 2 }}>
 
         {/* ── 네비게이션 바 ──────────────────────────────── */}
-        <div style={{ padding: "clamp(10px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) 0", backgroundColor: "white" }}>
+        <div style={{ padding: "clamp(10px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) 0" }}>
           <NavBar activeItem="현장" isLight={true} compact={true} />
         </div>
 
