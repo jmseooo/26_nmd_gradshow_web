@@ -21,6 +21,7 @@ export default function HeroSection() {
   const [isLight, setIsLight] = useState(false);
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [composing, setComposing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => { inputRef.current?.focus(); }, []);
@@ -159,7 +160,9 @@ export default function HeroSection() {
           placeholder="남기고 싶은 말이 있나요?"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={(e) => { if (e.key === "Enter") submitMessage(); }}
+          onCompositionStart={() => setComposing(true)}
+          onCompositionEnd={() => setComposing(false)}
+          onKeyDown={(e) => { if (e.key === "Enter" && !composing) submitMessage(); }}
           style={{
             flex: 1,
             minWidth: 0,
