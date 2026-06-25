@@ -147,7 +147,9 @@ export default function HeroSection() {
           right: "clamp(16px, 5.63vw, 81px)", top: "87.82%",
           width: "clamp(200px, 25.49vw, 367px)", height: "clamp(40px, 3.68vw, 53px)",
           backgroundColor: "white", borderRadius: "100px",
-          padding: "0 16px 0 24px",
+          overflow: "hidden",
+          padding: "0 clamp(14px, 1.39vw, 20px)",
+          gap: "10px",
         }}
       >
         <input
@@ -160,6 +162,7 @@ export default function HeroSection() {
           onKeyDown={(e) => { if (e.key === "Enter") submitMessage(); }}
           style={{
             flex: 1,
+            minWidth: 0,
             border: "none",
             outline: "none",
             background: "transparent",
@@ -170,12 +173,19 @@ export default function HeroSection() {
             fontFamily: "inherit",
           }}
         />
-        <img
-          alt="보내기"
-          src="/assets/hero-send.svg"
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
           onClick={submitMessage}
-          style={{ width: "22px", height: "22px", flexShrink: 0, cursor: "pointer" }}
-        />
+          style={{
+            width: "clamp(20px, 1.67vw, 24px)",
+            height: "clamp(20px, 1.67vw, 24px)",
+            flexShrink: 0,
+            cursor: "pointer",
+          }}
+        >
+          <path d="M3.631 2.122C2.7375 1.6755 1.7485 2.528 2.058 3.4775L4.065 9.63C4.12176 9.80382 4.2251 9.95874 4.36377 10.0779C4.50244 10.1971 4.67113 10.276 4.8515 10.306L12.7815 11.6275C13.199 11.6975 13.199 12.2975 12.7815 12.3675L4.852 13.689C4.67163 13.719 4.50294 13.7979 4.36427 13.9171C4.2256 14.0363 4.12226 14.1912 4.0655 14.365L2.058 20.521C1.748 21.471 2.7375 22.3235 3.631 21.877L21.378 13.006C22.2075 12.591 22.2075 11.4075 21.378 10.993L3.631 2.122Z" fill="#ADADAD" />
+        </svg>
       </div>
     </section>
   );
