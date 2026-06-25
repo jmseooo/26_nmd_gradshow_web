@@ -25,6 +25,10 @@ function formatDate(iso: string) {
   return `${yy}.${mm}.${dd}`;
 }
 
+const CARD_COLORS = ["#FFEEF0", "#EEEEFF", "#FFEACA", "#E6F6C3", "#e6f5f9"];
+const COLOR_SEQ = [2,4,0,3,1,4,2,1,3,0,3,1,4,0,2,1,3,0,4,2,0,4,3];
+const cardColor = (id: number) => CARD_COLORS[COLOR_SEQ[id % COLOR_SEQ.length]];
+
 export default function GuestbookPage() {
   const [messages, setMessages] = useState<GuestMessage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -97,7 +101,7 @@ export default function GuestbookPage() {
                 <div
                   key={msg.id}
                   style={{
-                    backgroundColor: "#e6f5f9",
+                    backgroundColor: cardColor(msg.id),
                     aspectRatio: "1",
                     overflow: "hidden",
                     display: "flex",
