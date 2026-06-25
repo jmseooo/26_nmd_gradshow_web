@@ -41,7 +41,7 @@ function txt(
 
 export default function Home() {
   return (
-    <div className="bg-white overflow-x-hidden" style={{ fontFamily: "Pretendard, sans-serif" }}>
+    <div className="bg-white w-full" style={{ fontFamily: "Pretendard, sans-serif" }}>
 
       {/* ══════════════════════════════════════════════════════════
           SECTION 1 · 히어로

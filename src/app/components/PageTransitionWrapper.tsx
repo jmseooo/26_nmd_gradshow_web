@@ -10,6 +10,7 @@ export default function PageTransitionWrapper({ children }: { children: ReactNod
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
+    window.scrollTo(0, 0);
     // 페인트 전에 opacity 0 확보 → 플래시 없이 fade-in
     el.style.opacity = "0";
     el.style.transform = "translateY(12px)";
