@@ -55,7 +55,7 @@ const works = [
 
 /* ─── 페이지 ──────────────────────────────────────────────────── */
 export default function WorksPage() {
-  const [activeFilter, setActiveFilter] = useState("UI");
+  const [activeFilter, setActiveFilter] = useState("XR");
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   const filtered = works.filter((w) => w.category === activeFilter);
