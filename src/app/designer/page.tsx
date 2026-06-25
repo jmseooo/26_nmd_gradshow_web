@@ -89,8 +89,8 @@ export default function DesignerPage() {
                   style={{
                     ...txt(24, 800, "black"),
                     position: "absolute",
-                    bottom: "clamp(10px, 1.04vw, 15px)",
-                    left: "clamp(10px, 1.04vw, 15px)",
+                    bottom: "clamp(12px, 1.25vw, 18px)",
+                    right: "clamp(16px, 1.67vw, 24px)",
                     whiteSpace: "nowrap",
                   }}
                 >
