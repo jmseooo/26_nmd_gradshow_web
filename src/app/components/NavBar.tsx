@@ -33,7 +33,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const navGap      = "clamp(4px, 0.69vw, 10px)";        // gap 10px
 
   return (
-    <div className="flex items-start justify-between w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)" }}>
+    <div className="flex items-start w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: "hidden" }}>
 
       {/* ── 좌측 ────────────────────────────────────────── */}
       {compact ? (
@@ -114,7 +114,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
       )}
 
       {/* ── 우측: 메뉴 아이템 ────────────────────────────── */}
-      <div className="flex items-center flex-shrink-0" style={{ gap: navGap }}>
+      <div className="flex items-center flex-shrink-0" style={{ gap: navGap, marginLeft: "auto" }}>
         {allItems.map((item) => {
           const isActive  = item === activeItem;
           const isPillSlot = item === "거점" || item === "작품"; // 고정 폭 슬롯

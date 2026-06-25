@@ -105,7 +105,7 @@ export default function HeroSection() {
       `}</style>
       <div
         className="absolute"
-        style={{ left: "1199px", bottom: "18%", width: "200px", height: "432px" }}
+        style={{ right: "clamp(16px, 5.63vw, 81px)", bottom: "18%", width: "clamp(120px, 13.89vw, 200px)", height: "432px" }}
       >
         {bubbles.map(({ id, text }, i) => {
           const fromBottom = (bubbles.length - 1 - i) * 48;
@@ -144,8 +144,8 @@ export default function HeroSection() {
         className="absolute flex items-center"
         onClick={(e) => e.stopPropagation()}
         style={{
-          left: "993px", top: "87.82%",
-          width: "367px", height: "53px",
+          right: "clamp(16px, 5.63vw, 81px)", top: "87.82%",
+          width: "clamp(200px, 25.49vw, 367px)", height: "clamp(40px, 3.68vw, 53px)",
           backgroundColor: "white", borderRadius: "100px",
           padding: "0 16px 0 24px",
         }}
