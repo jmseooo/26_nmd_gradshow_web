@@ -21,6 +21,11 @@ export default function PageTransitionWrapper({ children }: { children: ReactNod
       ],
       { duration: 380, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
     );
+    anim.onfinish = () => {
+      anim.cancel();
+      el.style.opacity = "";
+      el.style.transform = "";
+    };
     return () => anim.cancel();
   }, [pathname]);
 
