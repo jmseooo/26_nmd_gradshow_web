@@ -19,8 +19,12 @@ export default function TransitionLink({ href, children, style, className }: Pro
     router.push(href);
   };
 
+  const handleMouseEnter = () => {
+    if (href !== "#") router.prefetch(href);
+  };
+
   return (
-    <a href={href} onClick={handleClick} style={style} className={className}>
+    <a href={href} onClick={handleClick} onMouseEnter={handleMouseEnter} style={style} className={className}>
       {children}
     </a>
   );
