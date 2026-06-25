@@ -25,9 +25,13 @@ function formatDate(iso: string) {
   return `${yy}.${mm}.${dd}`;
 }
 
-const CARD_COLORS = ["#FFEEF0", "#EEEEFF", "#FFEACA", "#E6F6C3", "#e6f5f9"];
-const COLOR_SEQ = [2,4,0,3,1,4,2,1,3,0,3,1,4,0,2,1,3,0,4,2,0,4,3];
-const cardColor = (id: number) => CARD_COLORS[COLOR_SEQ[id % COLOR_SEQ.length]];
+const POINT_COLORS = ["#FFEEF0", "#EEEEFF", "#FFEACA", "#E6F6C3"];
+const getCardColor = (i: number) => {
+  const row = Math.floor(i / 5);
+  const col = i % 5;
+  // 각 행마다 포인트 컬러 열이 1개씩, 3칸씩 이동(5와 서로소라 모든 열 순환)
+  return col === (row * 3) % 5 ? POINT_COLORS[row % 4] : "#e6f5f9";
+};
 
 export default function GuestbookPage() {
   const [messages, setMessages] = useState<GuestMessage[]>([]);
@@ -97,11 +101,11 @@ export default function GuestbookPage() {
                 gap: "clamp(8px, 1.39vw, 20px)",
               }}
             >
-              {messages.map((msg) => (
+              {messages.map((msg, i) => (
                 <div
                   key={msg.id}
                   style={{
-                    backgroundColor: cardColor(msg.id),
+                    backgroundColor: getCardColor(i),
                     aspectRatio: "1",
                     overflow: "hidden",
                     display: "flex",
