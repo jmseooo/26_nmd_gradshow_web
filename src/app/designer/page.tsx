@@ -60,7 +60,7 @@ export default function DesignerPage() {
       <div className="relative" style={{ zIndex: 2 }}>
 
         {/* ── 네비게이션 바 ──────────────────────────────── */}
-        <div style={{ padding: "clamp(40px, 7.01vw, 101px) clamp(16px, 5.56vw, 80px) 0", backgroundColor: "white" }}>
+        <div style={{ padding: "clamp(10px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) 0", backgroundColor: "white" }}>
           <NavBar activeItem="디자이너" isLight={true} compact={true} />
         </div>
 

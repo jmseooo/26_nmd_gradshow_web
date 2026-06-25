@@ -92,7 +92,7 @@ export default function HeroSection() {
       </div>
 
       {/* ── 네비게이션 바 ──────────────────────────────── */}
-      <div className="absolute top-[101px]" style={{ left: "clamp(16px, 5.56vw, 80px)", right: "clamp(16px, 5.56vw, 80px)" }}>
+      <div className="absolute top-[71px]" style={{ left: "clamp(16px, 5.56vw, 80px)", right: "clamp(16px, 5.56vw, 80px)" }}>
         <NavBar activeItem="거점" isLight={isLight} />
       </div>
 

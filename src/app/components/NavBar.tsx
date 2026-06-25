@@ -24,16 +24,17 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const titleFilter =
     "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
 
-  // 1440px 기준 → clamp (Figma 70:2835)
-  const navFontSize = "clamp(13px, 2.08vw, 30px)";       // 30px
-  const pillW       = "clamp(60px, 9.38vw, 135px)";      // 거점·작품 고정 폭 135px
-  const pillPadV    = "clamp(4px, 0.69vw, 10px)";        // py 10px
-  const pillPadH    = "clamp(5px, 0.83vw, 12px)";        // px 12px (pill 슬롯)
-  const textPadH    = "clamp(12px, 2.08vw, 30px)";       // px 30px (디자이너·방명록·현장)
-  const navGap      = "clamp(4px, 0.69vw, 10px)";        // gap 10px
+  // 1440px 기준 → clamp (compact·full 동일 값)
+  const navFontSize = "clamp(13px, 2.08vw, 30px)";
+  const pillW       = "clamp(60px, 9.38vw, 135px)";
+  const pillPadV    = "clamp(4px, 0.69vw, 10px)";
+  const pillPadH    = "clamp(5px, 0.83vw, 12px)";
+  const textPadH    = "clamp(12px, 2.08vw, 30px)";
+  const navGap      = "clamp(4px, 0.69vw, 10px)";
 
   return (
-    <div className="flex items-start w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: "hidden" }}>
+    <>
+    <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: "hidden" }}>
 
       {/* ── 좌측 ────────────────────────────────────────── */}
       {compact ? (
@@ -67,49 +68,28 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
           </TransitionLink>
         </div>
       ) : (
-        /* 히어로용 풀사이즈 버전 */
+        /* 히어로용 풀사이즈 버전 — 타이틀만, 서브타이틀은 아래에 별도 렌더 */
         <div
-          className="flex flex-col flex-shrink-0"
-          style={{ width: "clamp(180px, 36.15vw, 520px)" }}
+          className="relative overflow-hidden flex-shrink-0"
+          style={{
+            width: "clamp(180px, 36.11vw, 520px)",
+            height: "clamp(33px, 9.38vw, 135px)",
+          }}
         >
-          <div style={{ padding: "clamp(4px, 0.69vw, 10px) clamp(10px, 1.94vw, 28px)" }}>
-            <p
-              style={{
-                fontSize: "clamp(11px, 1.67vw, 24px)",
-                fontWeight: 600,
-                color: isLight ? "black" : "white",
-                letterSpacing: "-0.48px",
-                lineHeight: 1.5,
-                transition: `color ${T}`,
-                whiteSpace: "nowrap",
-              }}
-            >
-              서울여자대학교 첨단미디어디자인전공<br />
-              제2회 졸업전시
-            </p>
-          </div>
-          <div
-            className="relative overflow-hidden"
+          <img
+            alt="우리의 거점"
+            src="/assets/hero-title.png"
+            className="absolute"
             style={{
-              width: "clamp(180px, 36.11vw, 520px)",
-              height: "clamp(33px, 9.38vw, 135px)",
+              left: "clamp(10px, 1.81vw, 26px)",
+              top: "clamp(10px, 1.67vw, 24px)",
+              width: "clamp(140px, 32.5vw, 468px)",
+              height: "clamp(26px, 5.94vw, 85.5px)",
+              objectFit: "cover",
+              filter: isLight ? titleFilter : "none",
+              transition: `filter ${T}`,
             }}
-          >
-            <img
-              alt="우리의 거점"
-              src="/assets/hero-title.png"
-              className="absolute"
-              style={{
-                left: "clamp(10px, 1.81vw, 26px)",
-                top: "clamp(10px, 1.67vw, 24px)",
-                width: "clamp(140px, 32.5vw, 468px)",
-                height: "clamp(26px, 5.94vw, 85.5px)",
-                objectFit: "cover",
-                filter: isLight ? titleFilter : "none",
-                transition: `filter ${T}`,
-              }}
-            />
-          </div>
+          />
         </div>
       )}
 
@@ -161,5 +141,25 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         })}
       </div>
     </div>
+
+    {/* 서브타이틀 (풀사이즈 전용, flex row 아래) */}
+    {!compact && (
+      <p
+        style={{
+          fontSize: "clamp(11px, 1.67vw, 24px)",
+          fontWeight: 600,
+          color: isLight ? "black" : "white",
+          letterSpacing: "-0.48px",
+          lineHeight: 1.5,
+          transition: `color ${T}`,
+          whiteSpace: "nowrap",
+          padding: "clamp(4px, 0.69vw, 10px) clamp(10px, 1.81vw, 26px)",
+        }}
+      >
+        서울여자대학교 첨단미디어디자인전공<br />
+        제2회 졸업전시
+      </p>
+    )}
+    </>
   );
 }
