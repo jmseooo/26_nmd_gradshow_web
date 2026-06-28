@@ -156,7 +156,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
 
         {/* 작품 설명 */}
         <p style={{
-          fontSize: "clamp(10px, 0.97vw, 14px)",
+          fontSize: "14px",
           fontWeight: 500,
           color: "black",
           letterSpacing: "-0.28px",
@@ -170,7 +170,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
 
         {/* 참고 링크 */}
         <p style={{
-          fontSize: "clamp(10px, 0.97vw, 14px)",
+          fontSize: "14px",
           fontWeight: 500,
           color: "#38b3d6",
           letterSpacing: "-0.28px",
