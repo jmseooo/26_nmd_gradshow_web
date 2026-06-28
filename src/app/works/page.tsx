@@ -146,7 +146,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
         {/* 프리뷰 영역 */}
         <div style={{
           marginTop: "clamp(24px, 4.31vw, 62px)",
-          width: "min(568px, calc(100% - clamp(32px, 11.11vw, 160px)))",
+          width: "clamp(280px, 34.38vw, 495px)",
           aspectRatio: "568 / 320",
           backgroundColor: "#f3f3f3",
           borderRadius: "clamp(8px, 1.11vw, 16px)",
