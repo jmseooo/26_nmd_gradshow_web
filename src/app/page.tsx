@@ -92,24 +92,21 @@ export default function Home() {
         }}
       >
         {/* 헤더 행 — 타이틀 가운데, 뱃지 오른쪽 */}
-        <div className="flex items-start" style={{ marginBottom: "clamp(24px, 3.68vw, 53px)" }}>
-          <div style={{ flex: 1 }} />
+        <div className="flex flex-wrap items-center justify-center" style={{ marginBottom: "clamp(24px, 3.68vw, 53px)", gap: "clamp(8px, 1vw, 12px)" }}>
           <p className="whitespace-nowrap" style={txt(28, 800, "#2174a4")}>졸업전시준비위원회</p>
-          <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
-            <a
-              href="https://www.instagram.com/p/DZCKb6BEpJ3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: "#a8e6f8", borderRadius: 18, padding: "clamp(4px, 0.42vw, 6px) clamp(8px, 0.69vw, 10px)", textDecoration: "none" }}
-            >
-              <p className="whitespace-nowrap" style={txt(12, 600, "#007aa3")}>졸업전시준비위원회 인터뷰 보러가기</p>
-            </a>
-          </div>
+          <a
+            href="https://www.instagram.com/p/DZCKb6BEpJ3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center flex-shrink-0"
+            style={{ backgroundColor: "#a8e6f8", borderRadius: 18, padding: "clamp(4px, 0.42vw, 6px) clamp(8px, 0.69vw, 10px)", textDecoration: "none" }}
+          >
+            <p className="whitespace-nowrap" style={txt(12, 600, "#007aa3")}>졸업전시준비위원회 인터뷰 보러가기</p>
+          </a>
         </div>
 
         {/* 위원 목록 — 3그룹 가운데 정렬 */}
-        <div className="flex justify-center" style={{ gap: "clamp(30px, 5.07vw, 73px)" }}>
+        <div className="flex justify-center overflow-x-auto" style={{ gap: "clamp(30px, 5.07vw, 73px)" }}>
 
           {/* 그룹 1: 위원장·부위원장 */}
           <div className="flex flex-col items-start" style={{ gap: "clamp(10px, 1.46vw, 21px)" }}>

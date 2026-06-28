@@ -92,7 +92,10 @@ input.guestbook::placeholder {
   --foreground: var(--color-text-primary);
 }
 
-html,
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   overflow-x: hidden;
 }

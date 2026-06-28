@@ -35,9 +35,11 @@ export default function HeroSection() {
 
   useEffect(() => {
     const check = () => setStackedLayout(window.innerWidth < 640);
+    let timer: ReturnType<typeof setTimeout>;
+    const debouncedCheck = () => { clearTimeout(timer); timer = setTimeout(check, 120); };
     check();
-    window.addEventListener("resize", check, { passive: true });
-    return () => window.removeEventListener("resize", check);
+    window.addEventListener("resize", debouncedCheck, { passive: true });
+    return () => { window.removeEventListener("resize", debouncedCheck); clearTimeout(timer); };
   }, []);
 
   const submitMessage = async () => {

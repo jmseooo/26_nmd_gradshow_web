@@ -37,9 +37,11 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
       const pb         = parseFloat(getComputedStyle(el).paddingBottom);
       setHideNav(el.offsetHeight > Math.round(lineHeight + pt + pb) + 2);
     };
+    let timer: ReturnType<typeof setTimeout>;
+    const debouncedCheck = () => { clearTimeout(timer); timer = setTimeout(check, 120); };
     check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    window.addEventListener("resize", debouncedCheck);
+    return () => { window.removeEventListener("resize", debouncedCheck); clearTimeout(timer); };
   }, [compact]);
 
   // 가로 레이아웃 nav 아이템
