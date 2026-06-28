@@ -99,18 +99,21 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* ── Vector 장식 (라이트 모드) ────────────────────── */}
+      {/* ── Vector 장식 (라이트 모드) — 원본 비율(1684:842) 유지, 아래는 section overflow-hidden에 잘힘 */}
       <div
         className="absolute"
         style={{
-          left: "20.76%", top: "calc(65.06% - 6.52vw)", width: "58.48%",
+          ...(narrowHero
+            ? { top: "calc(70.73% - 6.52vw)", left: "50%", transform: "translateX(-50%)", width: "clamp(300px, 83.2vw, 657px)" }
+            : { top: "calc(65.06% - 6.52vw)", left: "20.76%", width: "58.48%" }),
+          aspectRatio: "1684 / 842",
           opacity: isLight ? 1 : 0,
           transition: `opacity ${T}`,
           pointerEvents: "none",
           willChange: "opacity",
         }}
       >
-        <img alt="" className="block w-full h-auto" src="/assets/hero-hemisphere-light.png" />
+        <img alt="" className="absolute block inset-0 size-full" src="/assets/hero-hemisphere-light.png" />
       </div>
 
       {/* ── Vector 장식 (다크 모드) — 원본 비율(842:480) 유지, 아래는 section overflow-hidden에 잘힘 */}
