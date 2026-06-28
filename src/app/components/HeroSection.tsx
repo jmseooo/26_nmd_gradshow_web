@@ -104,8 +104,8 @@ export default function HeroSection() {
         className="absolute"
         style={{
           ...(narrowHero
-            ? { top: "calc(70.73% - 6.52vw)", left: "50%", transform: "translateX(-50%)", width: "clamp(300px, 83.2vw, 657px)" }
-            : { top: "calc(65.06% - 6.52vw)", left: "20.76%", width: "58.48%" }),
+            ? { top: "70.73%", left: "50%", transform: "translateX(-50%)", width: "clamp(300px, 83.2vw, 657px)" }
+            : { top: "65.06%", left: "20.76%", width: "58.48%" }),
           aspectRatio: "1684 / 842",
           opacity: isLight ? 1 : 0,
           transition: `opacity ${T}`,
