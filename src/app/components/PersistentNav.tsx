@@ -55,7 +55,7 @@ export default function PersistentNav() {
         // 홈: 투명 배경 → 히어로 배경이 NavBar 뒤로 꽉 채워 보임
         // 다른 페이지: 흰 배경
         backgroundColor: isHome ? "transparent" : "white",
-        paddingTop: isHome ? "71px" : "clamp(10px, 4.93vw, 71px)",
+        paddingTop: "clamp(10px, 4.93vw, 71px)",
         paddingLeft: "clamp(16px, 5.56vw, 80px)",
         paddingRight: "clamp(16px, 5.56vw, 80px)",
         paddingBottom: 0,
