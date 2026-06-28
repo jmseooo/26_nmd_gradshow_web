@@ -226,7 +226,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                   src="/assets/hero-title.png"
                   className="absolute"
                   style={{
-                    left: "clamp(10px, 1.81vw, 26px)",
+                    left: 0,
                     top: "clamp(10px, 1.67vw, 24px)",
                     width: "clamp(140px, 32.5vw, 468px)",
                     height: "clamp(26px, 5.94vw, 85.5px)",
