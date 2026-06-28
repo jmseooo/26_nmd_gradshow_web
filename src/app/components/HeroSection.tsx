@@ -23,6 +23,7 @@ export default function HeroSection() {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const [stackedLayout, setStackedLayout] = useState(false);
+  const [narrowHero, setNarrowHero] = useState(false);
 
   useEffect(() => { inputRef.current?.focus(); }, []);
 
@@ -34,7 +35,10 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    const check = () => setStackedLayout(window.innerWidth < 640);
+    const check = () => {
+      setStackedLayout(window.innerWidth < 640);
+      setNarrowHero(window.innerWidth < 900);
+    };
     let timer: ReturnType<typeof setTimeout>;
     const debouncedCheck = () => { clearTimeout(timer); timer = setTimeout(check, 120); };
     check();
@@ -109,18 +113,21 @@ export default function HeroSection() {
         <img alt="" className="block w-full h-auto" src="/assets/hero-hemisphere-light.png" />
       </div>
 
-      {/* ── Vector 장식 (다크 모드) ────────────────────── */}
+      {/* ── Vector 장식 (다크 모드) — 원본 비율(842:480) 유지, 아래는 section overflow-hidden에 잘힘 */}
       <div
         className="absolute"
         style={{
-          left: "20.76%", top: "65.06%", width: "58.48%",
+          ...(narrowHero
+            ? { top: "70.73%", left: "50%", transform: "translateX(-50%)", width: "clamp(300px, 83.2vw, 657px)" }
+            : { top: "65.06%", left: "20.76%", width: "58.48%" }),
+          aspectRatio: "842 / 480",
           opacity: isLight ? 0 : 1,
           transition: `opacity ${T}`,
           pointerEvents: "none",
           willChange: "opacity",
         }}
       >
-        <img alt="" className="block w-full h-auto" src={imgVector1} />
+        <img alt="" className="absolute block inset-0 size-full" src={imgVector1} />
       </div>
 
       {/* ── 말풍선 ────────────────────────────────────── */}
