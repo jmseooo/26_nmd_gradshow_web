@@ -263,7 +263,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
               lineHeight: 1.5,
               transition: `color ${T}`,
               width: "clamp(140px, 32.5vw, 468px)",
-              marginLeft: "clamp(14px, 2.08vw, 30px)",
+              marginLeft: 0,
               paddingTop: "clamp(4px, 0.69vw, 10px)",
               paddingBottom: "clamp(4px, 0.69vw, 10px)",
               marginTop: "clamp(-6px, -0.833vw, -12px)",
