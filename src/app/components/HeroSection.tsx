@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import NavBar from "./NavBar";
 import { supabase } from "@/lib/supabase";
+import { useHeroLight } from "./HeroLightContext";
 
 /* ─── 배경 이미지 ─────────────────────────────────────────────── */
 const img1Dark   = "/assets/hero-bg1.svg";
@@ -18,7 +18,7 @@ type Bubble = { id: number; text: string };
 let nextId = 0;
 
 export default function HeroSection() {
-  const [isLight, setIsLight] = useState(false);
+  const { isLight, toggle } = useHeroLight();
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [composing, setComposing] = useState(false);
@@ -38,7 +38,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative overflow-hidden"
-      onClick={() => setIsLight((v) => !v)}
+      onClick={() => toggle()}
       style={{
         width: "100%",
         height: "100vh",
@@ -90,11 +90,6 @@ export default function HeroSection() {
         }}
       >
         <img alt="" className="block w-full h-auto" src={imgVector1} />
-      </div>
-
-      {/* ── 네비게이션 바 ──────────────────────────────── */}
-      <div className="absolute top-[71px]" style={{ left: "clamp(16px, 5.56vw, 80px)", right: "clamp(16px, 5.56vw, 80px)" }}>
-        <NavBar activeItem="거점" isLight={isLight} />
       </div>
 
       {/* ── 말풍선 ────────────────────────────────────── */}

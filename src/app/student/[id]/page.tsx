@@ -1,5 +1,4 @@
 import type { CSSProperties } from "react";
-import NavBar from "../../components/NavBar";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
   const min = Math.max(10, Math.round(size * 0.45));
@@ -56,11 +55,6 @@ export default async function StudentPage({
 
       {/* ── 컨텐츠 ────────────────────────────────────────── */}
       <div className="relative" style={{ zIndex: 2 }}>
-
-        {/* ── 네비게이션 바 ──────────────────────────────── */}
-        <div style={{ padding: "clamp(10px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) 0", backgroundColor: "white" }}>
-          <NavBar activeItem="디자이너" isLight={true} compact={true} />
-        </div>
 
         {/* ── 본문: 좌측 카드 + 우측 작품 카드 ────────────── */}
         <div

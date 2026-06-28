@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { CSSProperties } from "react";
-import NavBar from "../components/NavBar";
 
 /* ─── 카테고리 컬러 맵 ────────────────────────────────────────── */
 const categoryColor: Record<string, string> = {
@@ -220,11 +219,6 @@ export default function WorksPage() {
 
   return (
     <div className="bg-white min-h-screen overflow-x-hidden" style={{ fontFamily: "Pretendard, sans-serif" }}>
-
-      {/* ── 네비게이션 바 ──────────────────────────────── */}
-      <div style={{ padding: "clamp(10px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) 0", backgroundColor: "white" }}>
-        <NavBar activeItem="작품" isLight={true} compact={true} />
-      </div>
 
       {/* ── 카테고리 필터 탭 ───────────────────────────── */}
       <div

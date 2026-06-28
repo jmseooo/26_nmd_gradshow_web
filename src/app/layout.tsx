@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import PageTransitionWrapper from "./components/PageTransitionWrapper";
+import PersistentNav from "./components/PersistentNav";
 import ScrollToTop from "./components/ScrollToTop";
+import { HeroLightProvider } from "./components/HeroLightContext";
 
 export const metadata: Metadata = {
   title: "우리의 거점 — 서울여자대학교 첨단미디어디자인전공 제2회 졸업전시",
@@ -22,8 +24,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full">
-        <PageTransitionWrapper>{children}</PageTransitionWrapper>
-        <ScrollToTop />
+        <HeroLightProvider>
+          <PersistentNav />
+          <PageTransitionWrapper>{children}</PageTransitionWrapper>
+          <ScrollToTop />
+        </HeroLightProvider>
       </body>
     </html>
   );

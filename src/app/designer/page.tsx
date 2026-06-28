@@ -2,7 +2,6 @@
 
 import type { CSSProperties } from "react";
 import { useRouter } from "next/navigation";
-import NavBar from "../components/NavBar";
 
 /* ─── 텍스트 스타일 헬퍼 ──────────────────────────────────────── */
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
@@ -57,11 +56,6 @@ export default function DesignerPage() {
 
       {/* ── 컨텐츠 ────────────────────────────────────────── */}
       <div className="relative" style={{ zIndex: 2 }}>
-
-        {/* ── 네비게이션 바 ──────────────────────────────── */}
-        <div style={{ padding: "clamp(10px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) 0" }}>
-          <NavBar activeItem="디자이너" isLight={true} compact={true} />
-        </div>
 
         {/* ── 카드 그리드 ───────────────────────────────── */}
         <div style={{ padding: "clamp(24px, 5.56vw, 80px) clamp(16px, 8.96vw, 129px) 0" }}>

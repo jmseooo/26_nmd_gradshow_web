@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
-import NavBar from "../components/NavBar";
 import { supabase, type GuestMessage } from "@/lib/supabase";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
@@ -70,11 +69,6 @@ export default function GuestbookPage() {
     >
       {/* ── 컨텐츠 ────────────────────────────────────────── */}
       <div className="relative" style={{ zIndex: 2 }}>
-
-        {/* ── 네비게이션 바 ──────────────────────────────── */}
-        <div style={{ padding: "clamp(10px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) 0", backgroundColor: "white" }}>
-          <NavBar activeItem="방명록" isLight={true} compact={true} />
-        </div>
 
         {/* ── 본문 ──────────────────────────────────────── */}
         <div
