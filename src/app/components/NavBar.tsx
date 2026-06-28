@@ -1,22 +1,15 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import TransitionLink from "./TransitionLink";
 
 const T = "0.5s ease";
 
 const NAV_HREFS: Record<string, string> = {
-  거점: "/",
-  작품: "/works",
-  디자이너: "/designer",
-  방명록: "/guestbook",
-  현장: "/field",
+  거점: "/", 작품: "/works", 디자이너: "/designer", 방명록: "/guestbook", 현장: "/field",
 };
 
-interface Props {
-  activeItem?: string;
-  isLight?: boolean;
-  compact?: boolean;
-}
+interface Props { activeItem?: string; isLight?: boolean; compact?: boolean; }
 
 export default function NavBar({ activeItem = "거점", isLight = true, compact = false }: Props) {
   const allItems = ["거점", "작품", "디자이너", "방명록", "현장"];
@@ -24,7 +17,6 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const titleFilter =
     "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
 
-  // 1440px 기준 → clamp (compact·full 동일 값)
   const navFontSize = "clamp(13px, 2.08vw, 30px)";
   const pillW       = "clamp(60px, 9.38vw, 135px)";
   const pillPadV    = "clamp(4px, 0.69vw, 10px)";
@@ -32,137 +24,276 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const textPadH    = "clamp(12px, 2.08vw, 30px)";
   const navGap      = "clamp(4px, 0.69vw, 10px)";
 
+  const [hideNav, setHideNav] = useState(false);
+  const measureRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (compact) return;
+    const check = () => {
+      const el = measureRef.current;
+      if (!el) return;
+      const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+      const pt         = parseFloat(getComputedStyle(el).paddingTop);
+      const pb         = parseFloat(getComputedStyle(el).paddingBottom);
+      setHideNav(el.offsetHeight > Math.round(lineHeight + pt + pb) + 2);
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [compact]);
+
+  // 가로 레이아웃 nav 아이템
+  const navItems = allItems.map((item) => {
+    const isActive   = item === activeItem;
+    const isPillSlot = item === "거점" || item === "작품";
+    const pillBg     = isActive && item === "거점" && !isLight ? "#aedce9" : "#38b3d6";
+    const pillText   = isActive && item === "거점" && !isLight ? "#38b3d6" : "#f7f7f7";
+    return (
+      <div
+        key={item}
+        className="flex items-center justify-center"
+        style={{
+          ...(isPillSlot
+            ? { width: pillW, padding: `${pillPadV} ${pillPadH}` }
+            : { padding: `${pillPadV} ${textPadH}` }),
+          borderRadius: "100px",
+          backgroundColor: isActive ? pillBg : "transparent",
+          transition: `background-color ${T}`,
+          flexShrink: 0,
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
+          <p style={{
+            fontSize: navFontSize,
+            fontWeight: 800,
+            color: isActive ? pillText : isLight ? "black" : "white",
+            letterSpacing: "-0.6px",
+            lineHeight: 1.5,
+            whiteSpace: "nowrap",
+            textAlign: "center",
+            transition: `color ${T}`,
+          }}>
+            {item}
+          </p>
+        </TransitionLink>
+      </div>
+    );
+  });
+
+  // 중앙 세로 레이아웃 nav 아이템 (Figma 121:391–397 기준)
+  const centeredNavItems = allItems.map((item) => {
+    const isActive = item === activeItem;
+    return (
+      <div
+        key={`c-${item}`}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          ...(isActive ? {
+            width: "clamp(70px, 18.7vw, 135px)",
+            paddingLeft: "clamp(6px, 1.66vw, 12px)",
+            paddingRight: "clamp(6px, 1.66vw, 12px)",
+            paddingTop: "clamp(6px, 1.38vw, 10px)",
+            paddingBottom: "clamp(6px, 1.38vw, 10px)",
+            borderRadius: "100px",
+            backgroundColor: "#aedce9",
+          } : {
+            paddingLeft: "clamp(6px, 1.66vw, 12px)",
+            paddingRight: "clamp(6px, 1.66vw, 12px)",
+            paddingTop: "clamp(6px, 1.38vw, 10px)",
+            paddingBottom: "clamp(6px, 1.38vw, 10px)",
+          }),
+          flexShrink: 0,
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
+          <p style={{
+            fontSize: "clamp(11px, 2.49vw, 18px)",
+            fontWeight: 800,
+            color: isActive ? "#38b3d6" : (isLight ? "black" : "white"),
+            letterSpacing: "-0.36px",
+            lineHeight: 1.5,
+            whiteSpace: "nowrap",
+            textAlign: "center",
+          }}>
+            {item}
+          </p>
+        </TransitionLink>
+      </div>
+    );
+  });
+
   return (
     <>
-    <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: "hidden" }}>
+      {/* ── 중앙 세로 레이아웃 (비-compact + hideNav) ──────── */}
+      {!compact && hideNav && (
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "6px",
+          width: "100%",
+        }}>
+          {/* 타이틀 컨테이너 (Figma 121:501: 520×135, overflow-clip, mb=-12) */}
+          <div style={{
+            width: "min(520px, 100%)",
+            height: "135px",
+            overflow: "hidden",
+            position: "relative",
+            flexShrink: 0,
+            marginBottom: "-12px",
+          }}>
+            <img
+              alt="우리의 거점"
+              src="/assets/hero-title.png"
+              style={{
+                position: "absolute",
+                left: "26px",
+                top: "24px",
+                width: "calc(100% - 52px)",
+                height: "auto",
+                filter: isLight ? titleFilter : "none",
+                transition: `filter ${T}`,
+              }}
+            />
+          </div>
 
-      {/* ── 좌측 ────────────────────────────────────────── */}
-      {compact ? (
-        /* 서브페이지용 컴팩트 버전 — 타이틀만, 서브타이틀은 아래에 별도 렌더 */
-        <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0, flexShrink: 0 }}>
-          <img
-            alt="우리의 거점"
-            src="/assets/hero-title.png"
-            style={{
-              width: "clamp(90px, 14.44vw, 208px)",
-              height: "clamp(17px, 2.64vw, 38px)",
-              objectFit: "cover",
-              filter: titleFilter,
-              cursor: "pointer",
-              display: "block",
-            }}
-          />
-        </TransitionLink>
-      ) : (
-        /* 히어로용 풀사이즈 버전 — 타이틀만, 서브타이틀은 아래에 별도 렌더 */
-        <div
-          className="relative overflow-hidden flex-shrink-0"
-          style={{
-            width: "clamp(180px, 36.11vw, 520px)",
-            height: "clamp(33px, 9.38vw, 135px)",
-          }}
-        >
-          <img
-            alt="우리의 거점"
-            src="/assets/hero-title.png"
-            className="absolute"
-            style={{
-              left: "clamp(10px, 1.81vw, 26px)",
-              top: "clamp(10px, 1.67vw, 24px)",
-              width: "clamp(140px, 32.5vw, 468px)",
-              height: "clamp(26px, 5.94vw, 85.5px)",
-              objectFit: "cover",
-              filter: isLight ? titleFilter : "none",
-              transition: `filter ${T}`,
-            }}
-          />
+          {/* 서브타이틀 (Figma 121:503–504: px=28, py=10, 22px SemiBold) */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "10px 28px",
+          }}>
+            <p style={{
+              fontSize: "clamp(11px, 3.05vw, 22px)",
+              fontWeight: 600,
+              color: isLight ? "black" : "white",
+              lineHeight: 1.5,
+              textAlign: "center",
+              transition: `color ${T}`,
+            }}>
+              서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
+            </p>
+          </div>
+
+          {/* 네비 행 (Figma 121:391: gap=42, h=65) */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            height: "65px",
+            gap: "clamp(8px, 5.82vw, 42px)",
+          }}>
+            {centeredNavItems}
+          </div>
         </div>
       )}
 
-      {/* ── 우측: 메뉴 아이템 ────────────────────────────── */}
-      <div className="flex items-center flex-shrink-0" style={{ gap: navGap, marginLeft: "auto" }}>
-        {allItems.map((item) => {
-          const isActive  = item === activeItem;
-          const isPillSlot = item === "거점" || item === "작품"; // 고정 폭 슬롯
-          const pillBg    = isActive && item === "거점" && !isLight ? "#aedce9" : "#38b3d6";
-          const pillText  = isActive && item === "거점" && !isLight ? "#38b3d6" : "#f7f7f7";
-
-          return (
-            <div
-              key={item}
-              className="flex items-center justify-center"
-              style={{
-                // pill 슬롯(거점·작품): 135px 고정 폭 + 12px 수평 패딩
-                // 나머지(디자이너·방명록·현장): 폭 auto + 30px 수평 패딩
-                ...(isPillSlot
-                  ? { width: pillW, padding: `${pillPadV} ${pillPadH}` }
-                  : { padding: `${pillPadV} ${textPadH}` }),
-                borderRadius: "100px",
-                backgroundColor: isActive ? pillBg : "transparent",
-                transition: `background-color ${T}`,
-                flexShrink: 0,
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
-                <p
+      {/* ── 가로 레이아웃 (compact 또는 hideNav=false) ───── */}
+      {(compact || !hideNav) && (
+        <>
+          <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: "hidden" }}>
+            {compact ? (
+              <div style={{ flexShrink: 0, lineHeight: 0 }}>
+                <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
+                  <img
+                    alt="우리의 거점"
+                    src="/assets/hero-title.png"
+                    style={{
+                      width: "clamp(90px, 14.44vw, 208px)",
+                      height: "clamp(17px, 2.64vw, 38px)",
+                      objectFit: "cover",
+                      filter: titleFilter,
+                      cursor: "pointer",
+                      display: "block",
+                    }}
+                  />
+                </TransitionLink>
+              </div>
+            ) : (
+              <div
+                className="relative overflow-hidden flex-shrink-0"
+                style={{
+                  width: "clamp(180px, 36.11vw, 520px)",
+                  height: "clamp(33px, 9.38vw, 135px)",
+                }}
+              >
+                <img
+                  alt="우리의 거점"
+                  src="/assets/hero-title.png"
+                  className="absolute"
                   style={{
-                    fontSize: navFontSize,
-                    fontWeight: 800,
-                    color: isActive
-                      ? pillText
-                      : isLight ? "black" : "white",
-                    letterSpacing: "-0.6px",
-                    lineHeight: 1.5,
-                    whiteSpace: "nowrap",
-                    textAlign: "center",
-                    transition: `color ${T}`,
+                    left: "clamp(10px, 1.81vw, 26px)",
+                    top: "clamp(10px, 1.67vw, 24px)",
+                    width: "clamp(140px, 32.5vw, 468px)",
+                    height: "clamp(26px, 5.94vw, 85.5px)",
+                    objectFit: "cover",
+                    filter: isLight ? titleFilter : "none",
+                    transition: `filter ${T}`,
                   }}
-                >
-                  {item}
-                </p>
-              </TransitionLink>
+                />
+              </div>
+            )}
+            <div className="flex items-center flex-shrink-0" style={{ gap: navGap, marginLeft: "auto" }}>
+              {navItems}
             </div>
-          );
-        })}
-      </div>
-    </div>
+          </div>
 
-    {/* 서브타이틀 (flex row 아래, compact·full 모두) */}
-    {compact ? (
-      <p
-        style={{
-          fontSize: "clamp(9px, 0.83vw, 12px)",
-          fontWeight: 600,
-          color: "black",
-          letterSpacing: "-0.24px",
-          lineHeight: 1.5,
-          whiteSpace: "nowrap",
-        }}
-      >
-        서울여자대학교 첨단미디어디자인전공<br />
-        제2회 졸업전시
-      </p>
-    ) : (
-      <p
-        style={{
-          fontSize: "clamp(10px, 1.53vw, 22px)",
-          fontWeight: 600,
-          color: isLight ? "black" : "white",
-          letterSpacing: "0",
-          lineHeight: 1.5,
-          transition: `color ${T}`,
-          whiteSpace: "nowrap",
-          width: "clamp(140px, 32.5vw, 468px)",
-          marginLeft: "clamp(14px, 2.08vw, 30px)",
-          paddingTop: "clamp(4px, 0.69vw, 10px)",
-          paddingBottom: "clamp(4px, 0.69vw, 10px)",
-          marginTop: "clamp(-6px, -0.833vw, -12px)",
-        }}
-      >
-        서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
-      </p>
-    )}
+          {compact ? (
+            <p style={{
+              fontSize: "clamp(9px, 0.83vw, 12px)",
+              fontWeight: 600,
+              color: "black",
+              letterSpacing: "-0.24px",
+              lineHeight: 1.5,
+              whiteSpace: "nowrap",
+            }}>
+              서울여자대학교 첨단미디어디자인전공<br />
+              제2회 졸업전시
+            </p>
+          ) : (
+            <p style={{
+              fontSize: "clamp(10px, 1.53vw, 22px)",
+              fontWeight: 600,
+              color: isLight ? "black" : "white",
+              letterSpacing: "0",
+              lineHeight: 1.5,
+              transition: `color ${T}`,
+              width: "clamp(140px, 32.5vw, 468px)",
+              marginLeft: "clamp(14px, 2.08vw, 30px)",
+              paddingTop: "clamp(4px, 0.69vw, 10px)",
+              paddingBottom: "clamp(4px, 0.69vw, 10px)",
+              marginTop: "clamp(-6px, -0.833vw, -12px)",
+            }}>
+              서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
+            </p>
+          )}
+        </>
+      )}
+
+      {/* ── 측정 전용 숨김 element (항상 DOM에 존재, 레이아웃 전환 감지용) ── */}
+      {!compact && (
+        <p
+          ref={measureRef}
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            visibility: "hidden",
+            pointerEvents: "none",
+            width: "clamp(140px, 32.5vw, 468px)",
+            fontSize: "clamp(10px, 1.53vw, 22px)",
+            fontWeight: 600,
+            lineHeight: 1.5,
+            paddingTop: "clamp(4px, 0.69vw, 10px)",
+            paddingBottom: "clamp(4px, 0.69vw, 10px)",
+          }}
+        >
+          서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
+        </p>
+      )}
     </>
   );
 }
