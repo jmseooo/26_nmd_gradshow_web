@@ -63,10 +63,9 @@ export default function PersistentNav() {
     >
       <NavBar
         activeItem={activeItem}
-        // 홈: 히어로 isLight 상태와 연동 (다크/라이트 전환 시 NavBar 색상 동기화)
-        // 다른 페이지: 항상 라이트(흰 배경 위 검정 텍스트)
         isLight={isHome ? isLight : true}
-        compact={!isHome}
+        compact={true}
+        logoSize={isHome ? "lg" : undefined}
       />
     </div>
   );

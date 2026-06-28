@@ -9,9 +9,9 @@ const NAV_HREFS: Record<string, string> = {
   거점: "/", 작품: "/works", 디자이너: "/designer", 방명록: "/guestbook", 현장: "/field",
 };
 
-interface Props { activeItem?: string; isLight?: boolean; compact?: boolean; }
+interface Props { activeItem?: string; isLight?: boolean; compact?: boolean; logoSize?: "lg"; }
 
-export default function NavBar({ activeItem = "거점", isLight = true, compact = false }: Props) {
+export default function NavBar({ activeItem = "거점", isLight = true, compact = false, logoSize }: Props) {
   const allItems = ["거점", "작품", "디자이너", "방명록", "현장"];
 
   const titleFilter =
@@ -203,8 +203,8 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                     alt="우리의 거점"
                     src="/assets/hero-title.png"
                     style={{
-                      width: "clamp(90px, 14.44vw, 208px)",
-                      height: "clamp(17px, 2.64vw, 38px)",
+                      width: logoSize === "lg" ? "clamp(140px, 22.5vw, 324px)" : "clamp(90px, 14.44vw, 208px)",
+                      height: logoSize === "lg" ? "clamp(26px, 4.16vw, 60px)" : "clamp(17px, 2.64vw, 38px)",
                       objectFit: "cover",
                       filter: titleFilter,
                       cursor: "pointer",
