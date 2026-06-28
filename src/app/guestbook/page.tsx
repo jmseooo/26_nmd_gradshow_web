@@ -54,7 +54,10 @@ export default function GuestbookPage() {
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "guestbook" },
         (payload) => {
-          setMessages((prev) => [payload.new as GuestMessage, ...prev]);
+          const newMsg = payload.new as GuestMessage;
+          setMessages((prev) =>
+            prev.some((m) => m.id === newMsg.id) ? prev : [newMsg, ...prev]
+          );
         }
       )
       .subscribe();
