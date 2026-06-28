@@ -213,7 +213,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                   />
                 </TransitionLink>
                 <p style={{
-                  fontSize: "clamp(9px, 0.83vw, 12px)",
+                  fontSize: "clamp(5px, 0.83vw, 12px)",
                   fontWeight: 600,
                   color: "black",
                   letterSpacing: "-0.24px",
