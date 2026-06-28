@@ -9,6 +9,7 @@ export default function ScrollToTop() {
         width: "48px",
         height: "48px",
         padding: "12px",
+        cursor: "pointer",
       }}
       aria-label="맨 위로"
       onClick={() => {

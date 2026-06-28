@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { CSSProperties } from "react";
+import { works } from "@/lib/works-data";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
   const min = Math.max(10, Math.round(size * 0.45));
@@ -19,7 +20,7 @@ const categories = [
   { color: "#e7b871", cardBg: "#ffeaca", label: "MOTION" },
   { color: "#e99fa9", cardBg: "#ffeef0", label: "UI" },
   { color: "#9898c8", cardBg: "#eeeeff", label: "UX" },
-];
+].map((c) => ({ ...c, count: works.filter((w) => w.category === c.label).length }));
 
 export default function CategorySlider() {
   const [active, setActive] = useState(0);
@@ -157,7 +158,7 @@ export default function CategorySlider() {
               style={{ gap: "clamp(12px, 4.17vw, 60px)", padding: "0 clamp(16px, 4.17vw, 60px)" }}
             >
               <p className="whitespace-nowrap underline" style={txt(18, 600, "black")}>
-                작품, 3개
+                작품, {cat.count}개
               </p>
               <div className="flex flex-col items-start" style={{ gap: "clamp(4px, 0.56vw, 8px)" }}>
                 <p className="whitespace-nowrap" style={txt(18, 600, "black")}>참여자, 4명</p>

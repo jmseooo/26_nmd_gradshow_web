@@ -22,8 +22,23 @@ export default function HeroSection() {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [stackedLayout, setStackedLayout] = useState(false);
 
   useEffect(() => { inputRef.current?.focus(); }, []);
+
+  useEffect(() => {
+    [img1Dark, img1Light, img2, imgVector1].forEach((src) => {
+      const el = new Image();
+      el.src = src;
+    });
+  }, []);
+
+  useEffect(() => {
+    const check = () => setStackedLayout(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const submitMessage = async () => {
     const text = inputValue.trim();
@@ -49,7 +64,7 @@ export default function HeroSection() {
       {/* ── 다크 배경 레이어 ─────────────────────────────── */}
       <div
         className="absolute inset-0"
-        style={{ opacity: isLight ? 0 : 1, transition: `opacity ${T}`, pointerEvents: "none" }}
+        style={{ opacity: isLight ? 0 : 1, transition: `opacity ${T}`, pointerEvents: "none", willChange: "opacity" }}
       >
         <div className="absolute bg-[#0fa7d2] h-full left-0 overflow-clip top-0 w-full">
           <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-full">
@@ -64,7 +79,7 @@ export default function HeroSection() {
       {/* ── 라이트 배경 레이어 (node 66-2294) ───────────── */}
       <div
         className="absolute inset-0"
-        style={{ opacity: isLight ? 1 : 0, transition: `opacity ${T}`, pointerEvents: "none" }}
+        style={{ opacity: isLight ? 1 : 0, transition: `opacity ${T}`, pointerEvents: "none", willChange: "opacity" }}
       >
         <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-full">
           <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img1Light} />
@@ -78,7 +93,21 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* ── Vector 장식 (다크 모드만) ────────────────────── */}
+      {/* ── Vector 장식 (라이트 모드) ────────────────────── */}
+      <div
+        className="absolute"
+        style={{
+          left: "20.76%", top: "calc(65.06% - 6.52vw)", width: "58.48%",
+          opacity: isLight ? 1 : 0,
+          transition: `opacity ${T}`,
+          pointerEvents: "none",
+          willChange: "opacity",
+        }}
+      >
+        <img alt="" className="block w-full h-auto" src="/assets/hero-hemisphere-light.png" />
+      </div>
+
+      {/* ── Vector 장식 (다크 모드) ────────────────────── */}
       <div
         className="absolute"
         style={{
@@ -86,6 +115,7 @@ export default function HeroSection() {
           opacity: isLight ? 0 : 1,
           transition: `opacity ${T}`,
           pointerEvents: "none",
+          willChange: "opacity",
         }}
       >
         <img alt="" className="block w-full h-auto" src={imgVector1} />
@@ -139,8 +169,17 @@ export default function HeroSection() {
         className="absolute flex items-center"
         onClick={(e) => e.stopPropagation()}
         style={{
-          right: "clamp(16px, 5.63vw, 81px)", top: "87.82%",
-          width: "clamp(200px, 25.49vw, 367px)", height: "clamp(40px, 3.68vw, 53px)",
+          ...(stackedLayout
+            ? {
+                left: "calc(clamp(16px, 5.56vw, 80px) + 30px)",
+                right: "calc(clamp(16px, 5.56vw, 80px) + 30px)",
+              }
+            : {
+                right: "clamp(16px, 5.63vw, 81px)",
+                width: "clamp(200px, 25.49vw, 367px)",
+              }),
+          top: "87.82%",
+          height: "clamp(40px, 3.68vw, 53px)",
           backgroundColor: "white", borderRadius: "100px",
           overflow: "hidden",
           padding: "0 clamp(14px, 1.39vw, 20px)",
@@ -161,7 +200,7 @@ export default function HeroSection() {
             border: "none",
             outline: "none",
             background: "transparent",
-            fontSize: "18px",
+            fontSize: "clamp(12px, 1.25vw, 18px)",
             fontWeight: 600,
             color: "#202024",
             letterSpacing: "-0.36px",

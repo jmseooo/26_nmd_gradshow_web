@@ -24,32 +24,14 @@ function txt(size: number, weight: number, color: string, tracking = -0.02): CSS
 }
 
 /* ─── 데이터 ──────────────────────────────────────────────────── */
+import { works, type Work } from "@/lib/works-data";
+
 const filterTabs = [
-  { label: "XR",     count: 10, color: "#b8d870" },
-  { label: "MOTION", count: 2,  color: "#e7b871" },
-  { label: "UI",     count: 3,  color: "#e99fa9" },
-  { label: "UX",     count: 8,  color: "#9898c8" },
-];
-
-type Work = { id: number; name: string; category: string };
-
-const works: Work[] = [
-  { id: 1,  name: "Coco", category: "UI" },
-  { id: 2,  name: "",     category: "UI" },
-  { id: 3,  name: "",     category: "UI" },
-  { id: 4,  name: "",     category: "XR" },
-  { id: 5,  name: "",     category: "XR" },
-  { id: 6,  name: "",     category: "XR" },
-  { id: 7,  name: "",     category: "XR" },
-  { id: 8,  name: "",     category: "XR" },
-  { id: 9,  name: "",     category: "XR" },
-  { id: 10, name: "",     category: "XR" },
-  { id: 11, name: "",     category: "XR" },
-  { id: 12, name: "",     category: "XR" },
-  { id: 13, name: "",     category: "XR" },
-  { id: 14, name: "",     category: "UX" },
-  { id: 15, name: "",     category: "UX" },
-];
+  { label: "XR",     color: "#b8d870" },
+  { label: "MOTION", color: "#e7b871" },
+  { label: "UI",     color: "#e99fa9" },
+  { label: "UX",     color: "#9898c8" },
+].map((t) => ({ ...t, count: works.filter((w) => w.category === t.label).length }));
 
 /* ─── 작품 상세 모달 ──────────────────────────────────────────── */
 function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
