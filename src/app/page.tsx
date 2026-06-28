@@ -96,12 +96,15 @@ export default function Home() {
           <div style={{ flex: 1 }} />
           <p className="whitespace-nowrap" style={txt(28, 800, "#2174a4")}>졸업전시준비위원회</p>
           <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
-            <div
+            <a
+              href="https://www.instagram.com/p/DZCKb6BEpJ3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: "#a8e6f8", borderRadius: 18, padding: "clamp(4px, 0.42vw, 6px) clamp(8px, 0.69vw, 10px)" }}
+              style={{ backgroundColor: "#a8e6f8", borderRadius: 18, padding: "clamp(4px, 0.42vw, 6px) clamp(8px, 0.69vw, 10px)", textDecoration: "none" }}
             >
               <p className="whitespace-nowrap" style={txt(12, 600, "#007aa3")}>졸업전시준비위원회 인터뷰 보러가기</p>
-            </div>
+            </a>
           </div>
         </div>
 
