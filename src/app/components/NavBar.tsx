@@ -169,6 +169,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             alignItems: "center",
             justifyContent: "center",
             padding: "10px 26px",
+            marginTop: "-10px",
           }}>
             <p style={{
               fontSize: "clamp(11px, 3.05vw, 22px)",
@@ -182,18 +183,6 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             </p>
           </div>
 
-          {/* 네비 행 */}
-          <div style={{
-            width: "min(520px, 100%)",
-            boxSizing: "border-box",
-            padding: "0 26px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: "65px",
-          }}>
-            {centeredNavItems}
-          </div>
         </div>
       )}
 
