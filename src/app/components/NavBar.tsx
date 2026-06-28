@@ -163,10 +163,12 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
 
           {/* 서브타이틀 (Figma 121:503–504: px=28, py=10, 22px SemiBold) */}
           <div style={{
+            width: "min(520px, 100%)",
+            boxSizing: "border-box",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "10px 28px",
+            padding: "10px 26px",
           }}>
             <p style={{
               fontSize: "clamp(11px, 3.05vw, 22px)",
@@ -182,8 +184,10 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
 
           {/* 네비 행 (Figma 121:391: gap=42, h=65) */}
           <div style={{
+            width: "min(520px, 100%)",
             display: "flex",
             alignItems: "center",
+            justifyContent: "center",
             height: "65px",
             gap: "clamp(8px, 5.82vw, 42px)",
           }}>
