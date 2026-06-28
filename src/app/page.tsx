@@ -106,34 +106,61 @@ export default function Home() {
         </div>
 
         {/* 위원 목록 — 3그룹 가운데 정렬 */}
-        <div className="flex justify-center" style={{ gap: "clamp(40px, 7.99vw, 115px)" }}>
-          {/* 위원장·부위원장 */}
-          <div style={{ display: "grid", gridTemplateColumns: "max-content max-content", columnGap: "clamp(4px, 0.83vw, 12px)", rowGap: "clamp(10px, 1.46vw, 21px)", alignContent: "start" }}>
-            <p className="whitespace-nowrap" style={txt(24, 800, "black")}>위원장</p>
-            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김지유</p>
-            <p className="whitespace-nowrap" style={txt(24, 800, "black")}>부위원장</p>
-            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김도연<span style={{ fontSize: "12px", fontWeight: 600, verticalAlign: "baseline" }}>23</span></p>
+        <div className="flex justify-center" style={{ gap: "clamp(30px, 5.07vw, 73px)" }}>
+
+          {/* 그룹 1: 위원장·부위원장 */}
+          <div className="flex flex-col items-start" style={{ gap: "clamp(10px, 1.46vw, 21px)" }}>
+            {/* 위원장 행: 82px 컨테이너(justify-end) + 이름 */}
+            <div className="flex items-center" style={{ gap: "clamp(5px, 0.83vw, 12px)" }}>
+              <div className="flex items-center justify-end shrink-0" style={{ width: "clamp(38px, 5.69vw, 82px)" }}>
+                <p className="whitespace-nowrap" style={txt(24, 800, "black")}>위원장</p>
+              </div>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김지유</p>
+            </div>
+            {/* 부위원장 행 */}
+            <div className="flex items-center" style={{ gap: "clamp(5px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" style={{ ...txt(24, 800, "black"), textAlign: "right" }}>부위원장</p>
+              <div className="flex items-baseline" style={{ gap: "clamp(3px, 0.49vw, 7px)" }}>
+                <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김도연</p>
+                <p className="whitespace-nowrap" style={txt(12, 600, "black")}>23</p>
+              </div>
+            </div>
           </div>
 
-          {/* 기획팀 */}
-          <div style={{ display: "grid", gridTemplateColumns: "max-content max-content", columnGap: "clamp(4px, 0.83vw, 12px)", rowGap: "clamp(10px, 1.46vw, 21px)", alignContent: "start" }}>
-            <p className="whitespace-nowrap" style={txt(24, 800, "black")}>기획팀장</p>
-            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김채현</p>
-            <p className="whitespace-nowrap" style={txt(24, 800, "black")}>기획팀원</p>
-            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김도연<span style={{ fontSize: "12px", fontWeight: 600, verticalAlign: "baseline" }}>22</span></p>
+          {/* 그룹 2: 기획팀 */}
+          <div className="flex flex-col items-start" style={{ gap: "clamp(10px, 1.46vw, 21px)" }}>
+            <div className="flex items-center" style={{ gap: "clamp(5px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 800, "black")}>기획팀장</p>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김채현</p>
+            </div>
+            <div className="flex items-center" style={{ gap: "clamp(5px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 800, "black")}>기획팀원</p>
+              <div className="flex items-baseline" style={{ gap: "clamp(3px, 0.49vw, 7px)" }}>
+                <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김도연</p>
+                <p className="whitespace-nowrap" style={txt(12, 600, "black")}>22</p>
+              </div>
+            </div>
           </div>
 
-          {/* 디자인팀 */}
-          <div style={{ display: "grid", gridTemplateColumns: "max-content max-content", columnGap: "clamp(4px, 0.83vw, 12px)", rowGap: "clamp(10px, 1.46vw, 21px)", alignContent: "start" }}>
-            <p className="whitespace-nowrap" style={txt(24, 800, "black")}>디자인팀장</p>
-            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김지아</p>
-            <p className="whitespace-nowrap" style={txt(24, 800, "black")}>디자인팀원</p>
-            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>서한이</p>
-            <span />
-            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>윤내경</p>
-            <span />
-            <p className="whitespace-nowrap" style={txt(24, 600, "black")}>진민서</p>
+          {/* 그룹 3: 디자인팀 */}
+          <div className="flex flex-col items-start" style={{ gap: "clamp(10px, 1.46vw, 21px)" }}>
+            <div className="flex items-center" style={{ gap: "clamp(5px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 800, "black")}>디자인팀장</p>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>김지아</p>
+            </div>
+            <div className="flex items-center" style={{ gap: "clamp(5px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 800, "black")}>디자인팀원</p>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>서한이</p>
+            </div>
+            {/* 윤내경·진민서: w-175px justify-end */}
+            <div className="flex items-center justify-end" style={{ width: "clamp(98px, 12.15vw, 175px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>윤내경</p>
+            </div>
+            <div className="flex items-center justify-end" style={{ width: "clamp(98px, 12.15vw, 175px)" }}>
+              <p className="whitespace-nowrap" style={txt(24, 600, "black")}>진민서</p>
+            </div>
           </div>
+
         </div>
       </section>
       </ScrollReveal>
