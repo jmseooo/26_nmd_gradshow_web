@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { CSSProperties } from "react";
 import { works } from "@/lib/works-data";
+import TransitionLink from "./TransitionLink";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
   const min = Math.max(10, Math.round(size * 0.45));
@@ -25,13 +26,22 @@ const categories = [
 export default function CategorySlider() {
   const [active, setActive] = useState(0);
 
+  useEffect(() => {
+    if (sessionStorage.getItem("returnToCategory")) {
+      sessionStorage.removeItem("returnToCategory");
+      setTimeout(() => {
+        document.getElementById("category-slider")?.scrollIntoView({ behavior: "instant" });
+      }, 50);
+    }
+  }, []);
+
   const go = (dir: 1 | -1) =>
     setActive((a) => (a + dir + categories.length) % categories.length);
 
   const cat = categories[active];
 
   return (
-    <section className="bg-white" style={{ padding: "clamp(32px, 5.56vw, 80px) 0" }}>
+    <section id="category-slider" className="bg-white" style={{ padding: "clamp(32px, 5.56vw, 80px) 0" }}>
       <style>{`
         @keyframes cat-slide-up {
           from { opacity: 0; transform: translateY(32px); }
@@ -157,9 +167,13 @@ export default function CategorySlider() {
               className="flex flex-col items-start"
               style={{ gap: "clamp(12px, 4.17vw, 60px)", padding: "0 clamp(16px, 4.17vw, 60px)" }}
             >
-              <p className="whitespace-nowrap underline" style={txt(18, 600, "black")}>
-                작품, {cat.count}개
-              </p>
+              <div onClick={() => sessionStorage.setItem("returnToCategory", "1")}>
+                <TransitionLink href={`/works?category=${cat.label}`} style={{ textDecoration: "none" }}>
+                  <p className="whitespace-nowrap underline" style={{ ...txt(18, 600, "black"), cursor: "pointer" }}>
+                    작품, {cat.count}개
+                  </p>
+                </TransitionLink>
+              </div>
               <div className="flex flex-col items-start" style={{ gap: "clamp(4px, 0.56vw, 8px)" }}>
                 <p className="whitespace-nowrap" style={txt(18, 600, "black")}>참여자, 4명</p>
                 {["성이름", "성이름", "성이름", "성이름"].map((name, j) => (

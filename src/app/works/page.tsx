@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import type { CSSProperties } from "react";
+import { useSearchParams } from "next/navigation";
+import { works, type Work } from "@/lib/works-data";
 
 /* ─── 카테고리 컬러 맵 ────────────────────────────────────────── */
 const categoryColor: Record<string, string> = {
@@ -24,7 +26,6 @@ function txt(size: number, weight: number, color: string, tracking = -0.02): CSS
 }
 
 /* ─── 데이터 ──────────────────────────────────────────────────── */
-import { works, type Work } from "@/lib/works-data";
 
 const filterTabs = [
   { label: "XR",     color: "#b8d870" },
@@ -192,8 +193,17 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
 }
 
 /* ─── 페이지 ──────────────────────────────────────────────────── */
-export default function WorksPage() {
-  const [activeFilter, setActiveFilter] = useState("XR");
+function WorksContent() {
+  const searchParams = useSearchParams();
+  const [activeFilter, setActiveFilter] = useState(() => {
+    const cat = searchParams.get("category");
+    return filterTabs.some((t) => t.label === cat) ? cat! : "XR";
+  });
+
+  useEffect(() => {
+    const cat = searchParams.get("category");
+    setActiveFilter(filterTabs.some((t) => t.label === cat) ? cat! : "XR");
+  }, [searchParams]);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [selectedWork, setSelectedWork] = useState<Work | null>(null);
 
@@ -310,5 +320,13 @@ export default function WorksPage() {
         <WorkModal work={selectedWork} onClose={() => setSelectedWork(null)} />
       )}
     </div>
+  );
+}
+
+export default function WorksPage() {
+  return (
+    <Suspense>
+      <WorksContent />
+    </Suspense>
   );
 }
