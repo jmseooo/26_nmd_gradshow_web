@@ -197,7 +197,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         <>
           <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: "hidden" }}>
             {compact ? (
-              <div style={{ flexShrink: 0, lineHeight: 0 }}>
+              <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", gap: "clamp(2px, 0.28vw, 4px)" }}>
                 <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
                   <img
                     alt="우리의 거점"
@@ -212,6 +212,17 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                     }}
                   />
                 </TransitionLink>
+                <p style={{
+                  fontSize: "clamp(9px, 0.83vw, 12px)",
+                  fontWeight: 600,
+                  color: "black",
+                  letterSpacing: "-0.24px",
+                  lineHeight: 1.5,
+                  whiteSpace: "nowrap",
+                }}>
+                  서울여자대학교 첨단미디어디자인전공<br />
+                  제2회 졸업전시
+                </p>
               </div>
             ) : (
               <div
@@ -242,19 +253,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             </div>
           </div>
 
-          {compact ? (
-            <p style={{
-              fontSize: "clamp(9px, 0.83vw, 12px)",
-              fontWeight: 600,
-              color: "black",
-              letterSpacing: "-0.24px",
-              lineHeight: 1.5,
-              whiteSpace: "nowrap",
-            }}>
-              서울여자대학교 첨단미디어디자인전공<br />
-              제2회 졸업전시
-            </p>
-          ) : (
+          {!compact && (
             <p style={{
               fontSize: "clamp(10px, 1.53vw, 22px)",
               fontWeight: 600,
