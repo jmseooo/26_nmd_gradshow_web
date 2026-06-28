@@ -182,14 +182,15 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             </p>
           </div>
 
-          {/* 네비 행 (Figma 121:391: gap=42, h=65) */}
+          {/* 네비 행 */}
           <div style={{
             width: "min(520px, 100%)",
+            boxSizing: "border-box",
+            padding: "0 26px",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "space-between",
             height: "65px",
-            gap: "clamp(8px, 5.82vw, 42px)",
           }}>
             {centeredNavItems}
           </div>
