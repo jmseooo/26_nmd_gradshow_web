@@ -169,23 +169,24 @@ export default function Home() {
         >
           협찬
         </p>
-        <div className="flex flex-wrap items-center justify-center" style={{ gap: "clamp(12px, 2.08vw, 30px)" }}>
-          <div className="overflow-hidden relative"
-            style={{ width: "clamp(80px, 8.33vw, 120px)", height: "clamp(55px, 6.67vw, 96px)" }}>
+        <div className="flex items-center justify-center" style={{ gap: "clamp(4px, 2.08vw, 30px)" }}>
+          <div className="overflow-hidden relative flex-shrink-0"
+            style={{ width: "clamp(20px, 8.33vw, 120px)", height: "clamp(14px, 6.67vw, 96px)" }}>
             <img alt="산돌구름" src="/assets/sponsor1.png"
               className="absolute max-w-none"
               style={{ height: "409.79%", left: "-92.22%", top: "-169.04%", width: "268.33%" }} />
           </div>
-          <div style={{ width: "clamp(110px, 11.67vw, 168px)", height: "clamp(40px, 4.51vw, 65px)" }}>
+          <div className="flex-shrink-0" style={{ width: "clamp(28px, 11.67vw, 168px)", height: "clamp(10px, 4.51vw, 65px)" }}>
             <img alt="Yoondesign group" src="/assets/sponsor2.png" className="w-full h-full object-contain" />
           </div>
           {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
+              className="flex-shrink-0"
               style={{
                 backgroundColor: "#f7f7f7",
-                width: "clamp(80px, 9.17vw, 132px)",
-                height: "clamp(50px, 5.9vw, 85px)",
+                width: "clamp(22px, 9.17vw, 132px)",
+                height: "clamp(12px, 5.9vw, 85px)",
               }}
             />
           ))}
