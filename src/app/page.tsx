@@ -152,11 +152,12 @@ export default function Home() {
               <p className="whitespace-nowrap" style={txt(24, 800, "black")}>디자인팀원</p>
               <p className="whitespace-nowrap" style={txt(24, 600, "black")}>서한이</p>
             </div>
-            {/* 윤내경·진민서: w-175px justify-end */}
-            <div className="flex items-center justify-end" style={{ width: "clamp(98px, 12.15vw, 175px)" }}>
+            <div className="flex items-center" style={{ gap: "clamp(5px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" aria-hidden="true" style={{ ...txt(24, 800, "black"), visibility: "hidden" }}>디자인팀원</p>
               <p className="whitespace-nowrap" style={txt(24, 600, "black")}>윤내경</p>
             </div>
-            <div className="flex items-center justify-end" style={{ width: "clamp(98px, 12.15vw, 175px)" }}>
+            <div className="flex items-center" style={{ gap: "clamp(5px, 0.83vw, 12px)" }}>
+              <p className="whitespace-nowrap" aria-hidden="true" style={{ ...txt(24, 800, "black"), visibility: "hidden" }}>디자인팀원</p>
               <p className="whitespace-nowrap" style={txt(24, 600, "black")}>진민서</p>
             </div>
           </div>
