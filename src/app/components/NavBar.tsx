@@ -12,7 +12,7 @@ const NAV_HREFS: Record<string, string> = {
 interface Props { activeItem?: string; isLight?: boolean; compact?: boolean; }
 
 export default function NavBar({ activeItem = "거점", isLight = true, compact = false }: Props) {
-  const allItems = ["거점", "작품", "디자이너", "방명록", "현장"];
+  const allItems = ["거점", "작품", "디자이너", "방명록"]; /* "현장" 비공개 */
 
   const titleFilter =
     "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
