@@ -219,38 +219,51 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                 </p>
               </div>
             ) : (
-              <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", gap: "clamp(6px, 0.83vw, 12px)" }}>
-                <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
-                  <img
-                    alt="우리의 거점"
-                    src="/assets/hero-title.png"
-                    style={{
-                      display: "block",
-                      width: "clamp(140px, 32.5vw, 468px)",
-                      height: "clamp(26px, 5.94vw, 85.5px)",
-                      objectFit: "cover",
-                      filter: isLight ? titleFilter : "none",
-                      transition: `filter ${T}`,
-                    }}
-                  />
-                </TransitionLink>
-                <p style={{
-                  fontSize: "clamp(10px, 1.53vw, 22px)",
-                  fontWeight: 600,
-                  color: isLight ? "black" : "white",
-                  letterSpacing: "0",
-                  lineHeight: 1.5,
-                  transition: `color ${T}`,
-                  whiteSpace: "nowrap",
-                }}>
-                  서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
-                </p>
+              <div
+                className="relative overflow-hidden flex-shrink-0"
+                style={{
+                  width: "clamp(180px, 36.11vw, 520px)",
+                  height: "clamp(33px, 9.38vw, 135px)",
+                }}
+              >
+                <img
+                  alt="우리의 거점"
+                  src="/assets/hero-title.png"
+                  className="absolute"
+                  style={{
+                    left: 0,
+                    top: "clamp(10px, 1.67vw, 24px)",
+                    width: "clamp(140px, 32.5vw, 468px)",
+                    height: "clamp(26px, 5.94vw, 85.5px)",
+                    objectFit: "cover",
+                    filter: isLight ? titleFilter : "none",
+                    transition: `filter ${T}`,
+                  }}
+                />
               </div>
             )}
             <div className="flex items-center flex-shrink-0" style={{ gap: navGap, marginLeft: "auto" }}>
               {navItems}
             </div>
           </div>
+
+          {!compact && (
+            <p style={{
+              fontSize: "clamp(10px, 1.53vw, 22px)",
+              fontWeight: 600,
+              color: isLight ? "black" : "white",
+              letterSpacing: "0",
+              lineHeight: 1.5,
+              transition: `color ${T}`,
+              width: "clamp(140px, 32.5vw, 468px)",
+              marginLeft: 0,
+              paddingTop: "clamp(4px, 0.69vw, 10px)",
+              paddingBottom: "clamp(4px, 0.69vw, 10px)",
+              marginTop: "clamp(-6px, -0.833vw, -12px)",
+            }}>
+              서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
+            </p>
+          )}
         </>
       )}
 
