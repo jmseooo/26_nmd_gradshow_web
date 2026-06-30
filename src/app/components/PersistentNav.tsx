@@ -19,7 +19,10 @@ export default function PersistentNav() {
   const { isLight } = useHeroLight();
 
   const isHome = pathname === "/";
-  const isTransparentNav = isHome || pathname === "/designer";
+  const isDesigner = pathname === "/designer";
+  const isWorks = pathname === "/works";
+  const isGuestbook = pathname === "/guestbook";
+  const isTransparentNav = isHome || isDesigner;
   const activeItem = pathname.startsWith("/student/")
     ? "디자이너"
     : (PATH_TO_ITEM[pathname] ?? "거점");
@@ -27,12 +30,12 @@ export default function PersistentNav() {
   const [navHidden, setNavHidden] = useState(false);
 
   useEffect(() => {
-    if (!isHome) { setNavHidden(false); return; }
+    if (!isHome && !isDesigner && !isWorks && !isGuestbook) { setNavHidden(false); return; }
     const onScroll = () => setNavHidden(window.scrollY > 0);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
+  }, [isHome, isDesigner, isWorks, isGuestbook]);
 
   useLayoutEffect(() => {
     const el = ref.current;
