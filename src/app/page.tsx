@@ -87,7 +87,7 @@ export default function Home() {
       <section
         className="relative overflow-hidden"
         style={{
-          background: "linear-gradient(to bottom, rgba(230,245,249,0.18) 0%, #e6f5f9 100%)",
+          background: "linear-gradient(to bottom, rgba(230,245,249,0) 0%, #e6f5f9 100%)",
           padding: "clamp(32px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) clamp(32px, 4.44vw, 64px)",
         }}
       >
