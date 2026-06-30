@@ -176,7 +176,7 @@ export default function Home() {
           className="text-center whitespace-nowrap"
           style={{ ...txt(28, 800, "#2174a4"), marginBottom: "clamp(24px, 2.78vw, 40px)" }}
         >
-          협찬
+          협찬/제휴
         </p>
         <div className="flex items-center justify-center" style={{ gap: "clamp(4px, 2.08vw, 30px)" }}>
           <div className="overflow-hidden relative flex-shrink-0"
