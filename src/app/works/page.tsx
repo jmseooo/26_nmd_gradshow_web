@@ -278,11 +278,9 @@ function WorksContent() {
                   pointerEvents: "none",
                 }}
               >
-                {work.name && (
-                  <p style={{ ...txt(24, 600, "white"), textAlign: "center" }}>
-                    {work.name}
-                  </p>
-                )}
+                <p style={{ ...txt(24, 600, "white"), textAlign: "center" }}>
+                  {work.name || "작품명"}
+                </p>
               </div>
             </div>
           ))}
