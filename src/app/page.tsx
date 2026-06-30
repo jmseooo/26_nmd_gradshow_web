@@ -179,14 +179,11 @@ export default function Home() {
           협찬/제휴
         </p>
         <div className="flex items-center justify-center" style={{ gap: "clamp(4px, 2.08vw, 30px)" }}>
-          <div className="overflow-hidden relative flex-shrink-0"
-            style={{ width: "clamp(20px, 8.33vw, 120px)", height: "clamp(14px, 6.67vw, 96px)" }}>
-            <img alt="산돌구름" src="/assets/sponsor1.png"
-              className="absolute max-w-none"
-              style={{ height: "409.79%", left: "-92.22%", top: "-169.04%", width: "268.33%" }} />
-          </div>
           <div className="flex-shrink-0" style={{ width: "clamp(28px, 11.67vw, 168px)", height: "clamp(10px, 4.51vw, 65px)" }}>
             <img alt="Yoondesign group" src="/assets/sponsor2.png" className="w-full h-full object-contain" />
+          </div>
+          <div className="flex-shrink-0" style={{ width: "clamp(20px, 8.33vw, 120px)", height: "clamp(14px, 6.67vw, 96px)" }}>
+            <img alt="산돌구름" src="/assets/sandol-logo.png" className="w-full h-full object-contain" />
           </div>
           {[0, 1, 2, 3].map((i) => (
             <div

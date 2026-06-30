@@ -62,36 +62,44 @@ export default function DesignerPage() {
       <div className="relative" style={{ zIndex: 2 }}>
 
         {/* ── 카드 그리드 ───────────────────────────────── */}
-        <div style={{ padding: "clamp(24px, 5.56vw, 80px) clamp(16px, 8.96vw, 129px) 0" }}>
+        <div style={{ padding: "clamp(24px, 5.56vw, 80px) clamp(16px, 12.36vw, 178px) 0" }}>
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "flex-end",
               columnGap: "clamp(15px, 2.08vw, 30px)",
-              rowGap: "clamp(15px, 2.08vw, 30px)",
+              rowGap: "clamp(10px, 1.39vw, 20px)",
             }}
           >
             {designers.map((d) => (
               <div
                 key={d.id}
                 style={{
-                  position: "relative",
-                  width: "100%",
-                  aspectRatio: "248 / 330",
-                  backgroundColor: "#e6f5f9",
-                  borderRadius: "clamp(9px, 1.25vw, 18px)",
-                  overflow: "hidden",
+                  width: "calc((100% - 3 * clamp(15px, 2.08vw, 30px)) / 4)",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-end",
+                  gap: "clamp(5px, 0.69vw, 10px)",
                   cursor: "pointer",
                 }}
                 onClick={() => router.push(`/student/${d.id}`)}
               >
+                <div
+                  style={{
+                    width: "100%",
+                    aspectRatio: "248.317 / 330",
+                    backgroundColor: "#e6f5f9",
+                    borderRadius: "clamp(9px, 1.25vw, 18px)",
+                    overflow: "hidden",
+                  }}
+                />
                 <p
                   style={{
                     ...txt(18, 600, "black"),
-                    position: "absolute",
-                    bottom: "clamp(9px, 1.25vw, 18px)",
-                    right: "clamp(20px, 2.22vw, 32px)",
+                    textAlign: "right",
                     whiteSpace: "nowrap",
+                    paddingRight: "6px",
                   }}
                 >
                   {d.name}
