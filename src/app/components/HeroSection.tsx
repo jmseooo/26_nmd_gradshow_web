@@ -103,9 +103,10 @@ export default function HeroSection() {
       <div
         className="absolute"
         style={{
+          top: "65.06%",
           ...(narrowHero
-            ? { top: "70.73%", left: "50%", transform: "translateX(-50%)", width: "clamp(300px, 83.2vw, 657px)" }
-            : { top: "65.06%", left: "20.76%", width: "58.48%" }),
+            ? { left: "50%", transform: "translateX(-50%)", width: "clamp(300px, 83.2vw, 657px)" }
+            : { left: "20.76%", width: "58.48%" }),
           aspectRatio: "842 / 480",
           opacity: isLight ? 1 : 0,
           transition: `opacity ${T}`,
@@ -120,9 +121,10 @@ export default function HeroSection() {
       <div
         className="absolute"
         style={{
+          top: "65.06%",
           ...(narrowHero
-            ? { top: "70.73%", left: "50%", transform: "translateX(-50%)", width: "clamp(300px, 83.2vw, 657px)" }
-            : { top: "65.06%", left: "20.76%", width: "58.48%" }),
+            ? { left: "50%", transform: "translateX(-50%)", width: "clamp(300px, 83.2vw, 657px)" }
+            : { left: "20.76%", width: "58.48%" }),
           aspectRatio: "842 / 480",
           opacity: isLight ? 0 : 1,
           transition: `opacity ${T}`,
