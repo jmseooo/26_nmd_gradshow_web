@@ -193,31 +193,19 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         <>
           <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: "hidden" }}>
             {compact ? (
-              <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", gap: "clamp(8px, 0.76vw, 11px)" }}>
-                <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
-                  <img
-                    alt="우리의 거점"
-                    src="/assets/title-geomjeom-blue.png"
-                    style={{
-                      width: "clamp(160px, 13.61vw, 196px)",
-                      height: "auto",
-                      display: "block",
-                      marginLeft: "2px",
-                      cursor: "pointer",
-                    }}
-                  />
-                </TransitionLink>
-                <p style={{
-                  fontSize: "clamp(10px, 0.83vw, 12px)",
-                  fontWeight: 600,
-                  color: "black",
-                  letterSpacing: "-0.24px",
-                  lineHeight: 1.5,
-                  whiteSpace: "nowrap",
-                }}>
-                  서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
-                </p>
-              </div>
+              <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0, flexShrink: 0 }}>
+                <img
+                  alt="우리의 거점"
+                  src="/assets/title-geomjeom-blue.png"
+                  style={{
+                    width: "clamp(160px, 13.61vw, 196px)",
+                    height: "auto",
+                    display: "block",
+                    marginLeft: "2px",
+                    cursor: "pointer",
+                  }}
+                />
+              </TransitionLink>
             ) : (
               <div
                 className="relative overflow-hidden flex-shrink-0"
@@ -247,6 +235,20 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             </div>
           </div>
 
+          {compact && (
+            <p style={{
+              fontSize: "clamp(10px, 0.83vw, 12px)",
+              fontWeight: 600,
+              color: "black",
+              letterSpacing: "-0.24px",
+              lineHeight: 1.5,
+              whiteSpace: "nowrap",
+              marginTop: "clamp(4px, 0.49vw, 7px)",
+              marginLeft: "2px",
+            }}>
+              서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
+            </p>
+          )}
           {!compact && (
             <p style={{
               fontSize: "clamp(10px, 1.53vw, 22px)",
