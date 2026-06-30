@@ -190,7 +190,6 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
             </p>
             <div className="flex items-center" style={{ gap: "clamp(16px, 2.22vw, 32px)" }}>
               <p className="whitespace-nowrap" style={txt(12, 600, "white")}>@swu_graduation</p>
-              <p className="whitespace-nowrap" style={txt(12, 600, "white")}>behance</p>
             </div>
           </div>
         </footer>
@@ -303,7 +302,6 @@ function WorksContent() {
           </p>
           <div className="flex items-center" style={{ gap: "clamp(16px, 2.22vw, 32px)" }}>
             <p className="whitespace-nowrap" style={txt(12, 600, "white")}>@swu_graduation</p>
-            <p className="whitespace-nowrap" style={txt(12, 600, "white")}>behance</p>
           </div>
         </div>
       </footer>
