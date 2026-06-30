@@ -217,7 +217,7 @@ function WorksContent() {
   const filtered = works.filter((w) => w.category === activeFilter);
 
   return (
-    <div className="bg-white min-h-screen overflow-x-hidden" style={{ fontFamily: "Pretendard, sans-serif" }}>
+    <div className="bg-white min-h-screen overflow-x-hidden flex flex-col" style={{ fontFamily: "Pretendard, sans-serif" }}>
 
       {/* ── 카테고리 필터 탭 ───────────────────────────── */}
       <div
@@ -248,7 +248,7 @@ function WorksContent() {
       </div>
 
       {/* ── 작품 카드 그리드 ───────────────────────────── */}
-      <div style={{ padding: "clamp(16px, 3.19vw, 46px) clamp(16px, 5.56vw, 80px)" }}>
+      <div style={{ padding: "clamp(16px, 3.19vw, 46px) clamp(16px, 5.56vw, 80px)", flex: 1 }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",

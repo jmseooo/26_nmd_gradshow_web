@@ -67,17 +67,17 @@ export default function GuestbookPage() {
 
   return (
     <div
-      className="bg-white min-h-screen overflow-x-hidden relative"
+      className="bg-white min-h-screen overflow-x-hidden relative flex flex-col"
       style={{ fontFamily: "Pretendard, sans-serif" }}
     >
       {/* ── 컨텐츠 ────────────────────────────────────────── */}
-      <div className="relative" style={{ zIndex: 2 }}>
+      <div className="relative flex flex-col flex-1" style={{ zIndex: 2 }}>
 
         {/* ── 본문 ──────────────────────────────────────── */}
         <div
           style={{
             padding: "clamp(32px, 4.44vw, 64px) clamp(16px, 5.56vw, 80px) clamp(40px, 5.56vw, 80px)",
-            minHeight: "60vh",
+            flex: 1,
           }}
         >
           {loading ? (
