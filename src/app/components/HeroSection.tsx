@@ -105,8 +105,8 @@ export default function HeroSection() {
         style={{
           top: "65.06%",
           ...(narrowHero
-            ? { left: "50%", transform: "translateX(-50%)", width: "max(83.2vw, 62vh)" }
-            : { left: "20.76%", width: "max(58.48vw, 62vh)" }),
+            ? { left: "50%", transform: "translateX(-50%)", width: "max(83.2vw, 80vh)" }
+            : { left: "20.76%", width: "max(58.48vw, 80vh)" }),
           aspectRatio: "842 / 480",
           opacity: isLight ? 1 : 0,
           transition: `opacity ${T}`,
@@ -123,8 +123,8 @@ export default function HeroSection() {
         style={{
           top: "65.06%",
           ...(narrowHero
-            ? { left: "50%", transform: "translateX(-50%)", width: "max(83.2vw, 62vh)" }
-            : { left: "20.76%", width: "max(58.48vw, 62vh)" }),
+            ? { left: "50%", transform: "translateX(-50%)", width: "max(83.2vw, 80vh)" }
+            : { left: "20.76%", width: "max(58.48vw, 80vh)" }),
           aspectRatio: "842 / 480",
           opacity: isLight ? 0 : 1,
           transition: `opacity ${T}`,
