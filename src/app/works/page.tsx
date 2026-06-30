@@ -13,6 +13,13 @@ const categoryColor: Record<string, string> = {
   UX:     "#9898c8",
 };
 
+function categoryGradient(hex: string): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `linear-gradient(to bottom, rgba(0,0,0,0.66) 20%, rgba(${r},${g},${b},0.66) 100%)`;
+}
+
 /* ─── 텍스트 스타일 헬퍼 ──────────────────────────────────────── */
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
   const min = Math.max(10, Math.round(size * 0.45));
@@ -265,29 +272,17 @@ function WorksContent() {
               <div
                 className="absolute inset-0 flex items-center justify-center"
                 style={{
-                  background:
-                    "linear-gradient(to bottom, rgba(0,0,0,0.6) 20.652%, rgba(0,48,61,0.6) 72.717%, rgba(33,116,164,0.6) 124.78%)",
+                  background: categoryGradient(categoryColor[work.category]),
                   opacity: hoveredId === work.id ? 1 : 0,
                   transition: "opacity 0.3s ease",
                   pointerEvents: "none",
                 }}
               >
-                <div
-                  className="flex items-center justify-center"
-                  style={{
-                    width: "clamp(60px, 7.08vw, 102px)",
-                    height: "clamp(60px, 7.08vw, 102px)",
-                    borderRadius: "50%",
-                    backgroundColor: categoryColor[work.category],
-                    flexShrink: 0,
-                  }}
-                >
-                  {work.name && (
-                    <p style={{ ...txt(24, 600, "white"), textAlign: "center" }}>
-                      {work.name}
-                    </p>
-                  )}
-                </div>
+                {work.name && (
+                  <p style={{ ...txt(24, 600, "white"), textAlign: "center" }}>
+                    {work.name}
+                  </p>
+                )}
               </div>
             </div>
           ))}

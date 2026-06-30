@@ -34,7 +34,11 @@ export default function DesignerPage() {
   return (
     <div
       className="bg-white min-h-screen overflow-x-hidden relative"
-      style={{ fontFamily: "Pretendard, sans-serif" }}
+      style={{
+        fontFamily: "Pretendard, sans-serif",
+        marginTop: "calc(-1 * var(--nav-height, 0px))",
+        paddingTop: "var(--nav-height, 0px)",
+      }}
     >
       {/* ── 배경 ──────────────────────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0, opacity: 0.4 }}>

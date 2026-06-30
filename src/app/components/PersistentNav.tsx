@@ -19,6 +19,7 @@ export default function PersistentNav() {
   const { isLight } = useHeroLight();
 
   const isHome = pathname === "/";
+  const isTransparentNav = isHome || pathname === "/designer";
   const activeItem = pathname.startsWith("/student/")
     ? "디자이너"
     : (PATH_TO_ITEM[pathname] ?? "거점");
@@ -41,7 +42,9 @@ export default function PersistentNav() {
     const update = () => {
       // 홈: 히어로가 뷰포트를 가득 채우도록 body padding 없음 (투명 NavBar가 히어로 위에 오버레이)
       // 다른 페이지: 흰 NavBar 높이만큼 body 상단 여백 확보
-      document.body.style.paddingTop = home ? "0px" : `${el.offsetHeight}px`;
+      const h = home ? "0px" : `${el.offsetHeight}px`;
+      document.body.style.paddingTop = h;
+      document.body.style.setProperty("--nav-height", h);
     };
 
     update();
@@ -62,7 +65,7 @@ export default function PersistentNav() {
         left: 0,
         right: 0,
         zIndex: 50,
-        backgroundColor: isHome ? "transparent" : "white",
+        backgroundColor: isTransparentNav ? "transparent" : "white",
         paddingTop: isHome ? "clamp(0px, 2.95vw, 42.5px)" : "clamp(10px, 4.93vw, 71px)",
         paddingLeft: "clamp(16px, 5.56vw, 80px)",
         paddingRight: "clamp(16px, 5.56vw, 80px)",
