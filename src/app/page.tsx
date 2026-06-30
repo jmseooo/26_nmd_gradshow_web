@@ -171,7 +171,7 @@ export default function Home() {
           SECTION 5 · 협찬
       ══════════════════════════════════════════════════════════ */}
       <ScrollReveal>
-      <section style={{ padding: "clamp(32px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) clamp(52px, 5.32vw, 91px)" }}>
+      <section style={{ padding: "clamp(32px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) clamp(132px, 11.88vw, 171px)" }}>
         <p
           className="text-center whitespace-nowrap"
           style={{ ...txt(28, 800, "#2174a4"), marginBottom: "clamp(24px, 2.78vw, 40px)" }}
