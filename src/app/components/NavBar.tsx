@@ -193,31 +193,29 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         <>
           <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: "hidden" }}>
             {compact ? (
-              <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", gap: "clamp(2px, 0.28vw, 4px)" }}>
+              <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", gap: "clamp(8px, 0.76vw, 11px)" }}>
                 <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
                   <img
                     alt="우리의 거점"
-                    src="/assets/hero-title.png"
+                    src="/assets/title-geomjeom-blue.png"
                     style={{
-                      width: "clamp(90px, 14.44vw, 208px)",
-                      height: "clamp(17px, 2.64vw, 38px)",
-                      objectFit: "cover",
-                      filter: titleFilter,
-                      cursor: "pointer",
+                      width: "clamp(160px, 13.61vw, 196px)",
+                      height: "auto",
                       display: "block",
+                      marginLeft: "2px",
+                      cursor: "pointer",
                     }}
                   />
                 </TransitionLink>
                 <p style={{
-                  fontSize: "clamp(5px, 0.83vw, 12px)",
+                  fontSize: "clamp(10px, 0.83vw, 12px)",
                   fontWeight: 600,
                   color: "black",
                   letterSpacing: "-0.24px",
                   lineHeight: 1.5,
                   whiteSpace: "nowrap",
                 }}>
-                  서울여자대학교 첨단미디어디자인전공<br />
-                  제2회 졸업전시
+                  서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
                 </p>
               </div>
             ) : (

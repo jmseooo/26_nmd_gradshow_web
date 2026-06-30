@@ -66,7 +66,7 @@ export default function PersistentNav() {
         right: 0,
         zIndex: 50,
         backgroundColor: isTransparentNav ? "transparent" : "white",
-        paddingTop: isHome ? "clamp(0px, 2.95vw, 42.5px)" : "clamp(10px, 4.93vw, 71px)",
+        paddingTop: isHome ? "clamp(0px, 2.5vw, 36px)" : "clamp(10px, 4.93vw, 71px)",
         paddingLeft: "clamp(16px, 5.56vw, 80px)",
         paddingRight: "clamp(16px, 5.56vw, 80px)",
         paddingBottom: 0,
