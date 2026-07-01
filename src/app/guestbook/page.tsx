@@ -34,6 +34,8 @@ const getCardColor = (i: number) => {
 export default function GuestbookPage() {
   const [messages, setMessages] = useState<GuestMessage[]>([]);
   const [loading, setLoading] = useState(true);
+  const [input, setInput] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -65,6 +67,15 @@ export default function GuestbookPage() {
     return () => { supabase.removeChannel(channel); };
   }, []);
 
+  const handleSubmit = async () => {
+    const text = input.trim();
+    if (!text || submitting) return;
+    setSubmitting(true);
+    await supabase.from("guestbook").insert({ message: text });
+    setInput("");
+    setSubmitting(false);
+  };
+
   return (
     <div
       className="bg-white min-h-screen overflow-x-hidden relative flex flex-col"
@@ -78,8 +89,67 @@ export default function GuestbookPage() {
           style={{
             padding: "clamp(32px, 4.44vw, 64px) clamp(24px, 5.56vw, 80px) clamp(40px, 5.56vw, 80px)",
             flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            gap: "clamp(20px, 2.78vw, 40px)",
           }}
         >
+
+          {/* ── 텍스트 필드 ──────────────────────────────── */}
+          <div className="flex justify-center">
+            <div
+              className="flex items-center w-full"
+              style={{
+                maxWidth: "clamp(280px, 47.92vw, 690px)",
+                height: "clamp(48px, 4.86vw, 70px)",
+                backgroundColor: "white",
+                border: "1px solid #202024",
+                borderRadius: "100px",
+                padding: "0 clamp(16px, 1.39vw, 20px)",
+                gap: "clamp(8px, 0.69vw, 10px)",
+                position: "relative",
+              }}
+            >
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
+                placeholder="남기고 싶은 말이 있나요?"
+                style={{
+                  flex: 1,
+                  border: "none",
+                  outline: "none",
+                  background: "transparent",
+                  ...txt(18, 600, "#000000"),
+                  paddingRight: "clamp(28px, 2.22vw, 32px)",
+                }}
+              />
+              <button
+                onClick={handleSubmit}
+                disabled={submitting || !input.trim()}
+                style={{
+                  position: "absolute",
+                  right: "clamp(14px, 1.39vw, 20px)",
+                  background: "none",
+                  border: "none",
+                  cursor: input.trim() ? "pointer" : "default",
+                  padding: 0,
+                  display: "flex",
+                  alignItems: "center",
+                  opacity: input.trim() ? 1 : 0.35,
+                  transition: "opacity 0.15s",
+                }}
+                aria-label="전송"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.478 2.405a.75.75 0 0 0-.926.94l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.405Z" fill="#202024" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* ── 카드 그리드 ─────────────────────────────── */}
           {loading ? (
             <div className="flex items-center justify-center" style={{ paddingTop: "clamp(40px, 5.56vw, 80px)" }}>
               <p style={txt(16, 400, "#9ca3af")}>불러오는 중...</p>
@@ -87,7 +157,7 @@ export default function GuestbookPage() {
           ) : messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center" style={{ paddingTop: "clamp(60px, 8.33vw, 120px)", gap: "clamp(8px, 1.11vw, 16px)" }}>
               <p style={txt(24, 800, "#d0eaf3")}>아직 남긴 말이 없어요</p>
-              <p style={txt(14, 400, "#b0c4cc")}>거점 페이지에서 첫 번째 메시지를 남겨보세요</p>
+              <p style={txt(14, 400, "#b0c4cc")}>첫 번째 메시지를 남겨보세요</p>
             </div>
           ) : (
             <div
