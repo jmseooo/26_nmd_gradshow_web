@@ -113,7 +113,7 @@ export default async function StudentPage({
           >
             <p
               style={{
-                fontSize: "clamp(32px, 4.17vw, 60px)",
+                fontSize: "clamp(22px, 4.17vw, 60px)",
                 fontWeight: 600,
                 color: "black",
                 letterSpacing: "-0.02em",
@@ -130,8 +130,8 @@ export default async function StudentPage({
                 gap: "clamp(1px, 0.14vw, 2px)",
               }}
             >
-              <p style={{ fontSize: "18px", fontWeight: 600, color: "black", letterSpacing: "-0.36px", lineHeight: 1.5, whiteSpace: "nowrap" }}>asdf@naver.com</p>
-              <p style={{ fontSize: "18px", fontWeight: 600, color: "black", letterSpacing: "-0.36px", lineHeight: 1.5, whiteSpace: "nowrap" }}>@asdf</p>
+              <p style={{ fontSize: "clamp(13px, 1.25vw, 18px)", fontWeight: 600, color: "black", letterSpacing: "-0.36px", lineHeight: 1.5, whiteSpace: "nowrap" }}>asdf@naver.com</p>
+              <p style={{ fontSize: "clamp(13px, 1.25vw, 18px)", fontWeight: 600, color: "black", letterSpacing: "-0.36px", lineHeight: 1.5, whiteSpace: "nowrap" }}>@asdf</p>
             </div>
           </div>
         </div>
