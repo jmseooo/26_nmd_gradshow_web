@@ -65,11 +65,12 @@ export default async function StudentPage({
 
         {/* ── 본문: 좌측 카드 + 우측 작품 카드 ────────────── */}
         <div
-          className="flex items-start flex-1"
+          className="flex flex-wrap items-start flex-1"
           style={{
             padding: "0 clamp(16px, 5.56vw, 80px)",
             marginTop: "clamp(12px, 1.6vw, 23px)",
-            gap: "clamp(40px, 11.74vw, 169px)",
+            columnGap: "clamp(40px, 11.74vw, 169px)",
+            rowGap: "clamp(20px, 2.78vw, 40px)",
           }}
         >
           {/* ── 좌: 포트레이트 카드 + 연락처 ──────────────── */}
@@ -123,6 +124,7 @@ export default async function StudentPage({
           <div
             style={{
               flex: 1,
+              minWidth: "min(600px, 100%)",
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               gap: "clamp(6px, 0.83vw, 12px)",
