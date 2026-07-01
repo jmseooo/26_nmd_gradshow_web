@@ -71,7 +71,16 @@ export default function GuestbookPage() {
     const text = input.trim();
     if (!text || submitting) return;
     setSubmitting(true);
-    await supabase.from("guestbook").insert({ message: text });
+    const { data, error } = await supabase
+      .from("guestbook")
+      .insert({ message: text })
+      .select()
+      .single();
+    if (!error && data) {
+      setMessages((prev) =>
+        prev.some((m) => m.id === data.id) ? prev : [data, ...prev]
+      );
+    }
     setInput("");
     setSubmitting(false);
   };
