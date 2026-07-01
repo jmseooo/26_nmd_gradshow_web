@@ -223,9 +223,9 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
       {/* ── 가로 레이아웃 (compact 또는 hideNav=false) ───── */}
       {(compact || !hideNav) && (
         <>
-          <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: "hidden" }}>
+          <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: compact ? "visible" : "hidden" }}>
             {compact ? (
-              <div style={{ display: "flex", flexDirection: "column", flexShrink: 0, alignSelf: "flex-start" }}>
+              <div style={{ display: "flex", flexDirection: "column", flexShrink: 0, alignSelf: "flex-start", width: "clamp(160px, 13.61vw, 196px)" }}>
                 <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
                   <img
                     alt="우리의 거점"
@@ -245,7 +245,6 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                   color: "black",
                   letterSpacing: "-0.24px",
                   lineHeight: 1.5,
-                  whiteSpace: "nowrap",
                   marginTop: "11px",
                   marginLeft: "2px",
                 }}>
