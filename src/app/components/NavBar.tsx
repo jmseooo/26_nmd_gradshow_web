@@ -100,7 +100,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             paddingTop: "clamp(6px, 1.38vw, 10px)",
             paddingBottom: "clamp(6px, 1.38vw, 10px)",
             borderRadius: "100px",
-            backgroundColor: "#aedce9",
+            backgroundColor: "#38b3d6",
           } : {
             paddingLeft: "clamp(6px, 1.66vw, 12px)",
             paddingRight: "clamp(6px, 1.66vw, 12px)",
@@ -115,7 +115,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
           <p style={{
             fontSize: "clamp(11px, 2.49vw, 18px)",
             fontWeight: 800,
-            color: isActive ? "#38b3d6" : (isLight ? "black" : "white"),
+            color: isActive ? "#f7f7f7" : "black",
             letterSpacing: "-0.36px",
             lineHeight: 1.5,
             whiteSpace: "nowrap",
@@ -130,62 +130,94 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
 
   return (
     <>
+      <style>{`
+        @keyframes nav-bg-in {
+          from { opacity: 0; transform: translateY(-6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes nav-content-in {
+          from { opacity: 0; transform: translateY(-4px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+
       {/* ── 중앙 세로 레이아웃 (비-compact + hideNav) ──────── */}
       {!compact && hideNav && (
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "6px",
-          width: "100%",
-        }}>
-          {/* 타이틀 컨테이너 (Figma 121:501: 520×135, overflow-clip, mb=-12) */}
+        <>
+          {/* 흰 배경 + 네비 항목 — absolute, 수직 중앙 정렬 (피그마 214:51) */}
           <div style={{
-            width: "min(520px, 100%)",
-            height: "135px",
-            overflow: "hidden",
-            position: "relative",
-            flexShrink: 0,
-            marginBottom: "-12px",
-          }}>
-            <img
-              alt="우리의 거점"
-              src="/assets/hero-title.png"
-              style={{
-                position: "absolute",
-                left: "26px",
-                top: "24px",
-                width: "calc(100% - 52px)",
-                height: "auto",
-                filter: isLight ? titleFilter : "none",
-                transition: `filter ${T}`,
-              }}
-            />
-          </div>
-
-          {/* 서브타이틀 (Figma 121:503–504: px=28, py=10, 22px SemiBold) */}
-          <div style={{
-            width: "min(520px, 100%)",
-            boxSizing: "border-box",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "52px",
+            backgroundColor: "rgba(255,255,255,0.92)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "10px 26px",
-            marginTop: "-10px",
+            gap: navGap,
+            animation: "nav-bg-in 0.3s ease-out both",
           }}>
-            <p style={{
-              fontSize: "clamp(11px, 3.05vw, 22px)",
-              fontWeight: 600,
-              color: isLight ? "black" : "white",
-              lineHeight: 1.5,
-              textAlign: "center",
-              transition: `color ${T}`,
-            }}>
-              서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
-            </p>
+            {centeredNavItems}
           </div>
 
-        </div>
+          {/* 타이틀 + 서브타이틀 — 흰 바 아래로 */}
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "6px",
+            width: "100%",
+            marginTop: "calc(52px + 8px - clamp(0px, 2.5vw, 36px))",
+            animation: "nav-content-in 0.35s ease-out 0.05s both",
+          }}>
+            {/* 타이틀 컨테이너 (Figma 121:501: 520×135, overflow-clip, mb=-12) */}
+            <div style={{
+              width: "min(520px, 100%)",
+              height: "135px",
+              overflow: "hidden",
+              position: "relative",
+              flexShrink: 0,
+              marginBottom: "-12px",
+            }}>
+              <img
+                alt="우리의 거점"
+                src="/assets/hero-title.png"
+                style={{
+                  position: "absolute",
+                  left: "26px",
+                  top: "24px",
+                  width: "calc(100% - 52px)",
+                  height: "auto",
+                  filter: isLight ? titleFilter : "none",
+                  transition: `filter ${T}`,
+                }}
+              />
+            </div>
+
+            {/* 서브타이틀 (Figma 121:503–504: px=28, py=10, 22px SemiBold) */}
+            <div style={{
+              width: "min(520px, 100%)",
+              boxSizing: "border-box",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "10px 26px",
+              marginTop: "-10px",
+            }}>
+              <p style={{
+                fontSize: "clamp(11px, 3.05vw, 22px)",
+                fontWeight: 600,
+                color: isLight ? "black" : "white",
+                lineHeight: 1.5,
+                textAlign: "center",
+                transition: `color ${T}`,
+              }}>
+                서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
+              </p>
+            </div>
+          </div>
+        </>
       )}
 
       {/* ── 가로 레이아웃 (compact 또는 hideNav=false) ───── */}

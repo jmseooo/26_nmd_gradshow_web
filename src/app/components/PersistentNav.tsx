@@ -69,12 +69,12 @@ export default function PersistentNav() {
         right: 0,
         zIndex: 50,
         backgroundColor: isTransparentNav ? "transparent" : "white",
+        transition: "transform 0.35s ease",
         paddingTop: isHome ? "clamp(0px, 2.5vw, 36px)" : "clamp(10px, 4.93vw, 71px)",
         paddingLeft: "clamp(16px, 5.56vw, 80px)",
         paddingRight: "clamp(16px, 5.56vw, 80px)",
         paddingBottom: 0,
         transform: navHidden ? "translateY(-110%)" : "translateY(0)",
-        transition: "transform 0.35s ease",
       }}
     >
       <NavBar
