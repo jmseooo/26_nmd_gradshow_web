@@ -277,7 +277,7 @@ function WorksContent() {
       </div>
 
       {/* ── 작품 카드 그리드 ───────────────────────────── */}
-      <div style={{ padding: "clamp(16px, 3.19vw, 46px) clamp(16px, 5.56vw, 80px)", flex: 1 }}>
+      <div style={{ padding: "clamp(32px, 5.56vw, 80px) clamp(16px, 5.56vw, 80px)", flex: 1 }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
