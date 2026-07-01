@@ -63,90 +63,104 @@ export default async function StudentPage({
       {/* ── 컨텐츠 ────────────────────────────────────────── */}
       <div className="relative flex flex-col flex-1" style={{ zIndex: 2 }}>
 
-        {/* ── 본문: 좌측 카드 + 우측 작품 카드 ────────────── */}
+        {/* ── 본문 ──────────────────────────────────────────── */}
         <div
-          className="flex flex-wrap items-start flex-1"
+          className="flex flex-col flex-1"
           style={{
             padding: "0 clamp(16px, 5.56vw, 80px)",
             marginTop: "clamp(12px, 1.6vw, 23px)",
-            columnGap: "clamp(40px, 11.74vw, 169px)",
-            rowGap: "clamp(20px, 2.78vw, 40px)",
+            gap: "clamp(16px, 2.5vw, 36px)",
           }}
         >
-          {/* ── 좌: 포트레이트 카드 + 연락처 ──────────────── */}
-          <div style={{ flexShrink: 0, width: "clamp(120px, 16.67vw, 240px)" }}>
-
+          {/* ── 상단: 포트레이트 + 이름/연락처 ────────────── */}
+          <div
+            className="flex flex-col md:flex-row md:items-start"
+            style={{
+              maxWidth: "clamp(280px, 47.5vw, 684px)",
+              marginLeft: "auto",
+              marginRight: "auto",
+              width: "100%",
+            }}
+          >
             {/* 포트레이트 카드 */}
             <div
-              style={{
-                width: "100%",
-                aspectRatio: "3 / 4",
-                backgroundColor: "#e6f5f9",
-                borderRadius: "clamp(8px, 1.11vw, 16px)",
-                overflow: "hidden",
-              }}
+              className="mx-auto md:mx-0 md:shrink-0"
+              style={{ width: "clamp(120px, 16.67vw, 240px)" }}
             >
-              <img
-                src={`/assets/students/${designer.photo}`}
-                alt={designer.name}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              <div
+                style={{
+                  width: "100%",
+                  aspectRatio: "3 / 4",
+                  backgroundColor: "#e6f5f9",
+                  borderRadius: "clamp(8px, 1.67vw, 24px)",
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  src={`/assets/students/${designer.photo}`}
+                  alt={designer.name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
             </div>
 
-            {/* 연락처 블록 */}
+            {/* 이름 + 연락처 */}
             <div
-              style={{
-                marginTop: "clamp(6px, 0.69vw, 10px)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "clamp(1px, 0.14vw, 2px)",
-              }}
+              className="mt-4 md:mt-0 md:pl-3 md:pt-[clamp(0px,11.11vw,160px)]"
+              style={{ flex: 1 }}
             >
-              {/* 학생명 */}
-              <div className="flex items-center" style={{ gap: "clamp(6px, 0.69vw, 10px)" }}>
-                <p style={{ ...txt(18, 400, "black", -0.02), whiteSpace: "nowrap" }}>학생명</p>
-                <p style={{ ...txt(18, 600, "black", -0.02), whiteSpace: "nowrap" }}>{designer.name}</p>
-              </div>
-              {/* email */}
-              <div className="flex items-center" style={{ gap: "clamp(6px, 0.83vw, 12px)" }}>
-                <p style={{ ...txt(18, 400, "black", -0.02), whiteSpace: "nowrap", width: "clamp(24px, 3.19vw, 46px)" }}>email</p>
-                <p style={{ ...txt(18, 600, "black", -0.02), whiteSpace: "nowrap" }}>asdf@naver.com</p>
-              </div>
-              {/* sns */}
-              <div className="flex items-center" style={{ gap: "clamp(6px, 0.83vw, 12px)" }}>
-                <p style={{ ...txt(18, 400, "black", -0.02), whiteSpace: "nowrap", width: "clamp(24px, 3.19vw, 46px)" }}>sns</p>
-                <p style={{ ...txt(18, 600, "black", -0.02), whiteSpace: "nowrap" }}>@asdf</p>
+              <p
+                style={{
+                  fontSize: "clamp(24px, 4.17vw, 60px)",
+                  fontWeight: 600,
+                  color: "black",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.5,
+                }}
+              >
+                {designer.name}
+              </p>
+              <div
+                style={{
+                  marginTop: "clamp(2px, 0.35vw, 5px)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "clamp(1px, 0.14vw, 2px)",
+                }}
+              >
+                <p style={{ ...txt(18, 600, "black"), whiteSpace: "nowrap" }}>asdf@naver.com</p>
+                <p style={{ ...txt(18, 600, "black"), whiteSpace: "nowrap" }}>@asdf</p>
               </div>
             </div>
           </div>
 
-          {/* ── 우: 작품 카드 2개 ─────────────────────────── */}
+          {/* ── 작품 카드 2개 (세로 쌓기) ────────────────────── */}
           <div
             style={{
-              flex: 1,
-              minWidth: "min(600px, 100%)",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "clamp(6px, 0.83vw, 12px)",
+              display: "flex",
+              flexDirection: "column",
+              gap: "clamp(16px, 2.5vw, 36px)",
+              maxWidth: "clamp(280px, 47.5vw, 684px)",
+              marginLeft: "auto",
+              marginRight: "auto",
+              width: "100%",
             }}
           >
-            {/* 작품 카드 1 */}
             <div
               style={{
                 width: "100%",
-                aspectRatio: "408 / 230",
-                backgroundColor: "#fcfaf4",
-                borderRadius: "clamp(8px, 1.11vw, 16px)",
+                aspectRatio: "684 / 385",
+                backgroundColor: "#f3f3f3",
+                borderRadius: "clamp(10px, 1.67vw, 24px)",
                 overflow: "hidden",
               }}
             />
-            {/* 작품 카드 2 */}
             <div
               style={{
                 width: "100%",
-                aspectRatio: "408 / 230",
-                backgroundColor: "#fcfaf4",
-                borderRadius: "clamp(8px, 1.11vw, 16px)",
+                aspectRatio: "684 / 385",
+                backgroundColor: "#f3f3f3",
+                borderRadius: "clamp(10px, 1.67vw, 24px)",
                 overflow: "hidden",
               }}
             />
@@ -169,6 +183,7 @@ export default async function StudentPage({
             </p>
             <div className="flex items-center" style={{ gap: "clamp(16px, 2.22vw, 32px)" }}>
               <p className="whitespace-nowrap" style={txt(12, 600, "white")}>@swu_graduation</p>
+              <p className="whitespace-nowrap" style={txt(12, 600, "white")}>behance</p>
             </div>
           </div>
         </footer>
