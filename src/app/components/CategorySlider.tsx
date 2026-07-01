@@ -145,17 +145,17 @@ export default function CategorySlider() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 2fr 1fr",
+              gridTemplateColumns: "3fr 7fr 4fr",
               borderBottom: "1px solid rgba(0,0,0,0.1)",
             }}
           >
-            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 4.17vw, 60px)", whiteSpace: "nowrap" }}>
+            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 3.33vw, 48px)", whiteSpace: "nowrap" }}>
               {cat.label}
             </p>
-            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(10px, 2.08vw, 30px)", whiteSpace: "nowrap" }}>
+            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 3.33vw, 48px)", whiteSpace: "nowrap" }}>
               개요
             </p>
-            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 4.17vw, 60px)", whiteSpace: "nowrap" }}>
+            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 3.33vw, 48px)", whiteSpace: "nowrap" }}>
               교수님
             </p>
           </div>
@@ -164,15 +164,15 @@ export default function CategorySlider() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 2fr 1fr",
-              padding: "clamp(16px, 5.76vw, 83px) 0",
+              gridTemplateColumns: "3fr 7fr 4fr",
+              padding: "22px 0 clamp(30px, 9.99vw, 144px)",
               alignItems: "start",
             }}
           >
             {/* 왼쪽: 작품·참여자 */}
             <div
               className="flex flex-col items-start"
-              style={{ gap: "clamp(12px, 4.17vw, 60px)", padding: "0 clamp(16px, 4.17vw, 60px)" }}
+              style={{ gap: "clamp(12px, 4.17vw, 60px)", padding: "0 clamp(16px, 3.33vw, 48px)" }}
             >
               <div onClick={() => sessionStorage.setItem("returnToCategory", "1")}>
                 <TransitionLink href={`/works?category=${cat.label}`} style={{ textDecoration: "none" }}>
@@ -187,15 +187,15 @@ export default function CategorySlider() {
             </div>
 
             {/* 중간: 개요 */}
-            <div style={{ padding: "0 clamp(10px, 2.08vw, 30px)" }}>
-              <p style={{ ...txt(12, 400, "#63636e"), lineHeight: 1.7 }}>
+            <div style={{ padding: "0 clamp(16px, 3.33vw, 48px)" }}>
+              <p style={{ ...txt(18, 400, "#63636e"), lineHeight: 1.7 }}>
                 어쩌구 그래서 이런 것을 전시합니다 그래서 이런 것을 준비했는데 예쁘게 봐주세요
                 어쩌구 그래서 이런 것을 전시합니다 그래서 이런 것을 준비했는데 예쁘게 봐주세요
               </p>
             </div>
 
             {/* 오른쪽: 교수님 */}
-            <div style={{ padding: "0 clamp(16px, 4.17vw, 60px)" }}>
+            <div style={{ padding: "0 clamp(16px, 3.33vw, 48px)" }}>
               <p className="whitespace-nowrap" style={txt(18, 400, "black")}>유영재 교수님</p>
             </div>
           </div>
