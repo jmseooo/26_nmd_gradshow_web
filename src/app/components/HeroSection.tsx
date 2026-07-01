@@ -144,7 +144,7 @@ export default function HeroSection() {
       {isMobile && (
         <div
           className="absolute pointer-events-none"
-          style={{ top: "60px", left: "24px", right: "24px" }}
+          style={{ top: "80px", left: "24px", right: "24px", display: "flex", flexDirection: "column", alignItems: "center" }}
         >
           <img
             alt="우리의 거점"
@@ -163,6 +163,7 @@ export default function HeroSection() {
             color: isLight ? "black" : "white",
             lineHeight: 1.5,
             marginTop: "6px",
+            textAlign: "center",
             transition: `color ${T}`,
           }}>
             서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
