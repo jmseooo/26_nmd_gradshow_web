@@ -52,7 +52,7 @@ export default function ScrollReveal({ children, className, style, delay = 0 }: 
           el.style.animationDelay = "";
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px -10px 0px" }
     );
 
     observer.observe(el);
@@ -63,7 +63,7 @@ export default function ScrollReveal({ children, className, style, delay = 0 }: 
     <div
       ref={ref}
       className={className}
-      style={{ opacity: 0, ...style }}
+      style={{ opacity: 0, willChange: "transform, opacity", ...style }}
     >
       {children}
     </div>

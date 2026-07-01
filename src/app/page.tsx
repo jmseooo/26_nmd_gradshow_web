@@ -53,7 +53,7 @@ export default function Home() {
       <ScrollReveal>
         <section
           className="relative overflow-hidden bg-white flex items-center justify-center"
-          style={{ minHeight: "clamp(180px, 25vw, 360px)", padding: "clamp(32px, 4vw, 60px) 16px" }}
+          style={{ minHeight: "clamp(280px, 25vw, 360px)", padding: "clamp(100px, 8vw, 120px) 16px" }}
         >
           <div className="absolute inset-0 pointer-events-none opacity-20">
             <img alt="" src="/assets/img3.svg" className="w-full h-full object-cover" />
@@ -88,7 +88,7 @@ export default function Home() {
         className="relative overflow-hidden"
         style={{
           background: "linear-gradient(to bottom, rgba(230,245,249,0) 0%, #e6f5f9 100%)",
-          padding: "clamp(32px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) clamp(32px, 4.44vw, 64px)",
+          padding: "clamp(100px, 8vw, 130px) clamp(16px, 5.56vw, 80px) clamp(100px, 8vw, 120px)",
         }}
       >
         {/* 인터뷰 버튼 — 섹션 우측 상단 absolute (피그마 330:416), 모바일 숨김 */}
@@ -174,7 +174,7 @@ export default function Home() {
           SECTION 5 · 협찬
       ══════════════════════════════════════════════════════════ */}
       <ScrollReveal>
-      <section style={{ padding: "clamp(32px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) clamp(220px, 26vw, 380px)" }}>
+      <section style={{ padding: "clamp(100px, 8vw, 130px) clamp(16px, 5.56vw, 80px) clamp(280px, 28vw, 420px)" }}>
         <p
           className="text-center whitespace-nowrap"
           style={{ ...txt(28, 800, "#2174a4"), marginBottom: "clamp(24px, 2.78vw, 40px)" }}
