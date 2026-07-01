@@ -2,6 +2,17 @@
 
 @custom-variant mobile (@media (max-width: 1199px));
 
+.designer-grid-padding {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+@media (min-width: 768px) {
+  .designer-grid-padding {
+    padding-left: clamp(16px, 12.36vw, 178px);
+    padding-right: clamp(16px, 12.36vw, 178px);
+  }
+}
+
 /* ─── Pretendard Variable Font ───────────────────────────────────────────── */
 @font-face {
   font-family: "Pretendard";

@@ -46,21 +46,21 @@ export default function DesignerPage() {
 
       {/* 컨텐츠 */}
       <div className="relative" style={{ zIndex: 2 }}>
-        <div style={{ padding: "clamp(24px, 5.56vw, 80px) clamp(16px, 12.36vw, 178px) 0" }}>
+        <div
+          className="designer-grid-padding"
+          style={{ paddingTop: "clamp(24px, 5.56vw, 80px)" }}
+        >
           <div
+            className="grid grid-cols-2 md:grid-cols-4"
             style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "flex-end",
-              columnGap: "clamp(15px, 2.08vw, 30px)",
-              rowGap: "clamp(10px, 1.39vw, 20px)",
+              columnGap: "clamp(12px, 2.08vw, 30px)",
+              rowGap: "clamp(12px, 1.39vw, 20px)",
             }}
           >
             {designers.map((d) => (
               <div
                 key={d.id}
                 style={{
-                  width: "calc((100% - 3 * clamp(15px, 2.08vw, 30px)) / 4)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-end",
