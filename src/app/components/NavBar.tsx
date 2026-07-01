@@ -22,7 +22,8 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const pillPadV    = "clamp(4px, 0.69vw, 10px)";
   const pillPadH    = "clamp(5px, 0.83vw, 12px)";
   const textPadH    = "clamp(12px, 2.08vw, 30px)";
-  const navGap      = "clamp(4px, 0.69vw, 10px)";
+  const navGap         = "clamp(4px, 0.69vw, 10px)";
+  const centeredNavGap = "clamp(10px, 5.64vw, 42px)";
 
   const [hideNav, setHideNav] = useState(false);
   const measureRef = useRef<HTMLParagraphElement>(null);
@@ -68,7 +69,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
           <p style={{
             fontSize: navFontSize,
-            fontWeight: 800,
+            fontWeight: 700,
             color: isActive ? pillText : isLight ? "black" : "white",
             letterSpacing: "-0.6px",
             lineHeight: 1.5,
@@ -114,7 +115,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
           <p style={{
             fontSize: "clamp(11px, 2.49vw, 18px)",
-            fontWeight: 800,
+            fontWeight: 700,
             color: isActive ? "#f7f7f7" : "black",
             letterSpacing: "-0.36px",
             lineHeight: 1.5,
@@ -155,7 +156,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: navGap,
+            gap: centeredNavGap,
             animation: "nav-bg-in 0.3s ease-out both",
           }}>
             {centeredNavItems}

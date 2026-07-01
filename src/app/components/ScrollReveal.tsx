@@ -36,16 +36,18 @@ export default function ScrollReveal({ children, className, style, delay = 0 }: 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // 강제 리플로우로 이미 클래스가 있어도 애니메이션 재실행
           el.classList.remove("scroll-reveal-run");
           void el.offsetWidth;
           el.style.opacity = "0";
           el.style.animationDelay = `${delay}ms`;
           el.classList.add("scroll-reveal-run");
         } else {
-          el.classList.remove("scroll-reveal-run");
-          el.style.opacity = "0";
-          el.style.animationDelay = "";
+          // 위로 벗어날 때만 초기화 (아래 오버스크롤은 무시)
+          if (entry.boundingClientRect.top < 0) {
+            el.classList.remove("scroll-reveal-run");
+            el.style.opacity = "0";
+            el.style.animationDelay = "";
+          }
         }
       },
       { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
