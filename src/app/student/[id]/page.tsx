@@ -76,7 +76,7 @@ export default async function StudentPage({
       >
         {/* ── 상단: 포트레이트 + 이름/연락처 ────────────── */}
         <div
-          className="flex flex-col md:flex-row md:items-start"
+          className="flex flex-row items-start"
           style={{
             maxWidth: "clamp(280px, 47.5vw, 684px)",
             marginLeft: "auto",
@@ -108,7 +108,7 @@ export default async function StudentPage({
 
           {/* 이름 + 연락처 */}
           <div
-            className="mt-4 md:mt-0 md:pt-[clamp(0px,11.11vw,160px)]"
+            className="pt-[clamp(0px,11.11vw,160px)]"
             style={{ flex: 1, paddingLeft: "clamp(12px, 2.78vw, 40px)" }}
           >
             <p
