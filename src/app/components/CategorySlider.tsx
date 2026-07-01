@@ -41,7 +41,7 @@ export default function CategorySlider() {
   const cat = categories[active];
 
   return (
-    <section id="category-slider" className="bg-white" style={{ padding: "clamp(32px, 5.56vw, 80px) 0" }}>
+    <section id="category-slider" className="bg-white overflow-hidden" style={{ padding: "clamp(32px, 5.56vw, 80px) 0" }}>
       <style>{`
         @keyframes cat-slide-up {
           from { opacity: 0; transform: translateY(32px); }
@@ -126,8 +126,8 @@ export default function CategorySlider() {
           className="cat-slide-up"
           style={{
             backgroundColor: cat.cardBg,
-            width: "clamp(300px, 58.19vw, 838px)",
-            flexShrink: 0,
+            width: "clamp(200px, 58.19vw, 838px)",
+            flexShrink: 1,
             overflow: "hidden",
           }}
         >

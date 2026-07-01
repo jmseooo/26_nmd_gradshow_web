@@ -97,6 +97,7 @@ input.guestbook::placeholder {
 html {
   scrollbar-gutter: stable;
   overscroll-behavior-y: none;
+  overflow-x: hidden;
 }
 
 body {
