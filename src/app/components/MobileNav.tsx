@@ -23,6 +23,7 @@ export default function MobileNav() {
   const ref = useRef<HTMLDivElement>(null);
 
   const isHome = pathname === "/";
+  const isTransparentNav = isHome || pathname === "/designer" || pathname.startsWith("/student/");
   const activeItem = pathname.startsWith("/student/")
     ? "디자이너"
     : (PATH_TO_ITEM[pathname] ?? "거점");
@@ -65,7 +66,7 @@ export default function MobileNav() {
         right: 0,
         zIndex: 50,
         height: "52px",
-        backgroundColor: "rgba(255,255,255,0.92)",
+        backgroundColor: isTransparentNav ? "transparent" : "rgba(255,255,255,0.92)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
