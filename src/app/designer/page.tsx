@@ -2,6 +2,7 @@
 
 import type { CSSProperties } from "react";
 import { useRouter } from "next/navigation";
+import { designers } from "@/lib/designers";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
   const min = Math.max(10, Math.round(size * 0.45));
@@ -13,37 +14,6 @@ function txt(size: number, weight: number, color: string, tracking = -0.02): CSS
     lineHeight: 1.5,
   };
 }
-
-const designers = [
-  { id: 1,  name: "김도연 22",      photo: "photo-15.png", track: "UX / MO"  },
-  { id: 2,  name: "김도연 23",      photo: "photo-4.png",  track: "XR / UX"  },
-  { id: 3,  name: "김수민",          photo: "photo-18.png", track: "XR / UX"  },
-  { id: 4,  name: "김지아",          photo: "photo-12.png", track: "UX / MO"  },
-  { id: 5,  name: "김지유",          photo: "photo-5.png",  track: "UX / UI"  },
-  { id: 6,  name: "김채현",          photo: "photo-6.png",  track: "XR / MO"  },
-  { id: 7,  name: "김태린",          photo: "photo.png",    track: "UX / UI"  },
-  { id: 8,  name: "박서영",          photo: "photo-3.png",  track: "XR / MO"  },
-  { id: 9,  name: "박서하",          photo: "photo-11.png", track: "UX / MO"  },
-  { id: 10, name: "박소정",          photo: "photo-3.png",  track: "XR / MO"  },
-  { id: 11, name: "박채원",          photo: "photo-16.png", track: "UX"       },
-  { id: 12, name: "서유정",          photo: "photo-2.png",  track: "XR / UX"  },
-  { id: 13, name: "서한이",          photo: "photo-17.png", track: "UX / UI"  },
-  { id: 14, name: "신민지",          photo: "photo-10.png", track: "MO"       },
-  { id: 15, name: "오연서",          photo: "photo-3.png",  track: "UI / MO"  },
-  { id: 16, name: "윤내경",          photo: "photo-19.png", track: "UX / MO"  },
-  { id: 17, name: "응웬짠휘엔아잉",  photo: "photo-3.png",  track: "UX / MO"  },
-  { id: 18, name: "이유진",          photo: "photo-3.png",  track: "XR / MO"  },
-  { id: 19, name: "전지민",          photo: "photo-7.png",  track: "XR / UX"  },
-  { id: 20, name: "정가람",          photo: "photo-3.png",  track: "MO"       },
-  { id: 21, name: "정윤서",          photo: "photo-3.png",  track: "XR / MO"  },
-  { id: 22, name: "정지연",          photo: "photo-14.png", track: "XR"       },
-  { id: 23, name: "조연진",          photo: "photo-9.png",  track: "XR / MO"  },
-  { id: 24, name: "진민서",          photo: "photo-1.png",  track: "UX / UI"  },
-  { id: 25, name: "천세진",          photo: "photo-13.png", track: "UX / MO"  },
-  { id: 26, name: "현명화",          photo: "photo-8.png",  track: "UX / MO"  },
-  { id: 27, name: "황태희",          photo: "photo-20.png", track: "XR / MO"  },
-  { id: 28, name: "황희주",          photo: "photo-3.png",  track: "MO"       },
-];
 
 export default function DesignerPage() {
   const router = useRouter();

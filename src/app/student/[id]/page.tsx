@@ -1,4 +1,6 @@
 import type { CSSProperties } from "react";
+import { designers } from "@/lib/designers";
+import { notFound } from "next/navigation";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
   const min = Math.max(10, Math.round(size * 0.45));
@@ -17,15 +19,20 @@ export default async function StudentPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  void id; // 추후 실제 데이터 조회에 사용
+  const designer = designers.find((d) => d.id === Number(id));
+  if (!designer) notFound();
 
   return (
     <div
       className="bg-white min-h-screen overflow-x-hidden relative"
-      style={{ fontFamily: "Pretendard, sans-serif" }}
+      style={{
+        fontFamily: "Pretendard, sans-serif",
+        marginTop: "calc(-1 * var(--nav-height, 0px))",
+        paddingTop: "var(--nav-height, 0px)",
+      }}
     >
       {/* ── 배경 ──────────────────────────────────────────── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0, opacity: 0.4 }}>
         <div className="absolute w-full" style={{ top: "-278.92px", height: "1444.826px" }}>
           <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" />
         </div>
@@ -68,7 +75,7 @@ export default async function StudentPage({
           {/* ── 좌: 포트레이트 카드 + 연락처 ──────────────── */}
           <div style={{ flexShrink: 0, width: "clamp(120px, 16.67vw, 240px)" }}>
 
-            {/* 포트레이트 카드 (4:3 landscape → -90° 회전 = portrait) */}
+            {/* 포트레이트 카드 */}
             <div
               style={{
                 width: "100%",
@@ -77,7 +84,13 @@ export default async function StudentPage({
                 borderRadius: "clamp(8px, 1.11vw, 16px)",
                 overflow: "hidden",
               }}
-            />
+            >
+              <img
+                src={`/assets/students/${designer.photo}`}
+                alt={designer.name}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
 
             {/* 연락처 블록 */}
             <div
@@ -91,7 +104,7 @@ export default async function StudentPage({
               {/* 학생명 */}
               <div className="flex items-center" style={{ gap: "clamp(6px, 0.69vw, 10px)" }}>
                 <p style={{ ...txt(18, 400, "black", -0.02), whiteSpace: "nowrap" }}>학생명</p>
-                <p style={{ ...txt(18, 600, "black", -0.02), whiteSpace: "nowrap" }}>김00</p>
+                <p style={{ ...txt(18, 600, "black", -0.02), whiteSpace: "nowrap" }}>{designer.name}</p>
               </div>
               {/* email */}
               <div className="flex items-center" style={{ gap: "clamp(6px, 0.83vw, 12px)" }}>

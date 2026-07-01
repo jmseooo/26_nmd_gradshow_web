@@ -20,9 +20,10 @@ export default function PersistentNav() {
 
   const isHome = pathname === "/";
   const isDesigner = pathname === "/designer";
+  const isStudent = pathname.startsWith("/student/");
   const isWorks = pathname === "/works";
   const isGuestbook = pathname === "/guestbook";
-  const isTransparentNav = isHome || isDesigner;
+  const isTransparentNav = isHome || isDesigner || isStudent;
   const activeItem = pathname.startsWith("/student/")
     ? "디자이너"
     : (PATH_TO_ITEM[pathname] ?? "거점");
