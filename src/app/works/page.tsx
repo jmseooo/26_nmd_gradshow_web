@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import type { CSSProperties } from "react";
 import { useSearchParams } from "next/navigation";
 import { works, type Work } from "@/lib/works-data";
@@ -220,8 +220,28 @@ function WorksContent() {
     return () => mq.removeEventListener("change", handler);
   }, []);
   const [selectedWork, setSelectedWork] = useState<Work | null>(null);
+  const [visibleIds, setVisibleIds] = useState<Set<number>>(new Set());
+  const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
 
   const filtered = works.filter((w) => w.category === activeFilter);
+
+  useEffect(() => {
+    setVisibleIds(new Set());
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = Number((entry.target as HTMLElement).dataset.workId);
+            setVisibleIds((prev) => new Set(prev).add(id));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    cardRefs.current.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [activeFilter]);
 
   return (
     <div className="bg-white min-h-screen overflow-x-hidden flex flex-col" style={{ fontFamily: "Pretendard, sans-serif" }}>
@@ -261,15 +281,25 @@ function WorksContent() {
           gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
           gap: isMobile ? "16px" : "clamp(12px, 1.94vw, 28px)",
         }}>
-          {filtered.map((work) => (
+          {filtered.map((work, idx) => {
+            const isVisible = visibleIds.has(work.id);
+            return (
             <div
               key={work.id}
+              data-work-id={work.id}
+              ref={(el) => {
+                if (el) cardRefs.current.set(work.id, el);
+                else cardRefs.current.delete(work.id);
+              }}
               className="relative overflow-hidden"
               style={{
                 backgroundColor: "#f3f3f3",
                 borderRadius: "clamp(12px, 1.67vw, 24px)",
                 aspectRatio: "408 / 229.527",
                 cursor: "pointer",
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(32px)",
+                transition: `opacity 0.5s ease ${idx * 0.07}s, transform 0.5s ease ${idx * 0.07}s`,
               }}
               onClick={() => setSelectedWork(work)}
               onMouseEnter={() => setHoveredId(work.id)}
@@ -290,7 +320,8 @@ function WorksContent() {
                 </p>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
