@@ -223,6 +223,18 @@ function WorksContent() {
   const [visibleIds, setVisibleIds] = useState<Set<number>>(new Set());
   const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
 
+  const openWork = (work: Work) => {
+    setSelectedWork(work);
+    history.pushState({ workModal: work.id }, "");
+  };
+  const closeWork = () => { history.back(); };
+
+  useEffect(() => {
+    const onPopState = () => setSelectedWork(null);
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
   const filtered = works.filter((w) => w.category === activeFilter);
 
   useEffect(() => {
@@ -303,7 +315,7 @@ function WorksContent() {
                 transform: isVisible ? "translateY(0)" : "translateY(32px)",
                 transition: `opacity 0.5s ease ${idx * 0.07}s, transform 0.5s ease ${idx * 0.07}s`,
               }}
-              onClick={() => setSelectedWork(work)}
+              onClick={() => openWork(work)}
               onMouseEnter={() => setHoveredId(work.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -349,7 +361,7 @@ function WorksContent() {
 
       {/* ── 작품 상세 모달 ──────────────────────────────── */}
       {selectedWork && (
-        <WorkModal work={selectedWork} onClose={() => setSelectedWork(null)} />
+        <WorkModal work={selectedWork} onClose={closeWork} />
       )}
     </div>
   );
