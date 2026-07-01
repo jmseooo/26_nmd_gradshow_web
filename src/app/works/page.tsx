@@ -229,15 +229,17 @@ function WorksContent() {
     setVisibleIds(new Set());
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+        setVisibleIds((prev) => {
+          const next = new Set(prev);
+          entries.forEach((entry) => {
             const id = Number((entry.target as HTMLElement).dataset.workId);
-            setVisibleIds((prev) => new Set(prev).add(id));
-            observer.unobserve(entry.target);
-          }
+            if (entry.isIntersecting) next.add(id);
+            else next.delete(id);
+          });
+          return next;
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
     cardRefs.current.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
