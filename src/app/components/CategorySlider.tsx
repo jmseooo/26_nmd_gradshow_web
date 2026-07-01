@@ -139,18 +139,15 @@ export default function CategorySlider() {
               borderBottom: "1px solid rgba(0,0,0,0.1)",
             }}
           >
-            {[cat.label, "개요", "교수님"].map((h) => (
-              <p
-                key={h}
-                style={{
-                  ...txt(18, 800, "black"),
-                  padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 4.17vw, 60px)",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {h}
-              </p>
-            ))}
+            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 4.17vw, 60px)", whiteSpace: "nowrap" }}>
+              {cat.label}
+            </p>
+            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(10px, 2.08vw, 30px)", whiteSpace: "nowrap" }}>
+              개요
+            </p>
+            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 4.17vw, 60px)", whiteSpace: "nowrap" }}>
+              교수님
+            </p>
           </div>
 
           {/* 데이터 행 */}
