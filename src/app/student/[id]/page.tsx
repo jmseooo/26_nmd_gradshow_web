@@ -24,7 +24,7 @@ export default async function StudentPage({
 
   return (
     <div
-      className="bg-white min-h-screen overflow-x-hidden relative"
+      className="bg-white min-h-screen overflow-x-hidden relative flex flex-col"
       style={{
         fontFamily: "Pretendard, sans-serif",
         marginTop: "calc(-1 * var(--nav-height, 0px))",
@@ -61,11 +61,11 @@ export default async function StudentPage({
       </div>
 
       {/* ── 컨텐츠 ────────────────────────────────────────── */}
-      <div className="relative" style={{ zIndex: 2 }}>
+      <div className="relative flex flex-col flex-1" style={{ zIndex: 2 }}>
 
         {/* ── 본문: 좌측 카드 + 우측 작품 카드 ────────────── */}
         <div
-          className="flex items-start"
+          className="flex items-start flex-1"
           style={{
             padding: "0 clamp(16px, 5.56vw, 80px)",
             marginTop: "clamp(12px, 1.6vw, 23px)",

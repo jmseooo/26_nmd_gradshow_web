@@ -173,11 +173,6 @@ export default function CategorySlider() {
               </div>
               <div className="flex flex-col items-start" style={{ gap: "clamp(4px, 0.56vw, 8px)" }}>
                 <p className="whitespace-nowrap" style={txt(18, 600, "black")}>참여자, 4명</p>
-                {["성이름", "성이름", "성이름", "성이름"].map((name, j) => (
-                  <p key={j} className="whitespace-nowrap" style={txt(18, 200, "#828282")}>
-                    {name}
-                  </p>
-                ))}
               </div>
             </div>
 
