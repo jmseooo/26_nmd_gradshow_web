@@ -185,7 +185,24 @@ export default function Home() {
           <div className="flex-shrink-0" style={{ width: "clamp(20px, 8.33vw, 120px)", height: "clamp(14px, 6.67vw, 96px)" }}>
             <img alt="산돌구름" src="/assets/sandol-logo.png" className="w-full h-full object-contain" />
           </div>
-          {[0, 1, 2, 3].map((i) => (
+          <div
+            className="flex-shrink-0"
+            style={{
+              backgroundColor: "#f7f7f7",
+              width: "clamp(22px, 9.17vw, 132px)",
+              height: "clamp(12px, 5.9vw, 85px)",
+            }}
+          />
+          <div className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
+            <img alt="PRINTAKU" src="/assets/printaku.svg" className="w-full h-full object-contain" />
+          </div>
+          <div className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
+            <img alt="novelS" src="/assets/novels-logo.png" className="w-full h-full object-contain" />
+          </div>
+          <div className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
+            <img alt="RUNWALK" src="/assets/runwalk-logo.png" className="w-full h-full object-contain" />
+          </div>
+          {[0].map((i) => (
             <div
               key={i}
               className="flex-shrink-0"
