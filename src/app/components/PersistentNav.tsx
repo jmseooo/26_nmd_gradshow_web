@@ -21,8 +21,6 @@ export default function PersistentNav() {
   const isHome = pathname === "/";
   const isDesigner = pathname === "/designer";
   const isStudent = pathname.startsWith("/student/");
-  const isWorks = pathname === "/works";
-  const isGuestbook = pathname === "/guestbook";
   const isTransparentNav = isHome || isDesigner || isStudent;
   const activeItem = pathname.startsWith("/student/")
     ? "디자이너"
@@ -31,12 +29,11 @@ export default function PersistentNav() {
   const [navHidden, setNavHidden] = useState(false);
 
   useEffect(() => {
-    if (!isHome && !isDesigner && !isWorks && !isGuestbook) { setNavHidden(false); return; }
     const onScroll = () => setNavHidden(window.scrollY > 10);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome, isDesigner, isWorks, isGuestbook]);
+  }, []);
 
   useLayoutEffect(() => {
     const el = ref.current;
