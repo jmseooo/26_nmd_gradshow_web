@@ -182,29 +182,27 @@ export default function Home() {
           협찬/제휴
         </p>
         <div className="flex items-center justify-center" style={{ gap: "clamp(4px, 2.08vw, 30px)" }}>
-          <div className="flex-shrink-0" style={{ width: "clamp(28px, 11.67vw, 168px)", height: "clamp(10px, 4.51vw, 65px)" }}>
+          <a href="https://yoondesign.com/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(28px, 11.67vw, 168px)", height: "clamp(10px, 4.51vw, 65px)" }}>
             <img alt="Yoondesign group" src="/assets/sponsor2.png" className="w-full h-full object-contain" />
-          </div>
-          <div className="flex-shrink-0" style={{ width: "clamp(20px, 8.33vw, 120px)", height: "clamp(14px, 6.67vw, 96px)" }}>
+          </a>
+          <a href="https://www.sandollcloud.com/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(20px, 8.33vw, 120px)", height: "clamp(14px, 6.67vw, 96px)" }}>
             <img alt="산돌구름" src="/assets/sandol-logo.png" className="w-full h-full object-contain" />
-          </div>
-          <div
-            className="flex-shrink-0"
-            style={{
+          </a>
+          <a href="https://pf.kakao.com/_Xfcin" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{
               backgroundColor: "#f7f7f7",
               width: "clamp(22px, 9.17vw, 132px)",
               height: "clamp(12px, 5.9vw, 85px)",
             }}
           />
-          <div className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
+          <a href="https://www.printaku.com/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
             <img alt="PRINTAKU" src="/assets/printaku.svg" className="w-full h-full object-contain" />
-          </div>
-          <div className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
+          </a>
+          <a href="https://www.inclear.co.kr/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
             <img alt="novelS" src="/assets/novels-logo.png" className="w-full h-full object-contain" />
-          </div>
-          <div className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
+          </a>
+          <a href="https://runwalk.kr/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
             <img alt="RUNWALK" src="/assets/runwalk-logo.png" className="w-full h-full object-contain" />
-          </div>
+          </a>
           {[0].map((i) => (
             <div
               key={i}

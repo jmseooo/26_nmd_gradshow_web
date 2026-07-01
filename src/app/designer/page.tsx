@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useState, useEffect, useRef, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import { designers } from "@/lib/designers";
 
@@ -17,6 +17,28 @@ function txt(size: number, weight: number, color: string, tracking = -0.02): CSS
 
 export default function DesignerPage() {
   const router = useRouter();
+  const [visibleIds, setVisibleIds] = useState<Set<number>>(new Set());
+  const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setVisibleIds((prev) => {
+          const next = new Set(prev);
+          entries.forEach((entry) => {
+            const id = Number((entry.target as HTMLElement).dataset.designerId);
+            if (entry.isIntersecting) next.add(id);
+            else next.delete(id);
+          });
+          return next;
+        });
+      },
+      { threshold: 0.05 }
+    );
+    cardRefs.current.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
       className="bg-white min-h-screen overflow-x-hidden relative"
@@ -57,15 +79,25 @@ export default function DesignerPage() {
               rowGap: "clamp(12px, 1.39vw, 20px)",
             }}
           >
-            {designers.map((d) => (
+            {designers.map((d, idx) => {
+              const isVisible = visibleIds.has(d.id);
+              return (
               <div
                 key={d.id}
+                data-designer-id={d.id}
+                ref={(el) => {
+                  if (el) cardRefs.current.set(d.id, el);
+                  else cardRefs.current.delete(d.id);
+                }}
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "flex-end",
                   gap: "clamp(5px, 0.69vw, 10px)",
                   cursor: "pointer",
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "translateY(0)" : "translateY(32px)",
+                  transition: `opacity 0.5s ease ${idx * 0.05}s, transform 0.5s ease ${idx * 0.05}s`,
                 }}
                 onClick={() => router.push(`/student/${d.id}`)}
               >
@@ -93,7 +125,8 @@ export default function DesignerPage() {
                   </p>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
