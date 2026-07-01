@@ -23,7 +23,7 @@ export default function MobileNav() {
   const ref = useRef<HTMLDivElement>(null);
 
   const isHome = pathname === "/";
-  const isTransparentNav = isHome || pathname === "/designer" || pathname.startsWith("/student/");
+  const isTransparentNav = pathname === "/designer" || pathname.startsWith("/student/");
   const activeItem = pathname.startsWith("/student/")
     ? "디자이너"
     : (PATH_TO_ITEM[pathname] ?? "거점");
