@@ -14,6 +14,9 @@ const INITIAL_BUBBLES: string[] = [];
 
 const T = "0.5s ease";
 
+const titleFilter =
+  "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
+
 type Bubble = { id: number; text: string };
 let nextId = 0;
 
@@ -24,6 +27,7 @@ export default function HeroSection() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [stackedLayout, setStackedLayout] = useState(false);
   const [narrowHero, setNarrowHero] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => { inputRef.current?.focus(); }, []);
 
@@ -38,6 +42,7 @@ export default function HeroSection() {
     const check = () => {
       setStackedLayout(window.innerWidth < 640);
       setNarrowHero(window.innerWidth < 900);
+      setIsMobile(window.innerWidth < 480);
     };
     let timer: ReturnType<typeof setTimeout>;
     const debouncedCheck = () => { clearTimeout(timer); timer = setTimeout(check, 120); };
@@ -134,6 +139,36 @@ export default function HeroSection() {
       >
         <img alt="" className="absolute block inset-0 size-full" src={imgVector1} />
       </div>
+
+      {/* ── 모바일 전용: 타이틀 + 서브타이틀 ────────── */}
+      {isMobile && (
+        <div
+          className="absolute pointer-events-none"
+          style={{ top: "60px", left: "24px", right: "24px" }}
+        >
+          <img
+            alt="우리의 거점"
+            src="/assets/hero-title.png"
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              filter: isLight ? titleFilter : "none",
+              transition: `filter ${T}`,
+            }}
+          />
+          <p style={{
+            fontSize: "clamp(13px, 3.6vw, 18px)",
+            fontWeight: 600,
+            color: isLight ? "black" : "white",
+            lineHeight: 1.5,
+            marginTop: "6px",
+            transition: `color ${T}`,
+          }}>
+            서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
+          </p>
+        </div>
+      )}
 
       {/* ── 말풍선 ────────────────────────────────────── */}
       <style>{`
