@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { designers } from "@/lib/designers";
 import { notFound } from "next/navigation";
+import TransitionLink from "@/app/components/TransitionLink";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
   const min = Math.max(10, Math.round(size * 0.45));
@@ -74,6 +75,16 @@ export default async function StudentPage({
           gap: "clamp(16px, 2.5vw, 36px)",
         }}
       >
+        {/* ── 뒤로가기 ─────────────────────────────────── */}
+        <div style={{ maxWidth: "684px", marginLeft: "auto", marginRight: "auto", width: "100%" }}>
+          <TransitionLink href="/designer" style={{ display: "inline-flex", alignItems: "center", gap: "6px", textDecoration: "none" }}>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0 }}>
+              <path d="M12.5 15L7.5 10L12.5 5" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span style={{ fontSize: "clamp(13px, 1.11vw, 16px)", fontWeight: 600, color: "black", letterSpacing: "-0.02em" }}>디자이너</span>
+          </TransitionLink>
+        </div>
+
         {/* ── 상단: 포트레이트 + 이름/연락처 ────────────── */}
         <div
           className="flex flex-row items-end"
