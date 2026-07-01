@@ -91,23 +91,26 @@ export default function Home() {
           padding: "clamp(32px, 4.93vw, 71px) clamp(16px, 5.56vw, 80px) clamp(32px, 4.44vw, 64px)",
         }}
       >
-        {/* 인터뷰 버튼 — 섹션 우측 상단 absolute (피그마 330:416) */}
-        <a
-          href="https://www.instagram.com/p/DZCKb6BEpJ3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute flex items-center justify-center"
-          style={{
-            top: "clamp(32px, 4.93vw, 71px)",
-            right: "clamp(16px, 5.56vw, 80px)",
-            backgroundColor: "#a8e6f8",
-            borderRadius: 18,
-            padding: "10px",
-            textDecoration: "none",
-          }}
+        {/* 인터뷰 버튼 — 섹션 우측 상단 absolute (피그마 330:416), 모바일 숨김 */}
+        <div
+          className="desktop-nav absolute"
+          style={{ top: "clamp(32px, 4.93vw, 71px)", right: "clamp(16px, 5.56vw, 80px)" }}
         >
-          <p className="whitespace-nowrap" style={txt(12, 600, "#007aa3")}>졸업전시준비위원회 인터뷰 보러가기</p>
-        </a>
+          <a
+            href="https://www.instagram.com/p/DZCKb6BEpJ3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center"
+            style={{
+              backgroundColor: "#a8e6f8",
+              borderRadius: 18,
+              padding: "10px",
+              textDecoration: "none",
+            }}
+          >
+            <p className="whitespace-nowrap" style={txt(12, 600, "#007aa3")}>졸업전시준비위원회 인터뷰 보러가기</p>
+          </a>
+        </div>
 
         {/* 헤더 — 타이틀 가운데 */}
         <div className="flex justify-center" style={{ marginBottom: "clamp(24px, 3.68vw, 53px)" }}>
