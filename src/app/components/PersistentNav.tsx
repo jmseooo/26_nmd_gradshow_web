@@ -43,8 +43,7 @@ export default function PersistentNav() {
     const home = pathname === "/";
 
     const update = () => {
-      // 홈: 히어로가 뷰포트를 가득 채우도록 body padding 없음 (투명 NavBar가 히어로 위에 오버레이)
-      // 다른 페이지: 흰 NavBar 높이만큼 body 상단 여백 확보
+      if (window.innerWidth < 480) return;
       const h = home ? "0px" : `${el.offsetHeight}px`;
       document.body.style.paddingTop = h;
       document.body.style.setProperty("--nav-height", h);

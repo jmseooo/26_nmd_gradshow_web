@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import PageTransitionWrapper from "./components/PageTransitionWrapper";
 import PersistentNav from "./components/PersistentNav";
+import MobileNav from "./components/MobileNav";
 import ScrollToTop from "./components/ScrollToTop";
 import { HeroLightProvider } from "./components/HeroLightContext";
 
@@ -25,7 +26,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-full">
         <HeroLightProvider>
-          <PersistentNav />
+          <div className="desktop-nav"><PersistentNav /></div>
+          <div className="mobile-nav"><MobileNav /></div>
           <PageTransitionWrapper>{children}</PageTransitionWrapper>
           <ScrollToTop />
         </HeroLightProvider>

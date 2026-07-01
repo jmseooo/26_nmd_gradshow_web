@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant mobile (@media (max-width: 1199px));
+
 /* ─── Pretendard Variable Font ───────────────────────────────────────────── */
 @font-face {
   font-family: "Pretendard";
@@ -98,6 +100,29 @@ html {
 
 body {
   overflow-x: hidden;
+  min-width: 480px;
+}
+
+@media (max-width: 479px) {
+  body {
+    min-width: 0;
+  }
+}
+
+.desktop-nav {
+  display: block;
+}
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 479px) {
+  .desktop-nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: block;
+  }
 }
 
 body {
