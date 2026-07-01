@@ -1,9 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useLayoutEffect, useRef, useState, useEffect } from "react";
-import NavBar from "./NavBar";
-import { useHeroLight } from "./HeroLightContext";
+import { useLayoutEffect, useRef } from "react";
+import TransitionLink from "./TransitionLink";
 
 const PATH_TO_ITEM: Record<string, string> = {
   "/": "거점",
@@ -13,43 +12,27 @@ const PATH_TO_ITEM: Record<string, string> = {
   "/field": "현장",
 };
 
+const NAV_HREFS: Record<string, string> = {
+  거점: "/", 작품: "/works", 디자이너: "/designer", 방명록: "/guestbook",
+};
+
+const allItems = ["거점", "작품", "디자이너", "방명록"];
+
 export default function PersistentNav() {
   const pathname = usePathname();
   const ref = useRef<HTMLDivElement>(null);
-  const { isLight } = useHeroLight();
 
-  const isHome = pathname === "/";
-  const isDesigner = pathname === "/designer";
-  const isWorks = pathname === "/works";
-  const isGuestbook = pathname === "/guestbook";
-  const isTransparentNav = isHome || isDesigner;
   const activeItem = pathname.startsWith("/student/")
     ? "디자이너"
     : (PATH_TO_ITEM[pathname] ?? "거점");
 
-  const [navHidden, setNavHidden] = useState(false);
-
-  useEffect(() => {
-    if (!isHome && !isDesigner && !isWorks && !isGuestbook) { setNavHidden(false); return; }
-    const onScroll = () => setNavHidden(window.scrollY > 0);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome, isDesigner, isWorks, isGuestbook]);
-
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const home = pathname === "/";
-
     const update = () => {
-      // 홈: 히어로가 뷰포트를 가득 채우도록 body padding 없음 (투명 NavBar가 히어로 위에 오버레이)
-      // 다른 페이지: 흰 NavBar 높이만큼 body 상단 여백 확보
-      const h = home ? "0px" : `${el.offsetHeight}px`;
-      document.body.style.paddingTop = h;
-      document.body.style.setProperty("--nav-height", h);
+      document.body.style.paddingTop = `${el.offsetHeight}px`;
+      document.body.style.setProperty("--nav-height", `${el.offsetHeight}px`);
     };
-
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
@@ -68,20 +51,57 @@ export default function PersistentNav() {
         left: 0,
         right: 0,
         zIndex: 50,
-        backgroundColor: isTransparentNav ? "transparent" : "white",
-        transition: "transform 0.35s ease",
-        paddingTop: isHome ? "clamp(0px, 2.5vw, 36px)" : "clamp(10px, 4.93vw, 71px)",
-        paddingLeft: "clamp(16px, 5.56vw, 80px)",
-        paddingRight: "clamp(16px, 5.56vw, 80px)",
-        paddingBottom: 0,
-        transform: navHidden ? "translateY(-110%)" : "translateY(0)",
+        height: "52px",
+        backgroundColor: "rgba(255,255,255,0.92)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "clamp(4px, 0.69vw, 10px)",
       }}
     >
-      <NavBar
-        activeItem={activeItem}
-        isLight={isHome ? isLight : true}
-        compact={!isHome}
-      />
+      {allItems.map((item) => {
+        const isActive = item === activeItem;
+        return (
+          <div
+            key={item}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              ...(isActive ? {
+                width: "clamp(70px, 18.7vw, 135px)",
+                paddingLeft: "clamp(6px, 1.66vw, 12px)",
+                paddingRight: "clamp(6px, 1.66vw, 12px)",
+                paddingTop: "clamp(6px, 1.38vw, 10px)",
+                paddingBottom: "clamp(6px, 1.38vw, 10px)",
+                borderRadius: "100px",
+                backgroundColor: "#38b3d6",
+              } : {
+                paddingLeft: "clamp(6px, 1.66vw, 12px)",
+                paddingRight: "clamp(6px, 1.66vw, 12px)",
+                paddingTop: "clamp(6px, 1.38vw, 10px)",
+                paddingBottom: "clamp(6px, 1.38vw, 10px)",
+              }),
+              flexShrink: 0,
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
+              <p style={{
+                fontSize: "clamp(11px, 2.49vw, 18px)",
+                fontWeight: 800,
+                color: isActive ? "#f7f7f7" : "black",
+                letterSpacing: "-0.36px",
+                lineHeight: 1.5,
+                whiteSpace: "nowrap",
+                textAlign: "center",
+              }}>
+                {item}
+              </p>
+            </TransitionLink>
+          </div>
+        );
+      })}
     </div>
   );
 }
