@@ -84,7 +84,7 @@ export default function DesignerPage() {
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "2px" }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0px" }}>
                   <p style={{ ...txt(18, 600, "black"), textAlign: "right", whiteSpace: "nowrap", paddingRight: "6px" }}>
                     {d.name}
                   </p>
