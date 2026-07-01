@@ -113,7 +113,7 @@ export default async function StudentPage({
           >
             <p
               style={{
-                fontSize: "clamp(22px, 4.17vw, 60px)",
+                fontSize: "clamp(22px, 2.5vw, 36px)",
                 fontWeight: 600,
                 color: "black",
                 letterSpacing: "-0.02em",

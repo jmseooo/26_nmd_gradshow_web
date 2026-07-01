@@ -76,7 +76,7 @@ export default function GuestbookPage() {
         {/* ── 본문 ──────────────────────────────────────── */}
         <div
           style={{
-            padding: "clamp(32px, 4.44vw, 64px) clamp(16px, 5.56vw, 80px) clamp(40px, 5.56vw, 80px)",
+            padding: "clamp(32px, 4.44vw, 64px) clamp(24px, 5.56vw, 80px) clamp(40px, 5.56vw, 80px)",
             flex: 1,
           }}
         >
@@ -91,11 +91,8 @@ export default function GuestbookPage() {
             </div>
           ) : (
             <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(5, 1fr)",
-                gap: "clamp(8px, 1.39vw, 20px)",
-              }}
+              className="grid grid-cols-2 md:grid-cols-5"
+              style={{ gap: "clamp(8px, 1.39vw, 20px)" }}
             >
               {messages.map((msg, i) => (
                 <div
