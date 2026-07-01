@@ -211,6 +211,14 @@ function WorksContent() {
     setActiveFilter(filterTabs.some((t) => t.label === cat) ? cat! : "XR");
   }, [searchParams]);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
   const [selectedWork, setSelectedWork] = useState<Work | null>(null);
 
   const filtered = works.filter((w) => w.category === activeFilter);
@@ -250,8 +258,8 @@ function WorksContent() {
       <div style={{ padding: "clamp(16px, 3.19vw, 46px) clamp(16px, 5.56vw, 80px)", flex: 1 }}>
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "clamp(12px, 1.94vw, 28px)",
+          gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+          gap: isMobile ? "16px" : "clamp(12px, 1.94vw, 28px)",
         }}>
           {filtered.map((work) => (
             <div
