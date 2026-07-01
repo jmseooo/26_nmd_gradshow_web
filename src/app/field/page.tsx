@@ -160,7 +160,7 @@ export default function FieldPage() {
               2026 Seoul Women&apos;s University. All rights reserved
             </p>
             <div className="flex items-center" style={{ gap: "clamp(16px, 2.22vw, 32px)" }}>
-              <p className="whitespace-nowrap" style={txt(12, 600, "white")}>@swu_graduation</p>
+              <p className="whitespace-nowrap" style={txt(12, 600, "white")}>@swu_nmd</p>
             </div>
           </div>
         </footer>
