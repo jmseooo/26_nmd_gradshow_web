@@ -88,7 +88,7 @@ export default function GuestbookPage() {
   return (
     <div
       className="bg-white min-h-screen overflow-x-hidden relative flex flex-col"
-      style={{ fontFamily: "Pretendard, sans-serif" }}
+      style={{ fontFamily: "Pretendard, sans-serif", marginTop: "calc(-1 * var(--nav-height, 0px))", paddingTop: "var(--nav-height, 0px)" }}
     >
       {/* ── 컨텐츠 ────────────────────────────────────────── */}
       <div className="relative flex flex-col flex-1" style={{ zIndex: 2 }}>

@@ -16,4 +16,12 @@ export const works: Work[] = [
   { id: 13, name: "",     category: "XR" },
   { id: 14, name: "",     category: "UX" },
   { id: 15, name: "",     category: "UX" },
+  { id: 16, name: "",     category: "MOTION" },
+  { id: 17, name: "",     category: "MOTION" },
+  { id: 18, name: "",     category: "MOTION" },
+  { id: 19, name: "",     category: "MOTION" },
+  { id: 20, name: "",     category: "MOTION" },
+  { id: 21, name: "",     category: "MOTION" },
+  { id: 22, name: "",     category: "MOTION" },
+  { id: 23, name: "",     category: "MOTION" },
 ];

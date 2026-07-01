@@ -246,7 +246,7 @@ function WorksContent() {
   }, [activeFilter]);
 
   return (
-    <div className="bg-white min-h-screen overflow-x-hidden flex flex-col" style={{ fontFamily: "Pretendard, sans-serif" }}>
+    <div className="bg-white min-h-screen overflow-x-hidden flex flex-col" style={{ fontFamily: "Pretendard, sans-serif", marginTop: "calc(-1 * var(--nav-height, 0px))", paddingTop: "var(--nav-height, 0px)" }}>
 
       {/* ── 카테고리 필터 탭 ───────────────────────────── */}
       <div
