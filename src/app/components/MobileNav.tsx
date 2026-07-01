@@ -32,7 +32,7 @@ export default function MobileNav() {
   useEffect(() => {
     const hideOnScroll = isHome || ["/works", "/designer", "/guestbook"].includes(pathname);
     if (!hideOnScroll) { setNavHidden(false); return; }
-    const onScroll = () => setNavHidden(window.scrollY > 0);
+    const onScroll = () => setNavHidden(window.scrollY > 10);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);

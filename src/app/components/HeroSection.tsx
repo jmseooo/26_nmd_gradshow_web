@@ -61,7 +61,7 @@ export default function HeroSection() {
       onClick={() => toggle()}
       style={{
         width: "100%",
-        height: "100vh",
+        height: "100svh",
         backgroundColor: isLight ? "white" : "#0a99d1",
         transition: `background-color ${T}`,
         cursor: "pointer",
