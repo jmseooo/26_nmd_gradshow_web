@@ -180,7 +180,7 @@ export default function HeroSection() {
       `}</style>
       <div
         className="absolute"
-        style={{ right: "clamp(16px, 5.63vw, 81px)", bottom: "18%", width: "clamp(120px, 13.89vw, 200px)", height: "432px" }}
+        style={{ right: "clamp(16px, 5.63vw, 81px)", bottom: "18%", width: "clamp(200px, 25.49vw, 367px)", height: "432px" }}
       >
         {bubbles.map(({ id, text }, i) => {
           const fromBottom = (bubbles.length - 1 - i) * 48;
@@ -194,12 +194,12 @@ export default function HeroSection() {
                 right: 0,
                 transition: "bottom 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                height: "38px", padding: "0 12px",
-                borderRadius: "100px",
+                minHeight: "38px", padding: "6px 12px",
+                borderRadius: "24px",
                 backgroundColor: "rgba(255,255,255,0.8)",
                 backdropFilter: "blur(2px)",
                 boxShadow: "0px 0px 10px 0px rgba(0,184,238,0.24)",
-                whiteSpace: "nowrap",
+                wordBreak: "break-all",
                 ...(isNew && {
                   animation: "bubble-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both",
                   willChange: "transform, opacity",
