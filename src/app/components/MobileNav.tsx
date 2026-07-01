@@ -44,7 +44,7 @@ export default function MobileNav() {
     const update = () => {
       if (window.innerWidth >= 480) return;
       document.body.style.paddingTop = isHome ? "0px" : `${el.offsetHeight}px`;
-      document.body.style.setProperty("--nav-height", isHome ? "0px" : `${el.offsetHeight}px`);
+      document.body.style.setProperty("--nav-height", `${el.offsetHeight}px`);
     };
     update();
     const ro = new ResizeObserver(update);

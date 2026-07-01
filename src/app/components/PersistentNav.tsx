@@ -44,9 +44,9 @@ export default function PersistentNav() {
 
     const update = () => {
       if (window.innerWidth < 480) return;
-      const h = home ? "0px" : `${el.offsetHeight}px`;
-      document.body.style.paddingTop = h;
-      document.body.style.setProperty("--nav-height", h);
+      const actualH = `${el.offsetHeight}px`;
+      document.body.style.paddingTop = home ? "0px" : actualH;
+      document.body.style.setProperty("--nav-height", actualH);
     };
 
     update();
@@ -69,7 +69,7 @@ export default function PersistentNav() {
         zIndex: 50,
         backgroundColor: isTransparentNav ? "transparent" : "white",
         transition: "transform 0.35s ease",
-        paddingTop: isHome ? "clamp(0px, 2.5vw, 36px)" : "clamp(10px, 4.93vw, 71px)",
+        paddingTop: "clamp(0px, 2.5vw, 36px)",
         paddingLeft: "clamp(16px, 5.56vw, 80px)",
         paddingRight: "clamp(16px, 5.56vw, 80px)",
         paddingBottom: 0,

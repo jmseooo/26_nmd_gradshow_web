@@ -226,7 +226,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         <>
           <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: compact ? "visible" : "hidden" }}>
             {compact ? (
-              <div style={{ display: "flex", flexDirection: "column", flexShrink: 0, alignSelf: "flex-start", width: "clamp(160px, 13.61vw, 196px)" }}>
+              <div style={{ display: "flex", flexDirection: "column", flexShrink: 0, alignSelf: "flex-start", minHeight: "clamp(33px, 9.38vw, 135px)", width: "clamp(160px, 13.61vw, 196px)" }}>
                 <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
                   <img
                     alt="우리의 거점"
@@ -243,11 +243,12 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                 <p style={{
                   fontSize: "clamp(10px, 0.83vw, 12px)",
                   fontWeight: 600,
-                  color: "black",
+                  color: isLight ? "black" : "white",
                   letterSpacing: "-0.24px",
                   lineHeight: 1.5,
                   marginTop: "11px",
                   marginLeft: "2px",
+                  transition: `color ${T}`,
                 }}>
                   서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
                 </p>
