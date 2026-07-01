@@ -226,7 +226,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         <>
           <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: compact ? "visible" : "hidden" }}>
             {compact ? (
-              <div style={{ display: "flex", flexDirection: "column", flexShrink: 0, alignSelf: "flex-start" }}>
+              <div style={{ display: "flex", flexDirection: "column", flexShrink: 0, justifyContent: "center", minHeight: "clamp(33px, 9.38vw, 135px)" }}>
                 <TransitionLink href="/" style={{ textDecoration: "none", lineHeight: 0 }}>
                   <img
                     alt="우리의 거점"
