@@ -106,7 +106,7 @@ export default function CategorySlider() {
       <div
         className="flex items-center justify-center"
         style={{
-          padding: "0 clamp(24px, 9.31vw, 134px)",
+          padding: isMobile ? "0 24px" : "0 clamp(24px, 9.31vw, 134px)",
           gap: "clamp(16px, 7.15vw, 103px)",
         }}
       >
@@ -136,7 +136,7 @@ export default function CategorySlider() {
           className="cat-slide-up"
           style={{
             backgroundColor: cat.cardBg,
-            width: "clamp(200px, 58.19vw, 838px)",
+            width: isMobile ? "100%" : "clamp(200px, 58.19vw, 838px)",
             height: "clamp(140px, 24vw, 340px)",
             flexShrink: 0,
             overflow: "hidden",
