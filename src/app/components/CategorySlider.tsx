@@ -25,6 +25,7 @@ const categories = [
 
 export default function CategorySlider() {
   const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem("returnToCategory")) {
@@ -33,6 +34,13 @@ export default function CategorySlider() {
         document.getElementById("category-slider")?.scrollIntoView({ behavior: "instant" });
       }, 50);
     }
+  }, []);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 480);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
   }, []);
 
   const go = (dir: 1 | -1) =>
@@ -103,6 +111,7 @@ export default function CategorySlider() {
         }}
       >
         {/* 이전 화살표 */}
+        {!isMobile && (
         <button
           onClick={() => go(-1)}
           style={{
@@ -119,6 +128,7 @@ export default function CategorySlider() {
             <path fillRule="evenodd" clipRule="evenodd" d="M22.1144 47.2189C21.0731 46.1776 21.0731 44.4891 22.1144 43.4477L38.8955 26.6667H2.66667C1.19392 26.6667 0 25.4728 0 24C0 22.5272 1.19392 21.3333 2.66667 21.3333H38.8955L22.1144 4.55229C21.0731 3.51088 21.0731 1.82245 22.1144 0.78104C23.1557 -0.260347 24.8443 -0.260347 25.8856 0.78104L47.2189 22.1144C48.2603 23.1557 48.2603 24.8443 47.2189 25.8856L25.8856 47.2189C24.8443 48.2603 23.1557 48.2603 22.1144 47.2189Z" fill={cat.color} style={{ transition: "fill 0.35s ease" }} />
           </svg>
         </button>
+        )}
 
         {/* 카드: 838px 고정 너비, key 바뀌면 슬라이드업 */}
         <div
@@ -193,6 +203,7 @@ export default function CategorySlider() {
         </div>
 
         {/* 다음 화살표 */}
+        {!isMobile && (
         <button
           onClick={() => go(1)}
           style={{
@@ -209,6 +220,7 @@ export default function CategorySlider() {
             <path fillRule="evenodd" clipRule="evenodd" d="M22.1144 47.2189C21.0731 46.1776 21.0731 44.4891 22.1144 43.4477L38.8955 26.6667H2.66667C1.19392 26.6667 0 25.4728 0 24C0 22.5272 1.19392 21.3333 2.66667 21.3333H38.8955L22.1144 4.55229C21.0731 3.51088 21.0731 1.82245 22.1144 0.78104C23.1557 -0.260347 24.8443 -0.260347 25.8856 0.78104L47.2189 22.1144C48.2603 23.1557 48.2603 24.8443 47.2189 25.8856L25.8856 47.2189C24.8443 48.2603 23.1557 48.2603 22.1144 47.2189Z" fill={cat.color} style={{ transition: "fill 0.35s ease" }} />
           </svg>
         </button>
+        )}
       </div>
     </section>
   );
