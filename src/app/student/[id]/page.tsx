@@ -78,7 +78,7 @@ export default async function StudentPage({
         <div
           className="flex flex-row items-start"
           style={{
-            maxWidth: "clamp(280px, 47.5vw, 684px)",
+            maxWidth: "684px",
             marginLeft: "auto",
             marginRight: "auto",
             width: "100%",
@@ -87,7 +87,7 @@ export default async function StudentPage({
           {/* 포트레이트 카드 */}
           <div
             className="md:mx-0 md:shrink-0"
-            style={{ width: "clamp(120px, 16.67vw, 240px)" }}
+            style={{ width: "clamp(120px, 35%, 240px)", flexShrink: 0 }}
           >
             <div
               style={{
@@ -113,7 +113,7 @@ export default async function StudentPage({
           >
             <p
               style={{
-                fontSize: "clamp(24px, 4.17vw, 60px)",
+                fontSize: "60px",
                 fontWeight: 600,
                 color: "black",
                 letterSpacing: "-0.02em",
@@ -130,8 +130,8 @@ export default async function StudentPage({
                 gap: "clamp(1px, 0.14vw, 2px)",
               }}
             >
-              <p style={{ ...txt(18, 600, "black"), whiteSpace: "nowrap" }}>asdf@naver.com</p>
-              <p style={{ ...txt(18, 600, "black"), whiteSpace: "nowrap" }}>@asdf</p>
+              <p style={{ fontSize: "18px", fontWeight: 600, color: "black", letterSpacing: "-0.36px", lineHeight: 1.5, whiteSpace: "nowrap" }}>asdf@naver.com</p>
+              <p style={{ fontSize: "18px", fontWeight: 600, color: "black", letterSpacing: "-0.36px", lineHeight: 1.5, whiteSpace: "nowrap" }}>@asdf</p>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default async function StudentPage({
             display: "flex",
             flexDirection: "column",
             gap: "clamp(16px, 2.5vw, 36px)",
-            maxWidth: "clamp(280px, 47.5vw, 684px)",
+            maxWidth: "684px",
             marginLeft: "auto",
             marginRight: "auto",
             width: "100%",
