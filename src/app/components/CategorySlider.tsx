@@ -127,7 +127,7 @@ export default function CategorySlider() {
           style={{
             backgroundColor: cat.cardBg,
             width: "clamp(200px, 58.19vw, 838px)",
-            flexShrink: 1,
+            flexShrink: 0,
             overflow: "hidden",
           }}
         >
