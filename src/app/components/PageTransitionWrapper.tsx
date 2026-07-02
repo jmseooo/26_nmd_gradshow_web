@@ -39,11 +39,11 @@ export default function PageTransitionWrapper({ children }: { children: ReactNod
 
     // opacity는 SSR HTML에 포함되지 않도록 useLayoutEffect(클라이언트 전용)에서만 설정
     el.style.opacity = "0";
-    el.style.transform = dx ? `translateX(${dx}px)` : "translateY(12px)";
+    el.style.transform = dx ? `translateX(${dx}px)` : "translateY(-12px)";
 
     const anim = el.animate(
       [
-        { opacity: 0, transform: dx ? `translateX(${dx}px)` : "translateY(12px)" },
+        { opacity: 0, transform: dx ? `translateX(${dx}px)` : "translateY(-12px)" },
         { opacity: 1, transform: dx ? "translateX(0)" : "translateY(0)" },
       ],
       { duration: 560, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
