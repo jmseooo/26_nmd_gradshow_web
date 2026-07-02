@@ -12,7 +12,7 @@ const imgVector1 = "/assets/hero-vector.svg";
 
 const INITIAL_BUBBLES: string[] = [];
 
-const T = "0.5s ease";
+const T = "0.75s ease";
 
 const titleFilter =
   "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
@@ -171,7 +171,7 @@ export default function HeroSection() {
                 position: "absolute",
                 bottom: `${fromBottom}px`,
                 right: 0,
-                transition: "bottom 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+                transition: "bottom 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 minHeight: "38px", padding: "6px 12px",
                 borderRadius: "24px",
@@ -180,7 +180,7 @@ export default function HeroSection() {
                 boxShadow: "0px 0px 10px 0px rgba(0,184,238,0.24)",
                 wordBreak: "break-all",
                 ...(isNew && {
-                  animation: "bubble-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both",
+                  animation: "bubble-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both",
                   willChange: "transform, opacity",
                 }),
               }}

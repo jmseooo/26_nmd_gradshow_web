@@ -324,7 +324,7 @@ function WorksContent() {
                 cursor: "pointer",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "translateY(0)" : "translateY(32px)",
-                transition: `opacity 0.5s ease ${idx * 0.07}s, transform 0.5s ease ${idx * 0.07}s`,
+                transition: `opacity 0.65s ease ${idx * 0.1}s, transform 0.65s ease ${idx * 0.1}s`,
               }}
               onClick={() => openWork(work)}
               onMouseEnter={() => setHoveredId(work.id)}
@@ -336,7 +336,7 @@ function WorksContent() {
                 style={{
                   background: categoryGradient(categoryColor[work.category]),
                   opacity: hoveredId === work.id ? 1 : 0,
-                  transition: "opacity 0.3s ease",
+                  transition: "opacity 0.4s ease",
                   pointerEvents: "none",
                 }}
               >

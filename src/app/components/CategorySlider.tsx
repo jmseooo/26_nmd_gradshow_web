@@ -55,7 +55,7 @@ export default function CategorySlider() {
           from { opacity: 0; transform: translateY(32px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        .cat-slide-up { animation: cat-slide-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        .cat-slide-up { animation: cat-slide-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both; }
       `}</style>
 
       {/* 도트 행 */}
@@ -72,7 +72,7 @@ export default function CategorySlider() {
                   alignItems: "flex-end",
                   opacity: active === i ? 1 : 0,
                   transform: active === i ? "translateY(0)" : "translateY(8px)",
-                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                  transition: "opacity 0.45s ease, transform 0.45s ease",
                   pointerEvents: "none",
                   whiteSpace: "nowrap",
                 }}
@@ -93,7 +93,7 @@ export default function CategorySlider() {
                   padding: 0,
                   outline: "none",
                   flexShrink: 0,
-                  transition: "transform 0.2s ease",
+                  transition: "transform 0.3s ease",
                   transform: active === i ? "scale(1.2)" : "scale(1)",
                 }}
               />

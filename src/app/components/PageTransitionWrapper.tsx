@@ -45,7 +45,7 @@ export default function PageTransitionWrapper({ children }: { children: ReactNod
         { opacity: 0, transform: dx ? `translateX(${dx}px)` : "translateY(12px)" },
         { opacity: 1, transform: dx ? "translateX(0)" : "translateY(0)" },
       ],
-      { duration: 380, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
+      { duration: 560, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
     );
     anim.onfinish = () => {
       anim.cancel();

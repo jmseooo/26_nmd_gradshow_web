@@ -214,7 +214,7 @@ export default function GuestbookPage() {
                     gap: "clamp(4px, 0.56vw, 8px)",
                     opacity: isVisible ? 1 : 0,
                     transform: isVisible ? "translateY(0)" : "translateY(32px)",
-                    transition: `opacity 0.5s ease ${(i % 10) * 0.07}s, transform 0.5s ease ${(i % 10) * 0.07}s`,
+                    transition: `opacity 0.65s ease ${(i % 10) * 0.1}s, transform 0.65s ease ${(i % 10) * 0.1}s`,
                   }}
                 >
                   <p
