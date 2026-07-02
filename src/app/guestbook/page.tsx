@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { CSSProperties } from "react";
 import { supabase, type GuestMessage } from "@/lib/supabase";
 
@@ -36,6 +36,8 @@ export default function GuestbookPage() {
   const [loading, setLoading] = useState(true);
   const [input, setInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [visibleIds, setVisibleIds] = useState<Set<string>>(new Set());
+  const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -66,6 +68,25 @@ export default function GuestbookPage() {
 
     return () => { supabase.removeChannel(channel); };
   }, []);
+
+  useEffect(() => {
+    if (loading) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setVisibleIds((prev) => {
+          const next = new Set(prev);
+          entries.forEach((entry) => {
+            const id = (entry.target as HTMLElement).dataset.msgId!;
+            if (entry.isIntersecting) next.add(id);
+          });
+          return next;
+        });
+      },
+      { threshold: 0.05 }
+    );
+    cardRefs.current.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [loading, messages]);
 
   const handleSubmit = async () => {
     const text = input.trim();
@@ -173,9 +194,16 @@ export default function GuestbookPage() {
               className="grid grid-cols-2 md:grid-cols-5"
               style={{ gap: "clamp(8px, 1.39vw, 20px)" }}
             >
-              {messages.map((msg, i) => (
+              {messages.map((msg, i) => {
+                const isVisible = visibleIds.has(String(msg.id));
+                return (
                 <div
                   key={msg.id}
+                  data-msg-id={msg.id}
+                  ref={(el) => {
+                    if (el) cardRefs.current.set(String(msg.id), el);
+                    else cardRefs.current.delete(String(msg.id));
+                  }}
                   style={{
                     backgroundColor: getCardColor(i),
                     aspectRatio: "1",
@@ -184,6 +212,9 @@ export default function GuestbookPage() {
                     flexDirection: "column",
                     padding: "clamp(12px, 1.67vw, 24px) clamp(15px, 2.08vw, 30px)",
                     gap: "clamp(4px, 0.56vw, 8px)",
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? "translateY(0)" : "translateY(32px)",
+                    transition: `opacity 0.5s ease ${(i % 10) * 0.07}s, transform 0.5s ease ${(i % 10) * 0.07}s`,
                   }}
                 >
                   <p
@@ -200,7 +231,8 @@ export default function GuestbookPage() {
                     {formatDate(msg.created_at)}
                   </p>
                 </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
