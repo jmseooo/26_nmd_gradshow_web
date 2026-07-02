@@ -22,6 +22,7 @@ let nextId = 0;
 
 export default function HeroSection() {
   const { isLight, toggle } = useHeroLight();
+  const [hasEverBeenLight, setHasEverBeenLight] = useState(false);
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -32,11 +33,8 @@ export default function HeroSection() {
   useEffect(() => { inputRef.current?.focus(); }, []);
 
   useEffect(() => {
-    [img1Dark, img1Light, img2, imgVector1].forEach((src) => {
-      const el = new Image();
-      el.src = src;
-    });
-  }, []);
+    if (isLight) setHasEverBeenLight(true);
+  }, [isLight]);
 
   useEffect(() => {
     const check = () => {
@@ -79,32 +77,34 @@ export default function HeroSection() {
       >
         <div className="absolute bg-[#0fa7d2] h-full left-0 overflow-clip top-0 w-full">
           <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-full">
-            <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img1Dark} />
+            <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img1Dark} fetchPriority="high" />
           </div>
         </div>
         <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-full">
-          <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img2} />
+          <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img2} fetchPriority="high" />
         </div>
       </div>
 
-      {/* ── 라이트 배경 레이어 (node 66-2294) ───────────── */}
-      <div
-        className="absolute inset-0"
-        style={{ opacity: isLight ? 1 : 0, transition: `opacity ${T}`, pointerEvents: "none", willChange: "opacity" }}
-      >
-        <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-full">
-          <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img1Light} />
-        </div>
+      {/* ── 라이트 배경 레이어 — 첫 토글 전까지 마운트 안 함 (초기 로드 절약) */}
+      {hasEverBeenLight && (
         <div
           className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(174,220,233,0.2), rgba(250,250,248,0.2) 50%, rgba(174,220,233,0.2))",
-          }}
-        />
-      </div>
+          style={{ opacity: isLight ? 1 : 0, transition: `opacity ${T}`, pointerEvents: "none", willChange: "opacity" }}
+        >
+          <div className="absolute h-[1444.826px] left-0 top-[-278.92px] w-full">
+            <img alt="" className="absolute block inset-0 max-w-none size-full object-cover" src={img1Light} />
+          </div>
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(174,220,233,0.2), rgba(250,250,248,0.2) 50%, rgba(174,220,233,0.2))",
+            }}
+          />
+        </div>
+      )}
 
-      {/* ── Vector 장식 (라이트 모드) — 원본 비율(842:480) 유지, 아래는 section overflow-hidden에 잘힘 */}
+      {/* ── Vector 장식 — 다크/라이트 공통 (같은 파일, 항상 표시) */}
       <div
         className="absolute"
         style={{
@@ -113,31 +113,10 @@ export default function HeroSection() {
             ? { left: "50%", transform: "translateX(-50%)", width: "max(83.2vw, 80vh)" }
             : { left: "20.76%", width: "max(58.48vw, 80vh)" }),
           aspectRatio: "842 / 480",
-          opacity: isLight ? 1 : 0,
-          transition: `opacity ${T}`,
           pointerEvents: "none",
-          willChange: "opacity",
         }}
       >
-        <img alt="" className="absolute block inset-0 size-full" src={imgVector1} />
-      </div>
-
-      {/* ── Vector 장식 (다크 모드) — 원본 비율(842:480) 유지, 아래는 section overflow-hidden에 잘힘 */}
-      <div
-        className="absolute"
-        style={{
-          top: "65.06%",
-          ...(narrowHero
-            ? { left: "50%", transform: "translateX(-50%)", width: "max(83.2vw, 80vh)" }
-            : { left: "20.76%", width: "max(58.48vw, 80vh)" }),
-          aspectRatio: "842 / 480",
-          opacity: isLight ? 0 : 1,
-          transition: `opacity ${T}`,
-          pointerEvents: "none",
-          willChange: "opacity",
-        }}
-      >
-        <img alt="" className="absolute block inset-0 size-full" src={imgVector1} />
+        <img alt="" className="absolute block inset-0 size-full" src={imgVector1} fetchPriority="high" />
       </div>
 
       {/* ── 모바일 전용: 타이틀 + 서브타이틀 ────────── */}

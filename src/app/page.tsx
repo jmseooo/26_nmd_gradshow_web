@@ -56,7 +56,7 @@ export default function Home() {
           style={{ minHeight: "clamp(280px, 25vw, 360px)", padding: "clamp(100px, 8vw, 120px) 16px" }}
         >
           <div className="absolute inset-0 pointer-events-none opacity-20">
-            <img alt="" src="/assets/img3.svg" className="w-full h-full object-cover" />
+            <img alt="" src="/assets/img3.svg" className="w-full h-full object-cover" loading="lazy" />
           </div>
           <div className="relative text-center">
             <p style={txt(18, 400, "#2174a4")}>
@@ -175,10 +175,10 @@ export default function Home() {
         </p>
         <div className="flex items-center justify-center" style={{ gap: "clamp(4px, 2.08vw, 30px)" }}>
           <a href="https://yoondesign.com/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(28px, 11.67vw, 168px)", height: "clamp(10px, 4.51vw, 65px)" }}>
-            <img alt="Yoondesign group" src="/assets/sponsor2.png" className="w-full h-full object-contain" />
+            <img alt="Yoondesign group" src="/assets/sponsor2.png" className="w-full h-full object-contain" loading="lazy" />
           </a>
           <a href="https://www.sandollcloud.com/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(20px, 8.33vw, 120px)", height: "clamp(14px, 6.67vw, 96px)" }}>
-            <img alt="산돌구름" src="/assets/sandol-logo.png" className="w-full h-full object-contain" />
+            <img alt="산돌구름" src="/assets/sandol-logo.png" className="w-full h-full object-contain" loading="lazy" />
           </a>
           <a href="https://pf.kakao.com/_Xfcin" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{
               backgroundColor: "#f7f7f7",
@@ -187,13 +187,13 @@ export default function Home() {
             }}
           />
           <a href="https://www.printaku.com/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
-            <img alt="PRINTAKU" src="/assets/printaku.svg" className="w-full h-full object-contain" />
+            <img alt="PRINTAKU" src="/assets/printaku.svg" className="w-full h-full object-contain" loading="lazy" />
           </a>
           <a href="https://www.inclear.co.kr/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
-            <img alt="novelS" src="/assets/novels-logo.png" className="w-full h-full object-contain" />
+            <img alt="novelS" src="/assets/novels-logo.png" className="w-full h-full object-contain" loading="lazy" />
           </a>
           <a href="https://runwalk.kr/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
-            <img alt="RUNWALK" src="/assets/runwalk-logo.png" className="w-full h-full object-contain" />
+            <img alt="RUNWALK" src="/assets/runwalk-logo.png" className="w-full h-full object-contain" loading="lazy" />
           </a>
           {[0].map((i) => (
             <div

@@ -18,12 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="antialiased">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
-        />
-      </head>
+      <head />
       <body className="min-h-full">
         <HeroLightProvider>
           <div className="desktop-nav"><PersistentNav /></div>
