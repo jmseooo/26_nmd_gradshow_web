@@ -5,9 +5,9 @@ import { supabase } from "@/lib/supabase";
 import { useHeroLight } from "./HeroLightContext";
 
 /* ─── 배경 이미지 ─────────────────────────────────────────────── */
-const img1Dark   = "/assets/hero-bg1.svg";
+const img1Dark   = "/assets/hero-bg1.webp";
 const img1Light  = "/nmd_asset01.png";
-const img2       = "/assets/hero-bg3.svg";
+const img2       = "/assets/hero-bg3.webp";
 const imgVector1 = "/assets/hero-vector.svg";
 
 const INITIAL_BUBBLES: string[] = [];

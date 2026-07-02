@@ -20,9 +20,9 @@ export default function RootLayout({
     <html lang="ko" className="antialiased">
       <head>
         <link rel="preload" href="/fonts/PretendardVariable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        {/* 히어로 다크 배경 SVG — 첫 로드 시 즉시 필요 */}
-        <link rel="preload" href="/assets/hero-bg1.svg" as="image" type="image/svg+xml" />
-        <link rel="preload" href="/assets/hero-bg3.svg" as="image" type="image/svg+xml" />
+        {/* 히어로 다크 배경 — 첫 로드 시 즉시 필요 */}
+        <link rel="preload" href="/assets/hero-bg1.webp" as="image" type="image/webp" />
+        <link rel="preload" href="/assets/hero-bg3.webp" as="image" type="image/webp" />
         <link rel="preload" href="/assets/hero-vector.svg" as="image" type="image/svg+xml" />
       </head>
       <body className="min-h-full">
