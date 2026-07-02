@@ -43,6 +43,12 @@ const filterTabs = [
 
 /* ─── 작품 상세 모달 ──────────────────────────────────────────── */
 function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, []);
+
   return (
     <div
       style={{
