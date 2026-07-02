@@ -21,9 +21,9 @@ export default function RootLayout({
       <head>
         <link
           rel="preload"
-          href="/fonts/PretendardVariable.ttf"
+          href="/fonts/PretendardVariable.woff2"
           as="font"
-          type="font/ttf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
       </head>
