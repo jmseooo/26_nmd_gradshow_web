@@ -18,7 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="antialiased">
-      <head />
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/PretendardVariable.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-full">
         <HeroLightProvider>
           <div className="desktop-nav"><PersistentNav /></div>

@@ -100,6 +100,7 @@ export default function DesignerPage() {
                   transition: `opacity 0.5s ease ${idx * 0.05}s, transform 0.5s ease ${idx * 0.05}s`,
                 }}
                 onClick={() => router.push(`/student/${d.id}`)}
+                onMouseEnter={() => router.prefetch(`/student/${d.id}`)}
               >
                 <div
                   style={{
@@ -114,6 +115,7 @@ export default function DesignerPage() {
                     src={`/assets/students/${d.photo}`}
                     alt={d.name}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    loading={idx < 4 ? "eager" : "lazy"}
                   />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0px" }}>

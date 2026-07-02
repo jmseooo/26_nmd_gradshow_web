@@ -31,9 +31,14 @@ const getCardColor = (i: number) => {
   return col === (row * 3) % 5 ? POINT_COLORS[row % 4] : "#e6f5f9";
 };
 
+const PAGE_SIZE = 30;
+
 export default function GuestbookPage() {
   const [messages, setMessages] = useState<GuestMessage[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [cursor, setCursor] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [visibleIds, setVisibleIds] = useState<Set<string>>(new Set());
@@ -44,8 +49,12 @@ export default function GuestbookPage() {
       const { data } = await supabase
         .from("guestbook")
         .select("*")
-        .order("created_at", { ascending: false });
-      setMessages(data ?? []);
+        .order("created_at", { ascending: false })
+        .limit(PAGE_SIZE);
+      const items = data ?? [];
+      setMessages(items);
+      setHasMore(items.length === PAGE_SIZE);
+      setCursor(items.at(-1)?.created_at ?? null);
       setLoading(false);
     };
 
@@ -87,6 +96,22 @@ export default function GuestbookPage() {
     cardRefs.current.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [loading, messages]);
+
+  const loadMore = async () => {
+    if (!cursor || loadingMore) return;
+    setLoadingMore(true);
+    const { data } = await supabase
+      .from("guestbook")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .lt("created_at", cursor)
+      .limit(PAGE_SIZE);
+    const items = data ?? [];
+    setMessages((prev) => [...prev, ...items]);
+    setHasMore(items.length === PAGE_SIZE);
+    if (items.length > 0) setCursor(items.at(-1)!.created_at);
+    setLoadingMore(false);
+  };
 
   const handleSubmit = async () => {
     const text = input.trim();
@@ -233,6 +258,28 @@ export default function GuestbookPage() {
                 </div>
                 );
               })}
+            </div>
+          )}
+
+          {/* ── 더 보기 버튼 ──────────────────────────────── */}
+          {hasMore && (
+            <div className="flex justify-center" style={{ paddingTop: "clamp(8px, 1.39vw, 20px)" }}>
+              <button
+                onClick={loadMore}
+                disabled={loadingMore}
+                style={{
+                  background: "none",
+                  border: "1px solid #202024",
+                  borderRadius: "100px",
+                  padding: "clamp(8px, 0.83vw, 12px) clamp(24px, 2.78vw, 40px)",
+                  cursor: loadingMore ? "default" : "pointer",
+                  opacity: loadingMore ? 0.5 : 1,
+                  transition: "opacity 0.2s",
+                  ...txt(14, 600, "#202024"),
+                }}
+              >
+                {loadingMore ? "불러오는 중..." : "더 보기"}
+              </button>
             </div>
           )}
         </div>

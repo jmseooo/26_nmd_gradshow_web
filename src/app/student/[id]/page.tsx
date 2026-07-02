@@ -2,6 +2,10 @@ import type { CSSProperties } from "react";
 import { designers } from "@/lib/designers";
 import { notFound } from "next/navigation";
 
+export function generateStaticParams() {
+  return designers.map((d) => ({ id: String(d.id) }));
+}
+
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
   const min = Math.max(10, Math.round(size * 0.45));
   return {
