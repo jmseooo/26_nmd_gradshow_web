@@ -206,9 +206,51 @@ export default function GuestbookPage() {
 
           {/* ── 카드 그리드 ─────────────────────────────── */}
           {loading ? (
-            <div className="flex items-center justify-center" style={{ paddingTop: "clamp(40px, 5.56vw, 80px)" }}>
-              <p style={txt(16, 400, "#9ca3af")}>불러오는 중...</p>
-            </div>
+            <>
+              <style>{`
+                @keyframes sk-shimmer {
+                  0%   { background-position: -200% 0; }
+                  100% { background-position:  200% 0; }
+                }
+                .sk-card {
+                  background: linear-gradient(90deg, #e6f5f9 25%, #d0eaf3 50%, #e6f5f9 75%);
+                  background-size: 200% 100%;
+                  animation: sk-shimmer 1.6s ease infinite;
+                }
+                .sk-line {
+                  background: linear-gradient(90deg, #c8e8f0 25%, #b8dce9 50%, #c8e8f0 75%);
+                  background-size: 200% 100%;
+                  animation: sk-shimmer 1.6s ease infinite;
+                  border-radius: 4px;
+                }
+              `}</style>
+              <div className="grid grid-cols-2 md:grid-cols-5" style={{ gap: "clamp(8px, 1.39vw, 20px)" }}>
+                {Array.from({ length: 10 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="sk-card"
+                    style={{
+                      aspectRatio: "1",
+                      borderRadius: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "clamp(12px, 1.67vw, 24px) clamp(15px, 2.08vw, 30px)",
+                      gap: "clamp(4px, 0.56vw, 8px)",
+                      animationDelay: `${i * 0.07}s`,
+                    }}
+                  >
+                    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px", paddingTop: "4px" }}>
+                      <div className="sk-line" style={{ height: "14px", width: "90%", animationDelay: `${i * 0.07}s` }} />
+                      <div className="sk-line" style={{ height: "14px", width: "75%", animationDelay: `${i * 0.07 + 0.1}s` }} />
+                      <div className="sk-line" style={{ height: "14px", width: "60%", animationDelay: `${i * 0.07 + 0.2}s` }} />
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                      <div className="sk-line" style={{ height: "12px", width: "40%", animationDelay: `${i * 0.07}s` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
           ) : messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center" style={{ paddingTop: "clamp(60px, 8.33vw, 120px)", gap: "clamp(8px, 1.11vw, 16px)" }}>
               <p style={txt(24, 800, "#d0eaf3")}>아직 남긴 말이 없어요</p>
