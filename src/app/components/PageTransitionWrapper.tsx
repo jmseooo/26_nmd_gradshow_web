@@ -37,6 +37,7 @@ export default function PageTransitionWrapper({ children }: { children: ReactNod
       ? (ci > pi ? 50 : ci < pi ? -50 : 0)
       : 0;
 
+    // opacity는 SSR HTML에 포함되지 않도록 useLayoutEffect(클라이언트 전용)에서만 설정
     el.style.opacity = "0";
     el.style.transform = dx ? `translateX(${dx}px)` : "translateY(12px)";
 
@@ -56,7 +57,7 @@ export default function PageTransitionWrapper({ children }: { children: ReactNod
   }, [pathname]);
 
   return (
-    <div id="page-wrapper" ref={ref} style={{ opacity: 0 }}>
+    <div id="page-wrapper" ref={ref}>
       {children}
     </div>
   );

@@ -29,8 +29,15 @@ export default function PersistentNav() {
   const [navHidden, setNavHidden] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setNavHidden(window.scrollY > 10);
-    onScroll();
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y <= 10) setNavHidden(false);
+      else if (y > lastY) setNavHidden(true);   // 아래 스크롤 → 숨김
+      else if (y < lastY) setNavHidden(false);  // 위 스크롤 → 표시
+      lastY = y;
+    };
+    setNavHidden(false);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

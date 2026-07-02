@@ -30,7 +30,9 @@ export default function HeroSection() {
   const [narrowHero, setNarrowHero] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => { inputRef.current?.focus(); }, []);
+  useEffect(() => {
+    if (window.innerWidth >= 480) inputRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     if (isLight) setHasEverBeenLight(true);
