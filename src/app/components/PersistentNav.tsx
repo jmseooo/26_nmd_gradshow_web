@@ -33,8 +33,7 @@ export default function PersistentNav() {
     const onScroll = () => {
       const y = window.scrollY;
       if (y <= 10) setNavHidden(false);
-      else if (y > lastY) setNavHidden(true);   // 아래 스크롤 → 숨김
-      else if (y < lastY) setNavHidden(false);  // 위 스크롤 → 표시
+      else setNavHidden(true);
       lastY = y;
     };
     setNavHidden(false);

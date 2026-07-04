@@ -38,8 +38,7 @@ export default function MobileNav() {
     const onScroll = () => {
       const y = window.scrollY;
       if (y <= 10) setNavHidden(false);
-      else if (y > lastY) setNavHidden(true);
-      else if (y < lastY) setNavHidden(false);
+      else setNavHidden(true);
       lastY = y;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
