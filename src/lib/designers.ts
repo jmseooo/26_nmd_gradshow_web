@@ -12,7 +12,7 @@ export const designers = [
   { id: 11, name: "박채원",          photo: "photo-16.webp", track: "UX"       },
   { id: 12, name: "서유정",          photo: "photo-2.webp",  track: "XR / UX"  },
   { id: 13, name: "서한이",          photo: "photo-17.webp", track: "UX / UI"  },
-  { id: 14, name: "신민지",          photo: "photo-10.webp", track: "MO"       },
+  { id: 14, name: "신민지",          photo: null,            track: "MO"       },
   { id: 15, name: "오연서",          photo: "photo-3.webp",  track: "UI / MO"  },
   { id: 16, name: "윤내경",          photo: "photo-19.webp", track: "UX / MO"  },
   { id: 17, name: "응웬짠휘엔아잉",  photo: "photo-3.webp",  track: "UX / MO"  },

@@ -118,14 +118,19 @@ export default function DesignerPage() {
                     aspectRatio: "248.317 / 330",
                     borderRadius: "clamp(9px, 1.25vw, 18px)",
                     overflow: "hidden",
+                    backgroundColor: "#e8e8e8",
                   }}
                 >
-                  <img
-                    src={`/assets/students/${d.photo}`}
-                    alt={d.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    loading={idx < 4 ? "eager" : "lazy"}
-                  />
+                  {d.photo ? (
+                    <img
+                      src={`/assets/students/${d.photo}`}
+                      alt={d.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      loading={idx < 4 ? "eager" : "lazy"}
+                    />
+                  ) : (
+                    <div style={{ width: "100%", height: "100%", backgroundColor: "#e8e8e8" }} />
+                  )}
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0px" }}>
                   <p style={{ ...txt(18, 600, "black"), textAlign: "right", whiteSpace: "nowrap", paddingRight: "6px" }}>
