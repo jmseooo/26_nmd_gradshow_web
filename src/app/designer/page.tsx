@@ -26,9 +26,13 @@ function shuffle<T>(arr: T[]): T[] {
 
 export default function DesignerPage() {
   const router = useRouter();
-  const [shuffledDesigners] = useState(() => shuffle(designers));
+  const [shuffledDesigners, setShuffledDesigners] = useState(designers);
   const [visibleIds, setVisibleIds] = useState<Set<number>>(new Set());
   const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+
+  useEffect(() => {
+    setShuffledDesigners(shuffle(designers));
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
