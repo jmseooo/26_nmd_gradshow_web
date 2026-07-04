@@ -116,7 +116,6 @@ export default function DesignerPage() {
                   style={{
                     width: "100%",
                     aspectRatio: "248.317 / 330",
-                    backgroundColor: "#e6f5f9",
                     borderRadius: "clamp(9px, 1.25vw, 18px)",
                     overflow: "hidden",
                   }}
