@@ -31,6 +31,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   useEffect(() => {
     if (compact) return;
     const check = () => {
+      if (window.innerWidth >= 640) { setHideNav(false); return; }
       const el = measureRef.current;
       if (!el) return;
       const lineHeight = parseFloat(getComputedStyle(el).lineHeight);

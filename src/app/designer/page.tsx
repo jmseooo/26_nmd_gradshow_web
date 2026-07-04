@@ -15,8 +15,18 @@ function txt(size: number, weight: number, color: string, tracking = -0.02): CSS
   };
 }
 
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export default function DesignerPage() {
   const router = useRouter();
+  const [shuffledDesigners] = useState(() => shuffle(designers));
   const [visibleIds, setVisibleIds] = useState<Set<number>>(new Set());
   const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
 
@@ -79,7 +89,7 @@ export default function DesignerPage() {
               rowGap: "clamp(12px, 1.39vw, 20px)",
             }}
           >
-            {designers.map((d, idx) => {
+            {shuffledDesigners.map((d, idx) => {
               const isVisible = visibleIds.has(d.id);
               return (
               <div
