@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import CategorySlider from "./components/CategorySlider";
 import ScrollReveal from "./components/ScrollReveal";
 import HeroSection from "./components/HeroSection";
+import HoverName from "./components/HoverName";
 
 const committeeLeft = [
   { role: "위원장", name: "김지유" },
@@ -104,7 +105,7 @@ export default function Home() {
             style={{
               backgroundColor: "#a8e6f8",
               borderRadius: 18,
-              padding: "10px",
+              padding: "10px 16px",
               textDecoration: "none",
             }}
           >
@@ -149,13 +150,13 @@ export default function Home() {
           {/* 그룹 3: 디자인팀 */}
           <div style={{ display: "grid", gridTemplateColumns: "max-content max-content", columnGap: "clamp(5px, 0.83vw, 12px)", rowGap: "clamp(6px, 0.83vw, 12px)", alignItems: "center" }}>
             <p className="whitespace-nowrap" style={txt(18, 800, "black")}>디자인팀장</p>
-            <p className="whitespace-nowrap" style={txt(18, 600, "black")}>김지아</p>
+            <HoverName name="김지아" hoverText="굿즈 제작" style={txt(18, 600, "black")} />
             <p className="whitespace-nowrap" style={txt(18, 800, "black")}>디자인팀원</p>
-            <p className="whitespace-nowrap" style={txt(18, 600, "black")}>서한이</p>
+            <HoverName name="서한이" hoverText="출력물 제작" style={txt(18, 600, "black")} />
             <span />
-            <p className="whitespace-nowrap" style={txt(18, 600, "black")}>윤내경</p>
+            <HoverName name="윤내경" hoverText="브랜딩" style={txt(18, 600, "black")} />
             <span />
-            <p className="whitespace-nowrap" style={txt(18, 600, "black")}>진민서</p>
+            <HoverName name="진민서" hoverText="웹 디자인, 웹 개발" style={txt(18, 600, "black")} />
           </div>
 
         </div>
