@@ -29,7 +29,7 @@ export default function HoverName({
         {name}
       </span>
       {/* 역할 */}
-      <span style={{ ...style, position: "absolute", left: 0, top: 0, whiteSpace: "nowrap", opacity: hovered ? 1 : 0, transition: "opacity 0.35s ease" }}>
+      <span style={{ ...style, position: "absolute", left: 0, top: 0, whiteSpace: "nowrap", opacity: hovered ? 1 : 0, transition: "opacity 0.35s ease", color: "#34b2d5", fontWeight: 600 }}>
         {hoverText}
       </span>
     </span>
