@@ -24,7 +24,7 @@ export default function ScrollReveal({ children, className, style, delay = 0 }: 
           to   { opacity: 1; transform: translateY(0); }
         }
         .scroll-reveal-run {
-          animation: scroll-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          animation: scroll-reveal 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
       `;
       document.head.appendChild(s);
@@ -52,7 +52,7 @@ export default function ScrollReveal({ children, className, style, delay = 0 }: 
           el.style.animationDelay = "";
         }
       },
-      { threshold: 0.05, rootMargin: "0px 0px -10px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -35% 0px" }
     );
 
     observer.observe(el);
