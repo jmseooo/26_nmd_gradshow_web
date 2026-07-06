@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useHeroLight } from "./HeroLightContext";
+import NetworkGraphCanvas from "./NetworkGraphCanvas";
 
 /* ─── 배경 이미지 ─────────────────────────────────────────────── */
 const img1Dark   = "/assets/hero-bg1.webp";
@@ -63,7 +64,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative overflow-hidden"
-      onClick={() => toggle()}
+      onPointerDown={() => toggle()}
       style={{
         width: "100%",
         height: "100svh",
@@ -105,6 +106,9 @@ export default function HeroSection() {
           />
         </div>
       )}
+
+      {/* ── 네트워크 그래프 ──────────────────────────────── */}
+      <NetworkGraphCanvas />
 
       {/* ── Vector 장식 — 다크/라이트 공통 (같은 파일, 항상 표시) */}
       <div
