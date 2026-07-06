@@ -214,7 +214,6 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════════
           SECTION 6 · 푸터
       ══════════════════════════════════════════════════════════ */}
-      <ScrollReveal>
       <footer
         className="flex items-center"
         style={{
@@ -232,7 +231,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-      </ScrollReveal>
 
     </div>
   );
