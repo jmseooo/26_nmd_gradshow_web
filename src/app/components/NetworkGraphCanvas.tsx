@@ -88,19 +88,20 @@ export default function NetworkGraphCanvas() {
   }, []);
 
   return (
-    <div className="absolute inset-0 md:cursor-grab" style={{ zIndex: 1 }}>
+    <div className="absolute inset-0 md:cursor-grab" style={{ zIndex: 1, pointerEvents: "none" }}>
       {/* 캔버스는 항상 pointer-events: none — 이벤트는 overlay 또는 document가 처리 */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full block pointer-events-none"
       />
-      {/* 모바일 전용 드래그 존 — 히어로 중앙부 (위아래 스크롤·탭 영역 제외) */}
+      {/* 모바일 드래그 존 — top 22% ~ bottom 22%(= top 78%) */}
+      {/* 입력창: top 87.82%, 말풍선: bottom 18% → 드래그 존 하단(78%)과 입력창(87.82%) 사이 9.82% 여유 */}
       <div
         ref={overlayRef}
         className="absolute left-0 right-0 md:hidden"
         style={{
-          top: "25%",
-          height: "40%",
+          top: "22%",
+          bottom: "22%",
           touchAction: "none",
           pointerEvents: "auto",
           cursor: "grab",
