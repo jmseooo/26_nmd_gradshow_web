@@ -6,10 +6,10 @@ import { useHeroLight } from "./HeroLightContext";
 
 export default function NetworkGraphCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<NetworkGraph | null>(null);
   const { isLight } = useHeroLight();
 
-  // Sync darkMode whenever light/dark state changes
   useEffect(() => {
     graphRef.current?.setOptions({ darkMode: !isLight });
   }, [isLight]);
@@ -24,15 +24,18 @@ export default function NetworkGraphCanvas() {
       rotateSensitivity: 1,
       depth: 1,
       lineOpacity: 0.32,
-      darkMode: true, // initial state is dark
+      darkMode: true,
     });
     graphRef.current = g;
     g.start();
     g.setRotationNormalized(0, 0);
 
-    // 모바일(터치) 환경에서는 드래그 인터랙션 비활성화 — 스크롤 우선
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-    if (isTouchDevice) return () => { g.destroy(); graphRef.current = null; };
+
+    // 모바일에서 드래그 존이 없으면 포기
+    if (isTouchDevice && !overlayRef.current) {
+      return () => { g.destroy(); graphRef.current = null; };
+    }
 
     const drag = { active: false, startX: 0, startY: 0, baseNx: 0, baseNy: 0, accNx: 0, accNy: 0 };
 
@@ -42,7 +45,7 @@ export default function NetworkGraphCanvas() {
       drag.baseNx = drag.accNx;
       drag.baseNy = drag.accNy;
       drag.active = true;
-      canvas.style.cursor = "grabbing";
+      if (!isTouchDevice) canvas.style.cursor = "grabbing";
     };
 
     const handleMove = (e: PointerEvent) => {
@@ -62,29 +65,47 @@ export default function NetworkGraphCanvas() {
 
     const handleUp = () => {
       drag.active = false;
-      canvas.style.cursor = "grab";
+      if (!isTouchDevice) canvas.style.cursor = "grab";
     };
 
-    document.addEventListener("pointerdown", handleDown);
-    document.addEventListener("pointermove", handleMove);
+    // 모바일: 드래그 시작을 중앙 overlay에서만 감지 → 위아래 스크롤 보존
+    // 데스크탑: 기존대로 document 전체에서 감지
+    const downTarget: EventTarget = isTouchDevice ? overlayRef.current! : document;
+
+    downTarget.addEventListener("pointerdown", handleDown as EventListener);
+    document.addEventListener("pointermove", handleMove as EventListener);
     document.addEventListener("pointerup", handleUp);
     document.addEventListener("pointercancel", handleUp);
 
     return () => {
       g.destroy();
       graphRef.current = null;
-      document.removeEventListener("pointerdown", handleDown);
-      document.removeEventListener("pointermove", handleMove);
+      downTarget.removeEventListener("pointerdown", handleDown as EventListener);
+      document.removeEventListener("pointermove", handleMove as EventListener);
       document.removeEventListener("pointerup", handleUp);
       document.removeEventListener("pointercancel", handleUp);
     };
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full block touch-auto pointer-events-none md:touch-none md:pointer-events-auto"
-      style={{ cursor: "grab", zIndex: 1 }}
-    />
+    <div className="absolute inset-0 md:cursor-grab" style={{ zIndex: 1 }}>
+      {/* 캔버스는 항상 pointer-events: none — 이벤트는 overlay 또는 document가 처리 */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full block pointer-events-none"
+      />
+      {/* 모바일 전용 드래그 존 — 히어로 중앙부 (위아래 스크롤·탭 영역 제외) */}
+      <div
+        ref={overlayRef}
+        className="absolute left-0 right-0 md:hidden"
+        style={{
+          top: "25%",
+          height: "40%",
+          touchAction: "none",
+          pointerEvents: "auto",
+          cursor: "grab",
+        }}
+      />
+    </div>
   );
 }
