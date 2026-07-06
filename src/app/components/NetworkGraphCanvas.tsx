@@ -30,6 +30,10 @@ export default function NetworkGraphCanvas() {
     g.start();
     g.setRotationNormalized(0, 0);
 
+    // 모바일(터치) 환경에서는 드래그 인터랙션 비활성화 — 스크롤 우선
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouchDevice) return () => { g.destroy(); graphRef.current = null; };
+
     const drag = { active: false, startX: 0, startY: 0, baseNx: 0, baseNy: 0, accNx: 0, accNy: 0 };
 
     const handleDown = (e: PointerEvent) => {
@@ -79,16 +83,8 @@ export default function NetworkGraphCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        display: "block",
-        touchAction: "none",
-        cursor: "grab",
-        zIndex: 1,
-      }}
+      className="absolute inset-0 w-full h-full block touch-auto pointer-events-none md:touch-none md:pointer-events-auto"
+      style={{ cursor: "grab", zIndex: 1 }}
     />
   );
 }
