@@ -39,6 +39,10 @@ export default function NetworkGraphCanvas() {
 
     const drag = { active: false, startX: 0, startY: 0, baseNx: 0, baseNy: 0, accNx: 0, accNy: 0 };
 
+    const handleSelectStart = (e: Event) => {
+      if (drag.active) e.preventDefault();
+    };
+
     const handleDown = (e: PointerEvent) => {
       drag.startX = e.clientX;
       drag.startY = e.clientY;
@@ -76,6 +80,7 @@ export default function NetworkGraphCanvas() {
     document.addEventListener("pointermove", handleMove as EventListener);
     document.addEventListener("pointerup", handleUp);
     document.addEventListener("pointercancel", handleUp);
+    document.addEventListener("selectstart", handleSelectStart);
 
     return () => {
       g.destroy();
@@ -84,6 +89,7 @@ export default function NetworkGraphCanvas() {
       document.removeEventListener("pointermove", handleMove as EventListener);
       document.removeEventListener("pointerup", handleUp);
       document.removeEventListener("pointercancel", handleUp);
+      document.removeEventListener("selectstart", handleSelectStart);
     };
   }, []);
 
