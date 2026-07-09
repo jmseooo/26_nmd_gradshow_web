@@ -24,10 +24,11 @@ function formatDate(iso: string) {
 }
 
 const POINT_COLORS = ["#FFEEF0", "#EEEEFF", "#FFEACA", "#E6F6C3"];
-const getCardColor = (i: number) => {
-  const row = Math.floor(i / 5);
-  const col = i % 5;
-  // 각 행마다 포인트 컬러 열이 1개씩, 3칸씩 이동(5와 서로소라 모든 열 순환)
+
+// 위치(i) 대신 id 기준으로 색상 고정 — 비율·패턴·컬러 원래와 동일
+const getCardColor = (id: number) => {
+  const row = Math.floor(id / 5);
+  const col = id % 5;
   return col === (row * 3) % 5 ? POINT_COLORS[row % 4] : "#e6f5f9";
 };
 
@@ -261,7 +262,7 @@ export default function GuestbookPage() {
               className="grid grid-cols-2 md:grid-cols-5"
               style={{ gap: "clamp(8px, 1.39vw, 20px)" }}
             >
-              {messages.map((msg, i) => {
+              {messages.map((msg) => {
                 const isVisible = visibleIds.has(String(msg.id));
                 return (
                 <div
@@ -272,7 +273,7 @@ export default function GuestbookPage() {
                     else cardRefs.current.delete(String(msg.id));
                   }}
                   style={{
-                    backgroundColor: getCardColor(i),
+                    backgroundColor: getCardColor(msg.id),
                     aspectRatio: "1",
                     overflow: "hidden",
                     display: "flex",
@@ -281,7 +282,7 @@ export default function GuestbookPage() {
                     gap: "clamp(4px, 0.56vw, 8px)",
                     opacity: isVisible ? 1 : 0,
                     transform: isVisible ? "translateY(0)" : "translateY(32px)",
-                    transition: `opacity 0.65s ease ${i * 0.05}s, transform 0.65s ease ${i * 0.05}s`,
+                    transition: `opacity 0.65s ease ${(msg.id % 20) * 0.05}s, transform 0.65s ease ${(msg.id % 20) * 0.05}s`,
                   }}
                 >
                   <p

@@ -149,13 +149,13 @@ export default function CategorySlider() {
               borderBottom: "1px solid rgba(0,0,0,0.1)",
             }}
           >
-            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 3.33vw, 48px)", whiteSpace: "nowrap" }}>
+            <p style={{ ...txt(16, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 3.33vw, 48px)", whiteSpace: "nowrap" }}>
               {cat.label}
             </p>
-            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 3.33vw, 48px)", whiteSpace: "nowrap" }}>
+            <p style={{ ...txt(16, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 3.33vw, 48px)", whiteSpace: "nowrap" }}>
               개요
             </p>
-            <p style={{ ...txt(18, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 3.33vw, 48px)", whiteSpace: "nowrap" }}>
+            <p style={{ ...txt(16, 800, "black"), padding: "clamp(10px, 1.32vw, 19px) clamp(16px, 3.33vw, 48px)", whiteSpace: "nowrap" }}>
               교수님
             </p>
           </div>
@@ -176,26 +176,26 @@ export default function CategorySlider() {
             >
               <div onClick={() => sessionStorage.setItem("returnToCategory", "1")}>
                 <TransitionLink href={`/works?category=${cat.label}`} style={{ textDecoration: "none" }}>
-                  <p className="whitespace-nowrap underline" style={{ ...txt(18, 600, "black"), cursor: "pointer" }}>
+                  <p className="whitespace-nowrap underline" style={{ ...txt(16, 600, "black"), cursor: "pointer" }}>
                     작품, {cat.count}개
                   </p>
                 </TransitionLink>
               </div>
               <div className="flex flex-col items-start" style={{ gap: "clamp(4px, 0.56vw, 8px)" }}>
-                <p className="whitespace-nowrap" style={txt(18, 600, "black")}>참여자, 4명</p>
+                <p className="whitespace-nowrap" style={txt(16, 600, "black")}>참여자, 4명</p>
               </div>
             </div>
 
             {/* 중간: 개요 */}
             <div style={{ padding: "0 clamp(16px, 3.33vw, 48px)" }}>
-              <p style={{ ...txt(18, 400, "#63636e"), lineHeight: 1.7, whiteSpace: "pre-line" }}>
+              <p style={{ ...txt(16, 400, "#63636e"), lineHeight: 1.7, whiteSpace: "pre-line" }}>
                 {cat.description}
               </p>
             </div>
 
             {/* 오른쪽: 교수님 */}
             <div style={{ padding: "0 clamp(16px, 3.33vw, 48px)" }}>
-              <p className="whitespace-nowrap" style={txt(18, 400, "black")}>유영재 교수님</p>
+              <p className="whitespace-nowrap" style={txt(16, 400, "black")}>유영재 교수님</p>
             </div>
           </div>
         </div>
