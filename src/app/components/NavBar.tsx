@@ -18,22 +18,36 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
     "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
 
   const navFontSize = "clamp(13px, 2.08vw, 30px)";
-  const pillW       = "clamp(60px, 10.42vw, 150px)";
+  const pillW       = "clamp(80px, 10.42vw, 150px)";
   const pillPadV    = "clamp(4px, 0.69vw, 10px)";
-  const pillPadH    = "clamp(3px, 0.83vw, 12px)";
+  const pillPadH    = "clamp(5px, 0.83vw, 12px)";
   const textPadH    = "clamp(12px, 2.08vw, 30px)";
   const navGap         = "clamp(4px, 0.69vw, 10px)";
-  const centeredNavGap = "8px";
+  const centeredNavGap = "clamp(10px, 5.64vw, 42px)";
 
   const [hideNav, setHideNav] = useState(false);
   const measureRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    const check = () => setHideNav(window.innerWidth < 480);
+    const check = () => {
+      if (compact) {
+        setHideNav(window.innerWidth < 640);
+        return;
+      }
+      if (window.innerWidth >= 640) { setHideNav(false); return; }
+      const el = measureRef.current;
+      if (!el) return;
+      const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+      const pt         = parseFloat(getComputedStyle(el).paddingTop);
+      const pb         = parseFloat(getComputedStyle(el).paddingBottom);
+      setHideNav(el.offsetHeight > Math.round(lineHeight + pt + pb) + 2);
+    };
+    let timer: ReturnType<typeof setTimeout>;
+    const debouncedCheck = () => { clearTimeout(timer); timer = setTimeout(check, 120); };
     check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+    window.addEventListener("resize", debouncedCheck);
+    return () => { window.removeEventListener("resize", debouncedCheck); clearTimeout(timer); };
+  }, [compact]);
 
   // 가로 레이아웃 nav 아이템
   const navItems = allItems.map((item) => {
@@ -85,17 +99,18 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
           alignItems: "center",
           justifyContent: "center",
           ...(isActive ? {
-            paddingLeft: "16px",
-            paddingRight: "16px",
-            paddingTop: "7px",
-            paddingBottom: "7px",
+            width: "clamp(70px, 18.7vw, 135px)",
+            paddingLeft: "clamp(6px, 1.66vw, 12px)",
+            paddingRight: "clamp(6px, 1.66vw, 12px)",
+            paddingTop: "clamp(6px, 1.38vw, 10px)",
+            paddingBottom: "clamp(6px, 1.38vw, 10px)",
             borderRadius: "100px",
             backgroundColor: "#38b3d6",
           } : {
-            paddingLeft: "12px",
-            paddingRight: "12px",
-            paddingTop: "7px",
-            paddingBottom: "7px",
+            paddingLeft: "clamp(6px, 1.66vw, 12px)",
+            paddingRight: "clamp(6px, 1.66vw, 12px)",
+            paddingTop: "clamp(6px, 1.38vw, 10px)",
+            paddingBottom: "clamp(6px, 1.38vw, 10px)",
           }),
           flexShrink: 0,
         }}
@@ -103,7 +118,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
       >
         <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
           <p style={{
-            fontSize: "14px",
+            fontSize: "clamp(11px, 2.49vw, 18px)",
             fontWeight: 700,
             color: isActive ? "#f7f7f7" : "black",
             letterSpacing: "-0.36px",
@@ -150,9 +165,6 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
           }}>
             {centeredNavItems}
           </div>
-
-          {/* compact 페이지에서 absolute nav가 PersistentNav 높이에 반영되도록 flow spacer 추가 */}
-          {compact && <div style={{ height: "52px", width: "100%", flexShrink: 0 }} />}
 
           {/* 타이틀 + 서브타이틀 — 흰 바 아래로 (home 전용) */}
           {!compact && <div style={{
@@ -232,7 +244,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                     }}
                   />
                 </TransitionLink>
-                <p className="nav-compact-subtitle" style={{
+                <p style={{
                   fontSize: "clamp(10px, 0.83vw, 12px)",
                   fontWeight: 600,
                   color: isLight ? "black" : "white",

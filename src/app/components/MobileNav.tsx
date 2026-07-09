@@ -76,7 +76,7 @@ export default function MobileNav() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: "8px",
+        gap: "clamp(4px, 1.33vw, 10px)",
         transition: "transform 0.35s ease",
         transform: navHidden ? "translateY(-110%)" : "translateY(0)",
       }}
@@ -91,17 +91,17 @@ export default function MobileNav() {
               alignItems: "center",
               justifyContent: "center",
               ...(isActive ? {
-                paddingLeft: "16px",
-                paddingRight: "16px",
-                paddingTop: "7px",
-                paddingBottom: "7px",
+                paddingLeft: "clamp(14px, 3.73vw, 28px)",
+                paddingRight: "clamp(14px, 3.73vw, 28px)",
+                paddingTop: "clamp(6px, 1.6vw, 10px)",
+                paddingBottom: "clamp(6px, 1.6vw, 10px)",
                 borderRadius: "100px",
                 backgroundColor: "#38b3d6",
               } : {
-                paddingLeft: "12px",
-                paddingRight: "12px",
-                paddingTop: "7px",
-                paddingBottom: "7px",
+                paddingLeft: "clamp(10px, 2.67vw, 20px)",
+                paddingRight: "clamp(10px, 2.67vw, 20px)",
+                paddingTop: "clamp(6px, 1.6vw, 10px)",
+                paddingBottom: "clamp(6px, 1.6vw, 10px)",
               }),
               flexShrink: 0,
             }}
@@ -109,7 +109,7 @@ export default function MobileNav() {
           >
             <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
               <p style={{
-                fontSize: "14px",
+                fontSize: "clamp(13px, 3.47vw, 18px)",
                 fontWeight: 800,
                 color: isActive ? "#f7f7f7" : "black",
                 letterSpacing: "-0.36px",
