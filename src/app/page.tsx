@@ -119,7 +119,7 @@ export default function Home() {
         </div>
 
         {/* 위원 목록 — 3그룹 가운데 정렬 */}
-        <div className="flex justify-center items-start" style={{ gap: "clamp(12px, 5.07vw, 73px)" }}>
+        <div className="flex flex-wrap justify-center items-start" style={{ gap: "clamp(12px, 5.07vw, 73px)" }}>
 
           {/* 그룹 1: 위원장·부위원장 */}
           <div style={{ display: "grid", gridTemplateColumns: "max-content max-content", columnGap: "clamp(5px, 0.83vw, 12px)", rowGap: "clamp(6px, 0.83vw, 12px)", alignItems: "center" }}>

@@ -20,9 +20,9 @@ export default function HoverName({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* 너비 확보용 invisible spacer */}
+      {/* 너비 확보용 invisible spacer — name 기준으로만 */}
       <span style={{ ...style, visibility: "hidden", whiteSpace: "nowrap", display: "block" }}>
-        {hoverText.length >= name.length ? hoverText : name}
+        {name}
       </span>
       {/* 이름 */}
       <span style={{ ...style, position: "absolute", left: 0, top: 0, whiteSpace: "nowrap", opacity: hovered ? 0 : 1, transition: "opacity 0.35s ease" }}>
