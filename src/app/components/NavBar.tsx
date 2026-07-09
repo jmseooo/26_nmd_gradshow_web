@@ -166,6 +166,9 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             {centeredNavItems}
           </div>
 
+          {/* compact 페이지에서 absolute nav가 PersistentNav 높이에 반영되도록 flow spacer 추가 */}
+          {compact && <div style={{ height: "52px", width: "100%", flexShrink: 0 }} />}
+
           {/* 타이틀 + 서브타이틀 — 흰 바 아래로 (home 전용) */}
           {!compact && <div style={{
             display: "flex",
