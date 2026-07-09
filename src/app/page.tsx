@@ -181,12 +181,9 @@ export default function Home() {
           <a href="https://www.sandollcloud.com/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(20px, 8.33vw, 120px)", height: "clamp(14px, 6.67vw, 96px)" }}>
             <img alt="산돌구름" src="/assets/sandol-logo.png" className="w-full h-full object-contain" loading="lazy" />
           </a>
-          <a href="https://pf.kakao.com/_Xfcin" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{
-              backgroundColor: "#f7f7f7",
-              width: "clamp(22px, 9.17vw, 132px)",
-              height: "clamp(12px, 5.9vw, 85px)",
-            }}
-          />
+          <a href="https://pf.kakao.com/_Xfcin" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
+            <img alt="JINI CREW" src="/assets/liz.png" className="w-full h-full object-contain" loading="lazy" />
+          </a>
           <a href="https://www.printaku.com/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
             <img alt="PRINTAKU" src="/assets/printaku.svg" className="w-full h-full object-contain" loading="lazy" />
           </a>
@@ -196,17 +193,9 @@ export default function Home() {
           <a href="https://runwalk.kr/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
             <img alt="RUNWALK" src="/assets/runwalk-logo.png" className="w-full h-full object-contain" loading="lazy" />
           </a>
-          {[0].map((i) => (
-            <div
-              key={i}
-              className="flex-shrink-0"
-              style={{
-                backgroundColor: "#f7f7f7",
-                width: "clamp(22px, 9.17vw, 132px)",
-                height: "clamp(12px, 5.9vw, 85px)",
-              }}
-            />
-          ))}
+          <a href="https://www.monsterenergy.com/ko-kr/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
+            <img alt="Monster Energy" src="/assets/monster-energy.png" className="w-full h-full object-contain" loading="lazy" />
+          </a>
         </div>
       </section>
       </ScrollReveal>
