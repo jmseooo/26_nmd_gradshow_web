@@ -285,7 +285,7 @@ function WorksContent() {
             <button
               key={label}
               onClick={() => setActiveFilter(label)}
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, flexShrink: 0 }}
             >
               <p style={{
                 ...txt(30, 800, isActive ? color : "black"),
