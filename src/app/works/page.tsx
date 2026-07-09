@@ -275,7 +275,7 @@ function WorksContent() {
       <div
         className="flex items-center"
         style={{
-          padding: "clamp(20px, 6.53vw, 94px) clamp(16px, 5.56vw, 80px) 0",
+          padding: "clamp(12px, 2.78vw, 40px) clamp(16px, 5.56vw, 80px) 0",
           gap: "clamp(16px, 2.78vw, 40px)",
         }}
       >
