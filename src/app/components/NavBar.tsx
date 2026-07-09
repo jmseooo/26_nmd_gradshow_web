@@ -18,7 +18,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
     "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
 
   const navFontSize = "clamp(13px, 2.08vw, 30px)";
-  const pillW       = "clamp(60px, 9.38vw, 135px)";
+  const pillW       = "clamp(80px, 10.42vw, 150px)";
   const pillPadV    = "clamp(4px, 0.69vw, 10px)";
   const pillPadH    = "clamp(5px, 0.83vw, 12px)";
   const textPadH    = "clamp(12px, 2.08vw, 30px)";
@@ -49,7 +49,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   // 가로 레이아웃 nav 아이템
   const navItems = allItems.map((item) => {
     const isActive   = item === activeItem;
-    const isPillSlot = item === "거점" || item === "작품";
+    const isPillSlot = true;
     const pillBg     = isActive && item === "거점" && !isLight ? "#aedce9" : "#38b3d6";
     const pillText   = isActive && item === "거점" && !isLight ? "#38b3d6" : "#f7f7f7";
     return (
