@@ -23,7 +23,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const pillPadH    = "clamp(5px, 0.83vw, 12px)";
   const textPadH    = "clamp(12px, 2.08vw, 30px)";
   const navGap         = "clamp(4px, 0.69vw, 10px)";
-  const centeredNavGap = "clamp(10px, 5.64vw, 42px)";
+  const centeredNavGap = "8px";
 
   const [hideNav, setHideNav] = useState(false);
   const measureRef = useRef<HTMLParagraphElement>(null);
@@ -99,18 +99,17 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
           alignItems: "center",
           justifyContent: "center",
           ...(isActive ? {
-            width: "clamp(70px, 18.7vw, 135px)",
-            paddingLeft: "clamp(6px, 1.66vw, 12px)",
-            paddingRight: "clamp(6px, 1.66vw, 12px)",
-            paddingTop: "clamp(6px, 1.38vw, 10px)",
-            paddingBottom: "clamp(6px, 1.38vw, 10px)",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            paddingTop: "7px",
+            paddingBottom: "7px",
             borderRadius: "100px",
             backgroundColor: "#38b3d6",
           } : {
-            paddingLeft: "clamp(6px, 1.66vw, 12px)",
-            paddingRight: "clamp(6px, 1.66vw, 12px)",
-            paddingTop: "clamp(6px, 1.38vw, 10px)",
-            paddingBottom: "clamp(6px, 1.38vw, 10px)",
+            paddingLeft: "12px",
+            paddingRight: "12px",
+            paddingTop: "7px",
+            paddingBottom: "7px",
           }),
           flexShrink: 0,
         }}
@@ -118,7 +117,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
       >
         <TransitionLink href={NAV_HREFS[item] ?? "#"} style={{ textDecoration: "none" }}>
           <p style={{
-            fontSize: "clamp(11px, 2.49vw, 18px)",
+            fontSize: "14px",
             fontWeight: 700,
             color: isActive ? "#f7f7f7" : "black",
             letterSpacing: "-0.36px",
