@@ -188,7 +188,7 @@ export default function CategorySlider() {
 
             {/* 중간: 개요 */}
             <div style={{ padding: "0 clamp(16px, 3.33vw, 48px)" }}>
-              <p style={{ ...txt(16, 400, "#63636e"), lineHeight: 1.7, whiteSpace: "pre-line" }}>
+              <p style={{ ...txt(16, 400, "black"), lineHeight: 1.7, whiteSpace: "pre-line" }}>
                 {cat.description}
               </p>
             </div>
