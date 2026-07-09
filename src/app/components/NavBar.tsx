@@ -29,25 +29,11 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const measureRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    const check = () => {
-      if (compact) {
-        setHideNav(window.innerWidth < 480);
-        return;
-      }
-      if (window.innerWidth >= 640) { setHideNav(false); return; }
-      const el = measureRef.current;
-      if (!el) return;
-      const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
-      const pt         = parseFloat(getComputedStyle(el).paddingTop);
-      const pb         = parseFloat(getComputedStyle(el).paddingBottom);
-      setHideNav(el.offsetHeight > Math.round(lineHeight + pt + pb) + 2);
-    };
-    let timer: ReturnType<typeof setTimeout>;
-    const debouncedCheck = () => { clearTimeout(timer); timer = setTimeout(check, 120); };
+    const check = () => setHideNav(window.innerWidth < 480);
     check();
-    window.addEventListener("resize", debouncedCheck);
-    return () => { window.removeEventListener("resize", debouncedCheck); clearTimeout(timer); };
-  }, [compact]);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // 가로 레이아웃 nav 아이템
   const navItems = allItems.map((item) => {
