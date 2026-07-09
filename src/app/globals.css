@@ -131,6 +131,16 @@ body {
   display: none;
 }
 
+/* compact 네비 부제목: 640px 미만에서 숨김 (whiteSpace:nowrap으로 타이틀 div 너비 증가 방지) */
+.nav-compact-subtitle {
+  display: none;
+}
+@media (min-width: 640px) {
+  .nav-compact-subtitle {
+    display: block;
+  }
+}
+
 @media (max-width: 479px) {
   .desktop-nav {
     display: none;

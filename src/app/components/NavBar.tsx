@@ -18,9 +18,9 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
     "brightness(0) saturate(100%) invert(68%) sepia(27%) saturate(607%) hue-rotate(163deg) brightness(97%) contrast(90%)";
 
   const navFontSize = "clamp(13px, 2.08vw, 30px)";
-  const pillW       = "clamp(80px, 10.42vw, 150px)";
+  const pillW       = "clamp(60px, 10.42vw, 150px)";
   const pillPadV    = "clamp(4px, 0.69vw, 10px)";
-  const pillPadH    = "clamp(5px, 0.83vw, 12px)";
+  const pillPadH    = "clamp(3px, 0.83vw, 12px)";
   const textPadH    = "clamp(12px, 2.08vw, 30px)";
   const navGap         = "clamp(4px, 0.69vw, 10px)";
   const centeredNavGap = "8px";
@@ -31,7 +31,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   useEffect(() => {
     const check = () => {
       if (compact) {
-        setHideNav(window.innerWidth < 640);
+        setHideNav(window.innerWidth < 480);
         return;
       }
       if (window.innerWidth >= 640) { setHideNav(false); return; }
@@ -246,7 +246,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                     }}
                   />
                 </TransitionLink>
-                <p style={{
+                <p className="nav-compact-subtitle" style={{
                   fontSize: "clamp(10px, 0.83vw, 12px)",
                   fontWeight: 600,
                   color: isLight ? "black" : "white",
