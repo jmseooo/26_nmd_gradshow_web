@@ -62,7 +62,7 @@ export default function CategorySlider() {
       <div className="flex flex-col items-center" style={{ marginBottom: "clamp(20px, 3.47vw, 50px)" }}>
         <div className="flex items-end" style={{ gap: "clamp(10px, 1.53vw, 22px)" }}>
           {categories.map((c, i) => (
-            <div key={c.label} className="flex flex-col items-center" style={{ gap: "clamp(3px, 0.42vw, 6px)" }}>
+            <div key={c.label} className="flex flex-col items-center" style={{ gap: "clamp(3px, 0.42vw, 6px)", width: "clamp(14px, 2.08vw, 30px)" }}>
               {/* 레이블 텍스트 (슬라이드업) */}
               <p
                 style={{
