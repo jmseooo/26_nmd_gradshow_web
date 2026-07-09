@@ -89,13 +89,13 @@ export default function Home() {
         className="relative overflow-hidden"
         style={{
           background: "linear-gradient(to bottom, rgba(230,245,249,0) 0%, #e6f5f9 100%)",
-          padding: "clamp(100px, 8vw, 130px) clamp(16px, 5.56vw, 80px) clamp(100px, 8vw, 120px)",
+          padding: "clamp(100px, 8vw, 130px) clamp(24px, 9.31vw, 134px) clamp(100px, 8vw, 120px)",
         }}
       >
         {/* 인터뷰 버튼 — 섹션 우측 상단 absolute (피그마 330:416), 모바일 숨김 */}
         <div
           className="desktop-nav absolute"
-          style={{ top: "clamp(32px, 4.93vw, 71px)", right: "clamp(16px, 5.56vw, 80px)" }}
+          style={{ top: "clamp(32px, 4.93vw, 71px)", right: "clamp(24px, 9.31vw, 134px)" }}
         >
           <a
             href="https://www.instagram.com/p/DZCKb6BEpJ3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
@@ -119,12 +119,7 @@ export default function Home() {
         </div>
 
         {/* 위원 목록 — 3그룹 가운데 정렬 */}
-        <style>{`
-          @media (max-width: 639px) {
-            .committee-groups { flex-direction: column; align-items: center; }
-          }
-        `}</style>
-        <div className="committee-groups flex flex-wrap justify-center items-start" style={{ gap: "clamp(20px, 5.07vw, 73px)" }}>
+        <div className="flex justify-center items-start" style={{ gap: "clamp(12px, 5.07vw, 73px)" }}>
 
           {/* 그룹 1: 위원장·부위원장 */}
           <div style={{ display: "grid", gridTemplateColumns: "max-content max-content", columnGap: "clamp(5px, 0.83vw, 12px)", rowGap: "clamp(6px, 0.83vw, 12px)", alignItems: "center" }}>
