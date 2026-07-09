@@ -29,8 +29,11 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
   const measureRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    if (compact) return;
     const check = () => {
+      if (compact) {
+        setHideNav(window.innerWidth < 640);
+        return;
+      }
       if (window.innerWidth >= 640) { setHideNav(false); return; }
       const el = measureRef.current;
       if (!el) return;
@@ -143,8 +146,8 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
         }
       `}</style>
 
-      {/* ── 중앙 세로 레이아웃 (비-compact + hideNav) ──────── */}
-      {!compact && hideNav && (
+      {/* ── 중앙 레이아웃 (hideNav — compact 포함) ────────── */}
+      {hideNav && (
         <>
           {/* 흰 배경 + 네비 항목 — absolute, 수직 중앙 정렬 (피그마 214:51) */}
           <div style={{
@@ -163,8 +166,8 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
             {centeredNavItems}
           </div>
 
-          {/* 타이틀 + 서브타이틀 — 흰 바 아래로 */}
-          <div style={{
+          {/* 타이틀 + 서브타이틀 — 흰 바 아래로 (home 전용) */}
+          {!compact && <div style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -218,12 +221,12 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                 서울여자대학교 첨단미디어디자인전공 제2회 졸업전시
               </p>
             </div>
-          </div>
+          </div>}
         </>
       )}
 
-      {/* ── 가로 레이아웃 (compact 또는 hideNav=false) ───── */}
-      {(compact || !hideNav) && (
+      {/* ── 가로 레이아웃 (hideNav=false일 때만) ───────── */}
+      {!hideNav && (
         <>
           <div className="flex items-center w-full" style={{ gap: "clamp(8px, 1.39vw, 20px)", overflow: compact ? "visible" : "hidden" }}>
             {compact ? (

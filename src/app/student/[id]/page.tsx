@@ -66,33 +66,66 @@ export default async function StudentPage({
       </div>
 
       {/* ── 컨텐츠 (flex-1 → 푸터를 아래로 밀어냄) ─────── */}
-      <div
-        className="relative flex-1"
-        style={{
-          zIndex: 2,
-          padding: "0 clamp(16px, 5.56vw, 80px)",
-          marginTop: "clamp(12px, 1.6vw, 23px)",
-          paddingBottom: "clamp(40px, 5.56vw, 80px)",
-          display: "flex",
-          flexDirection: "column",
-          gap: "clamp(16px, 2.5vw, 36px)",
-        }}
-      >
-        {/* ── 상단: 포트레이트 + 이름/연락처 ────────────── */}
-        <div
-          className="flex flex-row items-end"
-          style={{
-            maxWidth: "684px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            width: "100%",
-          }}
-        >
-          {/* 포트레이트 카드 */}
-          <div
-            className="md:mx-0 md:shrink-0"
-            style={{ width: "clamp(120px, 35%, 240px)", flexShrink: 0 }}
-          >
+      <style>{`
+        .student-layout {
+          position: relative;
+          flex: 1;
+          z-index: 2;
+          padding: clamp(40px, 5.56vw, 80px) clamp(16px, 5.56vw, 80px) clamp(40px, 5.56vw, 80px);
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: center;
+          gap: clamp(24px, 4.17vw, 60px);
+          transition: gap 0.4s ease;
+        }
+        .student-left {
+          flex-shrink: 0;
+          display: flex;
+          flex-direction: column;
+          gap: clamp(12px, 1.39vw, 20px);
+          width: clamp(140px, 17.36vw, 250px);
+        }
+        .student-left-photo { width: 100%; }
+        .student-right {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: clamp(16px, 2.5vw, 36px);
+          max-width: clamp(380px, 52vw, 720px);
+          transition: gap 0.4s ease, max-width 0.4s ease;
+        }
+        @media (max-width: 767px) {
+          .student-layout { flex-direction: column; }
+          .student-left {
+            flex-direction: row;
+            align-items: flex-end;
+            width: 100%;
+            max-width: 684px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .student-left-photo {
+            width: clamp(120px, 35%, 240px);
+            flex-shrink: 0;
+          }
+          .student-left-info {
+            flex: 1;
+            padding-left: clamp(12px, 2.78vw, 40px);
+          }
+          .student-right {
+            flex: none;
+            width: 100%;
+            max-width: 684px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+      `}</style>
+      <div className="student-layout">
+        {/* ── 좌: 포트레이트 + 이름/연락처 ──────────────── */}
+        <div className="student-left">
+          <div className="student-left-photo">
             <div
               style={{
                 width: "100%",
@@ -111,10 +144,7 @@ export default async function StudentPage({
           </div>
 
           {/* 이름 + 연락처 */}
-          <div
-            className=""
-            style={{ flex: 1, paddingLeft: "clamp(12px, 2.78vw, 40px)" }}
-          >
+          <div className="student-left-info">
             <p
               style={{
                 fontSize: "clamp(22px, 2.5vw, 36px)",
@@ -128,7 +158,7 @@ export default async function StudentPage({
             </p>
             <div
               style={{
-                marginTop: "clamp(2px, 0.35vw, 5px)",
+                marginTop: "clamp(4px, 0.56vw, 8px)",
                 display: "flex",
                 flexDirection: "column",
                 gap: "clamp(1px, 0.14vw, 2px)",
@@ -140,18 +170,8 @@ export default async function StudentPage({
           </div>
         </div>
 
-        {/* ── 작품 카드 2개 (세로 쌓기) ────────────────────── */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "clamp(16px, 2.5vw, 36px)",
-            maxWidth: "684px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            width: "100%",
-          }}
-        >
+        {/* ── 우: 작품 카드 2개 (세로 쌓기) ─────────────── */}
+        <div className="student-right">
           <div
             style={{
               width: "100%",
