@@ -110,6 +110,7 @@ html {
   scrollbar-gutter: stable;
   overscroll-behavior-y: none;
   overflow-x: hidden;
+  overflow-anchor: auto;
 }
 
 body {
