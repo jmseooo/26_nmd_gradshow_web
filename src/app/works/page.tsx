@@ -166,34 +166,44 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
         )}
 
         {/* 작품 설명 */}
-        <p style={{
-          fontSize: "14px",
-          fontWeight: 500,
-          color: "black",
-          letterSpacing: "-0.28px",
-          lineHeight: 1.62,
-          textAlign: "center",
-          width: "min(568px, calc(100% - clamp(32px, 11.11vw, 160px)))",
-          padding: "0 10px",
-          boxSizing: "border-box",
-          marginTop: "clamp(24px, 5.56vw, 80px)",
-        }}>
-          서울여자대학교 첨단미디어디자인전공은 네 가지 트랙으로 나뉜다. UI와 UX, XR, Motion이 그 트랙에 해당하며, 본 전공은 다양한 미디어 디자인의 발전 가능성을 탐구한다. 전공생은 시대의 흐름에 맞춰 AI를 적극적으로 도입하며, 그 안에서 디자이너가 할 수 있는 역할에 대해 고민한다. 이를 고민한 과정의 최종 결과물은 본 졸업 전시를 통해 표현한다. 졸업 전시의 결과물은 저마다의 고민과 역량을 고루 담은 작품이자 스킬이자, 가치관이 된다. 이들이 나아가 우리 사회에서 신시대의 디자이너 역할을 제시하고, 수행하기를 바란다.
-        </p>
+        {work.description && (
+          <p style={{
+            fontSize: "14px",
+            fontWeight: 500,
+            color: "black",
+            letterSpacing: "-0.28px",
+            lineHeight: 1.62,
+            textAlign: "center",
+            width: "min(568px, calc(100% - clamp(32px, 11.11vw, 160px)))",
+            padding: "0 10px",
+            boxSizing: "border-box",
+            marginTop: "clamp(24px, 5.56vw, 80px)",
+          }}>
+            {work.description}
+          </p>
+        )}
 
         {/* 참고 링크 */}
-        <p style={{
-          fontSize: "14px",
-          fontWeight: 500,
-          color: "#38b3d6",
-          letterSpacing: "-0.28px",
-          lineHeight: 1.5,
-          textAlign: "center",
-          marginTop: "clamp(12px, 2.22vw, 32px)",
-          whiteSpace: "nowrap",
-        }}>
-          참고: https://asdf.com
-        </p>
+        {work.url && (
+          <a
+            href={work.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontSize: "14px",
+              fontWeight: 500,
+              color: "#38b3d6",
+              letterSpacing: "-0.28px",
+              lineHeight: 1.5,
+              textAlign: "center",
+              marginTop: "clamp(12px, 2.22vw, 32px)",
+              whiteSpace: "nowrap",
+              textDecoration: "underline",
+            }}
+          >
+            {work.url}
+          </a>
+        )}
 
         {/* 푸터 */}
         <footer
@@ -359,7 +369,7 @@ function WorksContent() {
                   pointerEvents: "none",
                 }}
               >
-                <p style={{ ...txt(16, 600, "white"), textAlign: "center" }}>
+                <p style={{ ...txt(18, 600, "white"), textAlign: "center" }}>
                   {work.name || "작품명"}
                 </p>
               </div>
