@@ -105,6 +105,7 @@ export const works: Work[] = [
   {
     id: 10, name: "Roam in Ceram", members: ["정윤서"], category: "XR",
     description: "도자기 세계관을 배경으로 한 몰입형 XR 인터랙티브 콘텐츠이다. 관람객은 도자기의 아름다운 질감과 디지털 판타지가 융합된 미지의 공간 속에서 세계를 깨우는 여정의 주인공이 된다. 가상의 도자기 구슬은 현실의 감각을 자극하며 게임과 현실의 경계를 허무는 열쇠가 된다. 신비로운 구슬을 매개로 가상 세계와 상호작용하며, 관람객은 단순한 플레이어를 넘어 세계의 일부로 거듭난다.",
+    thumbnail: "/assets/card_web.png",
   },
   {
     id: 11, name: "KEMIDEA", members: ["정지연"], category: "XR",
@@ -121,6 +122,7 @@ export const works: Work[] = [
   {
     id: 13, name: "ECHO", members: ["황태희"], category: "XR",
     description: "인류가 사라진 세계관 기반의 3D 어드벤처 게임. 작은 로봇 에코는 동료를 깨우기 위한 여정에서 탐험과 선택을 통해 진실을 마주한다. 플레이어는 두 가지 결말을 경험할 수 있다.",
+    thumbnail: "/assets/card_web.png",
   },
 
   // ── MOTION ──────────────────────────────────────────────────────────────
@@ -163,6 +165,7 @@ export const works: Work[] = [
   {
     id: 22, name: "신화(神火)의 부름", members: ["정윤서"], category: "MOTION",
     description: "도자기 세계관을 배경으로 한 몰입형 XR 프로젝트 \"Roam in Ceram\"의 시네마틱 트레일러이다. 인게임의 주요 맵과 세계관 스토리를 중심으로, 플레이어가 탐험하게 될 세계를 소개하며 세상을 여행하는 주인공의 프롤로그를 서사적인 비주얼로 담아냈다.",
+    thumbnail: "/assets/card_web.png",
   },
   {
     id: 23, name: "OMEGA POINT", members: ["조연진"], category: "MOTION",
@@ -173,6 +176,7 @@ export const works: Work[] = [
   {
     id: 24, name: "ECHO | Opening Cinematic", members: ["황태희"], category: "MOTION",
     description: "게임의 인트로 영상으로, 세계관과 현재 상황을 이해할 수 있도록 구성하였다. 세상이 무너지게 된 배경과, 주인공 에코가 희망을 되찾기 위한 여정을 시작하게 되는 장면을 담았다.",
+    thumbnail: "/assets/card_web.png",
   },
   {
     id: 25, name: "UNBECOMING", members: ["황희주"], category: "MOTION",

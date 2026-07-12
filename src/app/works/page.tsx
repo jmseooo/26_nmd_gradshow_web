@@ -189,7 +189,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
             flexShrink: 0,
           }}>
             {[
-              ...(work.thumbnail ? [work.thumbnail] : []),
+              ...(work.thumbnail && work.thumbnail !== "/assets/card_web.png" ? [work.thumbnail] : []),
               ...(work.images ?? []),
             ].map((src, i) => (
               <img
@@ -367,7 +367,7 @@ function WorksContent() {
             >
               {/* 썸네일 */}
               <img
-                src={work.thumbnail ?? "/assets/default-thumbnail.png"}
+                src={work.thumbnail ?? "/assets/card_web.png"}
                 alt={work.name || ""}
                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
               />
