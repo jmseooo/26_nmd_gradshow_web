@@ -1,9 +1,26 @@
 import type { CSSProperties } from "react";
 import { designers } from "@/lib/designers";
+import { works } from "@/lib/works-data";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
   return designers.map((d) => ({ id: String(d.id) }));
+}
+
+function linkLabel(url: string): string {
+  try {
+    const { hostname, pathname } = new URL(url);
+    if (hostname.includes("instagram.com")) {
+      const handle = pathname.replace(/\//g, "").trim();
+      return handle ? `@${handle}` : "Instagram";
+    }
+    if (hostname.includes("behance.net")) return "Behance";
+    if (hostname.includes("notefolio.net")) return "Notefolio";
+    if (hostname.includes("linkedin.com")) return "LinkedIn";
+    return hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
 }
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
@@ -25,6 +42,8 @@ export default async function StudentPage({
   const { id } = await params;
   const designer = designers.find((d) => d.id === Number(id));
   if (!designer) notFound();
+
+  const designerWorks = works.filter((w) => w.members.includes(designer.name));
 
   return (
     <div
@@ -148,7 +167,7 @@ export default async function StudentPage({
             <p
               style={{
                 fontSize: "clamp(22px, 2.5vw, 36px)",
-                fontWeight: 600,
+                fontWeight: 700,
                 color: "black",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.5,
@@ -156,40 +175,108 @@ export default async function StudentPage({
             >
               {designer.name}
             </p>
-            <div
-              style={{
-                marginTop: "clamp(4px, 0.56vw, 8px)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "clamp(1px, 0.14vw, 2px)",
-              }}
-            >
-              <p style={{ fontSize: "clamp(13px, 1.25vw, 18px)", fontWeight: 600, color: "black", letterSpacing: "-0.36px", lineHeight: 1.5, whiteSpace: "nowrap" }}>asdf@naver.com</p>
-              <p style={{ fontSize: "clamp(13px, 1.25vw, 18px)", fontWeight: 600, color: "black", letterSpacing: "-0.36px", lineHeight: 1.5, whiteSpace: "nowrap" }}>@asdf</p>
-            </div>
+            {(designer.email || designer.link) && (
+              <div
+                style={{
+                  marginTop: "clamp(2px, 0.28vw, 4px)",
+                  paddingLeft: "clamp(2px, 0.28vw, 4px)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "clamp(1px, 0.14vw, 2px)",
+                }}
+              >
+                {designer.email && (
+                  <a
+                    href={`mailto:${designer.email}`}
+                    style={{ fontSize: "clamp(12px, 1.1vw, 16px)", fontWeight: 400, color: "black", letterSpacing: "-0.02em", lineHeight: 1.5, textDecoration: "none" }}
+                  >
+                    {designer.email}
+                  </a>
+                )}
+                {designer.link && (
+                  <a
+                    href={designer.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: "clamp(12px, 1.1vw, 16px)", fontWeight: 400, color: "black", letterSpacing: "-0.02em", lineHeight: 1.5, textDecoration: "none", wordBreak: "break-all" }}
+                  >
+                    {linkLabel(designer.link)}
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* ── 우: 작품 카드 2개 (세로 쌓기) ─────────────── */}
+        {/* ── 우: 작품 카드 (세로 쌓기) ──────────────────── */}
         <div className="student-right">
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "684 / 385",
-              backgroundColor: "#f3f3f3",
-              borderRadius: "clamp(10px, 1.67vw, 24px)",
-              overflow: "hidden",
-            }}
-          />
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "684 / 385",
-              backgroundColor: "#f3f3f3",
-              borderRadius: "clamp(10px, 1.67vw, 24px)",
-              overflow: "hidden",
-            }}
-          />
+          {designerWorks.length === 0 ? (
+            <div
+              style={{
+                width: "100%",
+                aspectRatio: "684 / 385",
+                backgroundColor: "#f3f3f3",
+                borderRadius: "clamp(10px, 1.67vw, 24px)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <p style={{ color: "#aaa", fontSize: "clamp(13px, 1.1vw, 16px)", fontWeight: 500 }}>
+                작품 정보 준비 중
+              </p>
+            </div>
+          ) : (
+            designerWorks.map((work) => (
+              <div key={work.id}>
+                <div
+                  style={{
+                    width: "100%",
+                    aspectRatio: "684 / 385",
+                    backgroundColor: "#f3f3f3",
+                    borderRadius: "clamp(10px, 1.67vw, 24px)",
+                    overflow: "hidden",
+                  }}
+                >
+                  {work.thumbnail && (
+                    <img
+                      src={work.thumbnail}
+                      alt={work.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  )}
+                </div>
+                <div style={{ marginTop: "clamp(8px, 0.83vw, 12px)", display: "flex", alignItems: "center", gap: "clamp(8px, 0.83vw, 12px)" }}>
+                  <span
+                    style={{
+                      fontSize: "clamp(10px, 0.83vw, 12px)",
+                      fontWeight: 600,
+                      color: "#34b2d5",
+                      letterSpacing: "0.05em",
+                      textTransform: "uppercase",
+                      backgroundColor: "#e8f7fb",
+                      padding: "2px 8px",
+                      borderRadius: "4px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {work.category}
+                  </span>
+                  <p
+                    style={{
+                      fontSize: "clamp(14px, 1.25vw, 18px)",
+                      fontWeight: 600,
+                      color: "black",
+                      letterSpacing: "-0.02em",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {work.name}
+                  </p>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
 

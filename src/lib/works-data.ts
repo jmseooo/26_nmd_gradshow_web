@@ -33,13 +33,13 @@ export const works: Work[] = [
 
   // ── UX ──────────────────────────────────────────────────────────────────
   {
-    id: 14, name: "RENO", members: ["김도연", "박서하", "천세진", "현명화"], category: "UX",
+    id: 14, name: "RENO", members: ["김도연 22", "박서하", "천세진", "현명화"], category: "UX",
     description: "RENO는 스마트 글래스 기반의 XR 러닝 어시스턴트이다. 시선 이탈 없이 사용자의 러닝 타입·목표·상태에 맞춘 피드백을 제공한다. 러닝 전 목표 설정부터 실시간 가이드, 러닝 후 성장 리포트까지 연결하여 지속적인 성장을 돕는 새로운 러닝 경험을 제안한다.",
     thumbnail: "/assets/works/ux/UX_RENO_00.jpg",
     images: [],
   },
   {
-    id: 15, name: "NURO", members: ["김도연", "윤내경"], category: "UX",
+    id: 15, name: "NURO", members: ["김도연 22", "윤내경"], category: "UX",
     description: "NURO는 AI 피부 분석과 성분 정보를 기반으로 사용자에게 최적화된 스킨케어 루틴을 제안한다. 사용자는 현재 피부 상태를 확인하고, 흩어진 성분 정보를 자신의 피부와 연결해 이해하며 지금 필요한 성분과 제품을 쉽게 파악할 수 있다. 또한 매일의 루틴과 피부 변화를 기록하고 비교하며 관리 과정을 이어갈 수 있다. 이를 통해 사용자가 자신의 피부를 올바르게 이해하고, 스스로 관리하는 습관을 형성할 수 있는 새로운 스킨케어 경험을 제공한다.",
     url: "https://nuro-project.vercel.app/",
     thumbnail: "/assets/works/ux/UX_NURO_00.jpg",
@@ -67,7 +67,7 @@ export const works: Work[] = [
 
   // ── XR ──────────────────────────────────────────────────────────────────
   {
-    id: 4, name: "십이동행, 열두 개의 마음", members: ["김도연", "김수민", "서유정"], category: "XR",
+    id: 4, name: "십이동행, 열두 개의 마음", members: ["김도연 23", "김수민", "서유정"], category: "XR",
     description: "고민을 감정의 씨앗으로 시각화하고, 십이지신의 수호 아래 변화시키는 XR 감정 치유 콘텐츠이다. 사용자는 고민의 성격에 따라 열두 수호신 중 하나와 연결되며, VR 공간에서 씨앗을 돌보고 감정이 변화하는 과정을 체험한다. 이를 통해 말로 표현하기 어려운 고민을 시각적 경험으로 전환하고, 전통적 상징과 몰입형 기술을 결합한 새로운 감정 치유 방식을 제안한다.",
     thumbnail: "/assets/works/xr/XR_십이지신_00.jpg",
     images: ["/assets/works/xr/XR_십이지신_01.png","/assets/works/xr/XR_십이지신_02.png","/assets/works/xr/XR_십이지신_03.png","/assets/works/xr/XR_십이지신_04.jpg","/assets/works/xr/XR_십이지신_05.png","/assets/works/xr/XR_십이지신_06.png","/assets/works/xr/XR_십이지신_07.png","/assets/works/xr/XR_십이지신_08.png"],
@@ -127,7 +127,7 @@ export const works: Work[] = [
 
   // ── MOTION ──────────────────────────────────────────────────────────────
   {
-    id: 16, name: "Onit", members: ["김도연", "현명화"], category: "MOTION",
+    id: 16, name: "Onit", members: ["김도연 22", "현명화"], category: "MOTION",
     description: "Onit은 음악을 들으며 느낀 감정과 순간을 AI 기반의 앨범 아트워크로 시각화하는 플랫폼이다. 사용자는 음악과 함께한 기억을 자신만의 비주얼로 기록하고, 하나의 작품처럼 보관하며 감정을 새로운 형태로 경험할 수 있다. 브랜드 필름은 일상의 순간들이 음악을 통해 하나의 아트워크로 완성되는 여정을 담아낸다.",
     thumbnail: "/assets/works/mo/MO_Onit_00.jpg",
     images: [],
