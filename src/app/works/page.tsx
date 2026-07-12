@@ -117,7 +117,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
           display: "flex",
           alignItems: "center",
           gap: "clamp(8px, 0.83vw, 12px)",
-          marginTop: "clamp(20px, 3.06vw, 44px)",
+          marginTop: "10px",
         }}>
           {(work.members ?? []).map((name, i) => (
             <div
@@ -143,28 +143,6 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
           ))}
         </div>
 
-        {/* 프리뷰 영역 */}
-        {/* 상세 이미지 */}
-        {work.images && work.images.length > 0 && (
-          <div style={{
-            marginTop: "clamp(24px, 4.31vw, 62px)",
-            width: "min(568px, calc(100% - clamp(32px, 11.11vw, 160px)))",
-            display: "flex",
-            flexDirection: "column",
-            gap: "clamp(8px, 1.11vw, 16px)",
-            flexShrink: 0,
-          }}>
-            {work.images.map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt={`${work.name || "작품"} ${i + 1}`}
-                style={{ width: "100%", height: "auto", borderRadius: "clamp(8px, 1.11vw, 16px)", display: "block" }}
-              />
-            ))}
-          </div>
-        )}
-
         {/* 작품 설명 */}
         {work.description && (
           <p style={{
@@ -177,7 +155,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
             width: "min(568px, calc(100% - clamp(32px, 11.11vw, 160px)))",
             padding: "0 10px",
             boxSizing: "border-box",
-            marginTop: "clamp(24px, 5.56vw, 80px)",
+            marginTop: "33px",
           }}>
             {work.description}
           </p>
@@ -203,6 +181,27 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
           >
             {work.url}
           </a>
+        )}
+
+        {/* 상세 이미지 */}
+        {work.images && work.images.length > 0 && (
+          <div style={{
+            marginTop: "clamp(24px, 4.31vw, 62px)",
+            width: "min(810px, calc(100% - clamp(32px, 11.11vw, 160px)))",
+            display: "flex",
+            flexDirection: "column",
+            gap: "clamp(8px, 1.11vw, 16px)",
+            flexShrink: 0,
+          }}>
+            {work.images.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`${work.name || "작품"} ${i + 1}`}
+                style={{ width: "100%", height: "auto", borderRadius: "clamp(8px, 1.11vw, 16px)", display: "block" }}
+              />
+            ))}
+          </div>
         )}
 
         {/* 푸터 */}
@@ -259,15 +258,25 @@ function WorksContent() {
     setSelectedWork(work);
     history.pushState({ workModal: work.id }, "");
   };
-  const closeWork = () => { history.back(); };
+  const closeWork = () => { setSelectedWork(null); };
 
   useEffect(() => {
-    const onPopState = () => setSelectedWork(null);
+    const onPopState = (e: PopStateEvent) => {
+      if (e.state?.workModal) setSelectedWork(null);
+    };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
-  const filtered = works.filter((w) => w.category === activeFilter);
+  const [filtered, setFiltered] = useState(() => {
+    const arr = works.filter((w) => w.category === "XR");
+    return [...arr].sort(() => Math.random() - 0.5);
+  });
+
+  useEffect(() => {
+    const arr = works.filter((w) => w.category === activeFilter);
+    setFiltered([...arr].sort(() => Math.random() - 0.5));
+  }, [activeFilter]);
 
   useEffect(() => {
     setVisibleIds(new Set());
