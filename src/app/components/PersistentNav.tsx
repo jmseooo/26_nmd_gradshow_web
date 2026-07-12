@@ -27,6 +27,7 @@ export default function PersistentNav() {
     : (PATH_TO_ITEM[pathname] ?? "거점");
 
   const [navHidden, setNavHidden] = useState(false);
+  const [workModalOpen, setWorkModalOpen] = useState(false);
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -39,6 +40,14 @@ export default function PersistentNav() {
     setNavHidden(false);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const check = () => setWorkModalOpen(document.body.hasAttribute("data-work-modal"));
+    check();
+    const observer = new MutationObserver(check);
+    observer.observe(document.body, { attributes: true, attributeFilter: ["data-work-modal"] });
+    return () => observer.disconnect();
   }, []);
 
   useLayoutEffect(() => {
@@ -77,7 +86,7 @@ export default function PersistentNav() {
         paddingLeft: "clamp(16px, 5.56vw, 80px)",
         paddingRight: "clamp(16px, 5.56vw, 80px)",
         paddingBottom: 0,
-        transform: navHidden ? "translateY(-110%)" : "translateY(0)",
+        transform: (navHidden || workModalOpen) ? "translateY(-110%)" : "translateY(0)",
       }}
     >
       <NavBar

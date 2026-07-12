@@ -271,6 +271,16 @@ function WorksContent() {
     }
   }, [searchParams, pathname]);
 
+  // 모달 열릴 때 nav 숨김 신호
+  useEffect(() => {
+    if (selectedWork) {
+      document.body.setAttribute("data-work-modal", "");
+    } else {
+      document.body.removeAttribute("data-work-modal");
+    }
+    return () => document.body.removeAttribute("data-work-modal");
+  }, [selectedWork]);
+
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
