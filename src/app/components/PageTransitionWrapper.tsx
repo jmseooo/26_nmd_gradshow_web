@@ -11,7 +11,7 @@ export default function PageTransitionWrapper({ children }: { children: ReactNod
   }, [pathname]);
 
   return (
-    <div id="page-wrapper" key={pathname} style={{ animation: "pageFadeIn 200ms ease-out both" }}>
+    <div id="page-wrapper" key={pathname} style={{ animation: "pageFadeIn 280ms ease-out both" }}>
       {children}
     </div>
   );
