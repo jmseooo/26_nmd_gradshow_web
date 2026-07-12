@@ -38,12 +38,26 @@ export default function NetworkGraphCanvas() {
     }
 
     const drag = { active: false, startX: 0, startY: 0, baseNx: 0, baseNy: 0.12, accNx: 0, accNy: 0.12 };
+    let autoOffset = 0; // auto-rotation accumulator (merged into accNx on drag start)
+
+    // Auto-rotation loop — pauses during drag, resumes after
+    let autoRafId: number;
+    const autoLoop = () => {
+      if (!drag.active) {
+        autoOffset += 0.00035;
+        g.setRotationNormalized(drag.accNx + autoOffset, drag.accNy);
+      }
+      autoRafId = requestAnimationFrame(autoLoop);
+    };
+    autoRafId = requestAnimationFrame(autoLoop);
 
     const handleSelectStart = (e: Event) => {
       if (drag.active) e.preventDefault();
     };
 
     const handleDown = (e: PointerEvent) => {
+      drag.accNx += autoOffset; // absorb auto-rotation so drag continues from visual position
+      autoOffset = 0;
       drag.startX = e.clientX;
       drag.startY = e.clientY;
       drag.baseNx = drag.accNx;
@@ -83,6 +97,7 @@ export default function NetworkGraphCanvas() {
     document.addEventListener("selectstart", handleSelectStart);
 
     return () => {
+      cancelAnimationFrame(autoRafId);
       g.destroy();
       graphRef.current = null;
       downTarget.removeEventListener("pointerdown", handleDown as EventListener);
