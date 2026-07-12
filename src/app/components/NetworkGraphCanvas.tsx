@@ -61,7 +61,7 @@ export default function NetworkGraphCanvas() {
       }
       const rect = canvas.getBoundingClientRect();
       const nx = drag.baseNx + (e.clientX - drag.startX) / rect.width;
-      const ny = Math.max(-0.5, Math.min(0.5, drag.baseNy + (e.clientY - drag.startY) / rect.height));
+      const ny = drag.baseNy + (e.clientY - drag.startY) / rect.height;
       drag.accNx = nx;
       drag.accNy = ny;
       g.setRotationNormalized(nx, ny);
