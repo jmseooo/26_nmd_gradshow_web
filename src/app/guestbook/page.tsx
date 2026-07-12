@@ -29,8 +29,10 @@ const POINT_BORDERS = ["#f49aaa", "#8888d8", "#f5b84a", "#7ec840"];
 const getCardStyle = (id: number): { bg: string; border?: string } => {
   const row = Math.floor(id / 5);
   const col = id % 5;
-  if (col === (row * 3) % 5)
-    return { bg: POINT_COLORS[row % 4], border: POINT_BORDERS[row % 4] };
+  const p1 = (row * 3) % 5;
+  const p2 = (row * 3 + 2) % 5;
+  if (col === p1) return { bg: POINT_COLORS[row % 4],       border: POINT_BORDERS[row % 4] };
+  if (col === p2) return { bg: POINT_COLORS[(row + 2) % 4], border: POINT_BORDERS[(row + 2) % 4] };
   return { bg: "#e6f5f9" };
 };
 
