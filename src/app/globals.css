@@ -94,6 +94,12 @@
   --radius-5xl: 180px;
 }
 
+/* ─── Page Transition ───────────────────────────────────────────────────── */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
 /* ─── Guestbook Input ───────────────────────────────────────────────────── */
 input.guestbook::placeholder {
   color: #828282;
