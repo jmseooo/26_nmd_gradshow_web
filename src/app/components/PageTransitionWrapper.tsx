@@ -34,19 +34,19 @@ export default function PageTransitionWrapper({ children }: { children: ReactNod
     const pi = getTabIdx(prev);
     const ci = getTabIdx(pathname);
     const dx = prev && prev !== pathname && pi !== -1 && ci !== -1
-      ? (ci > pi ? 50 : ci < pi ? -50 : 0)
+      ? (ci > pi ? 18 : ci < pi ? -18 : 0)
       : 0;
 
     // opacity는 SSR HTML에 포함되지 않도록 useLayoutEffect(클라이언트 전용)에서만 설정
     el.style.opacity = "0";
-    el.style.transform = dx ? `translateX(${dx}px)` : "translateY(-12px)";
+    el.style.transform = dx ? `translateX(${dx}px)` : "translateY(-6px)";
 
     const anim = el.animate(
       [
-        { opacity: 0, transform: dx ? `translateX(${dx}px)` : "translateY(-12px)" },
-        { opacity: 1, transform: dx ? "translateX(0)" : "translateY(0)" },
+        { opacity: 0, transform: dx ? `translateX(${dx}px)` : "translateY(-6px)" },
+        { opacity: 1, transform: "none" },
       ],
-      { duration: 560, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
+      { duration: 240, easing: "ease-out", fill: "forwards" }
     );
     anim.onfinish = () => {
       anim.cancel();

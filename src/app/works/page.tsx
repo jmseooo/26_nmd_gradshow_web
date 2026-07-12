@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, Suspense } from "react";
+import { useState, useEffect, useRef, Suspense, useCallback } from "react";
 import type { CSSProperties } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { works, type Work } from "@/lib/works-data";
@@ -48,7 +48,6 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const goToDesigner = (designerId: number) => {
-    window.history.replaceState(null, "", `/works?id=${work.id}`);
     router.push(`/student/${designerId}`);
   };
 
@@ -237,24 +236,36 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
 /* ─── 페이지 ──────────────────────────────────────────────────── */
 function WorksContent() {
   const searchParams = useSearchParams();
-
-  const initialWork = (() => {
-    const idParam = searchParams.get("id");
-    if (idParam) return works.find((w) => w.id === Number(idParam)) ?? null;
-    return null;
-  })();
+  const router = useRouter();
 
   const [activeFilter, setActiveFilter] = useState(() => {
-    if (initialWork) return initialWork.category;
+    const idParam = searchParams.get("id");
+    if (idParam) {
+      const w = works.find((w) => w.id === Number(idParam));
+      if (w) return w.category;
+    }
     const cat = searchParams.get("category");
     return filterTabs.some((t) => t.label === cat) ? cat! : "XR";
   });
 
+  const [selectedWork, setSelectedWork] = useState<Work | null>(() => {
+    const idParam = searchParams.get("id");
+    return idParam ? (works.find((w) => w.id === Number(idParam)) ?? null) : null;
+  });
+
+  // URL 변화(back/forward 포함)로 모달 상태 동기화
   useEffect(() => {
-    if (searchParams.get("id")) return;
-    const cat = searchParams.get("category");
-    setActiveFilter(filterTabs.some((t) => t.label === cat) ? cat! : "XR");
+    const idParam = searchParams.get("id");
+    if (idParam) {
+      const w = works.find((w) => w.id === Number(idParam));
+      if (w) { setSelectedWork(w); setActiveFilter(w.category); }
+    } else {
+      setSelectedWork(null);
+      const cat = searchParams.get("category");
+      if (cat && filterTabs.some((t) => t.label === cat)) setActiveFilter(cat);
+    }
   }, [searchParams]);
+
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -264,29 +275,23 @@ function WorksContent() {
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
-  const [selectedWork, setSelectedWork] = useState<Work | null>(initialWork);
+
   const [visibleIds, setVisibleIds] = useState<Set<number>>(new Set());
   const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const savedScrollY = useRef(0);
 
-  const openWork = (work: Work) => {
+  const openWork = useCallback((work: Work) => {
     savedScrollY.current = window.scrollY;
     setSelectedWork(work);
-    history.pushState({ workModal: work.id }, "");
-  };
-  const closeWork = () => {
-    setSelectedWork(null);
-    requestAnimationFrame(() => window.scrollTo(0, savedScrollY.current));
-  };
+    router.push(`/works?id=${work.id}&category=${activeFilter}`, { scroll: false });
+  }, [router, activeFilter]);
 
-  useEffect(() => {
-    const onPopState = (e: PopStateEvent) => {
-      if (e.state?.workModal) closeWork();
-    };
-    window.addEventListener("popstate", onPopState);
-    return () => window.removeEventListener("popstate", onPopState);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const closeWork = useCallback(() => {
+    const scroll = savedScrollY.current;
+    setSelectedWork(null);
+    router.replace(`/works?category=${activeFilter}`, { scroll: false });
+    requestAnimationFrame(() => window.scrollTo(0, scroll));
+  }, [router, activeFilter]);
 
   const [filtered, setFiltered] = useState(() =>
     works.filter((w) => w.category === "XR")
