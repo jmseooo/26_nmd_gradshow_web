@@ -119,7 +119,7 @@ export class NetworkGraph {
         x: 0.5 + Math.cos(ang) * rad * (0.95 + rnd() * 0.1),
         y: 0.5 + Math.sin(ang) * rad * (0.78 + rnd() * 0.1),
       });
-      this.rNorm.push(isHub ? 22 + rnd() * 10 : 12 + rnd() * 9);
+      this.rNorm.push(isHub ? 16 + rnd() * 6 : 12 + rnd() * 9);
       this.colorKeys.push(isHub
         ? (rnd() < 0.7 ? 'teal' : 'green')
         : this.PALETTE[(rnd() * this.PALETTE.length) | 0]);
