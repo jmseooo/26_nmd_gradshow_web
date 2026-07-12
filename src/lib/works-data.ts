@@ -39,7 +39,7 @@ export const works: Work[] = [
     images: [],
   },
   {
-    id: 15, name: "NURO", members: ["김도연 22", "윤내경"], category: "UX",
+    id: 15, name: "NURO", members: ["김도연 23", "윤내경"], category: "UX",
     description: "NURO는 AI 피부 분석과 성분 정보를 기반으로 사용자에게 최적화된 스킨케어 루틴을 제안한다. 사용자는 현재 피부 상태를 확인하고, 흩어진 성분 정보를 자신의 피부와 연결해 이해하며 지금 필요한 성분과 제품을 쉽게 파악할 수 있다. 또한 매일의 루틴과 피부 변화를 기록하고 비교하며 관리 과정을 이어갈 수 있다. 이를 통해 사용자가 자신의 피부를 올바르게 이해하고, 스스로 관리하는 습관을 형성할 수 있는 새로운 스킨케어 경험을 제공한다.",
     url: "https://nuro-project.vercel.app/",
     thumbnail: "/assets/works/ux/UX_NURO_00.jpg",
