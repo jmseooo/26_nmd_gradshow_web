@@ -67,7 +67,6 @@ export default function PersistentNav() {
     ro.observe(el);
     return () => {
       ro.disconnect();
-      document.body.style.paddingTop = "";
     };
   }, [pathname]);
 
