@@ -43,26 +43,19 @@ const filterTabs = [
 
 /* ─── 작품 상세 모달 ──────────────────────────────────────────── */
 function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
-  useEffect(() => {
-    const prevBody = document.body.style.overflow;
-    const prevHtml = document.documentElement.style.overflow;
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prevBody;
-      document.documentElement.style.overflow = prevHtml;
-    };
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
     <div
       style={{
-        position: "fixed",
-        inset: 0,
+        position: "relative",
+        zIndex: 101,
         backgroundColor: "white",
-        zIndex: 100,
-        overflowY: "auto",
+        minHeight: "100vh",
+        marginTop: "calc(-1 * var(--nav-height, 0px))",
         fontFamily: "Pretendard, sans-serif",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       {/* 닫기 버튼 */}
@@ -76,7 +69,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
           border: "none",
           cursor: "pointer",
           padding: 0,
-          zIndex: 101,
+          zIndex: 102,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -97,6 +90,8 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
           flexDirection: "column",
           alignItems: "center",
           paddingTop: "clamp(60px, 7.01vw, 101px)",
+          paddingBottom: "clamp(40px, 5.56vw, 80px)",
+          flex: 1,
         }}
       >
         {/* 작품명 */}
@@ -184,7 +179,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
         )}
 
         {/* 상세 이미지 */}
-        {work.images && work.images.length > 0 && (
+        {(work.thumbnail || (work.images && work.images.length > 0)) && (
           <div style={{
             marginTop: "clamp(24px, 4.31vw, 62px)",
             width: "min(810px, calc(100% - clamp(32px, 11.11vw, 160px)))",
@@ -193,7 +188,10 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
             gap: "clamp(8px, 1.11vw, 16px)",
             flexShrink: 0,
           }}>
-            {work.images.map((src, i) => (
+            {[
+              ...(work.thumbnail ? [work.thumbnail] : []),
+              ...(work.images ?? []),
+            ].map((src, i) => (
               <img
                 key={i}
                 src={src}
@@ -204,27 +202,28 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
           </div>
         )}
 
-        {/* 푸터 */}
-        <footer
-          className="flex items-center w-full"
-          style={{
-            backgroundColor: "#34b2d5",
-            height: "clamp(72px, 8.13vw, 117px)",
-            padding: "0 clamp(16px, 5.56vw, 80px)",
-            marginTop: "clamp(40px, 5.56vw, 80px)",
-            flexShrink: 0,
-          }}
-        >
-          <div className="flex items-center justify-between w-full flex-wrap" style={{ gap: "clamp(8px, 1.11vw, 16px)" }}>
-            <p className="whitespace-nowrap" style={txt(12, 600, "white")}>
-              2026 Seoul Women&apos;s University. All rights reserved
-            </p>
-            <div className="flex items-center" style={{ gap: "clamp(16px, 2.22vw, 32px)" }}>
-              <a href="https://www.instagram.com/swu_nmd/" target="_blank" rel="noopener noreferrer" className="whitespace-nowrap" style={{ ...txt(12, 600, "white"), textDecoration: "none" }}>@swu_nmd</a>
-            </div>
-          </div>
-        </footer>
       </div>
+
+      {/* 푸터 */}
+      <footer
+        className="flex items-center w-full"
+        style={{
+          backgroundColor: "#34b2d5",
+          height: "clamp(72px, 8.13vw, 117px)",
+          padding: "0 clamp(16px, 5.56vw, 80px)",
+          marginTop: "auto",
+          flexShrink: 0,
+        }}
+      >
+        <div className="flex items-center justify-between w-full flex-wrap" style={{ gap: "clamp(8px, 1.11vw, 16px)" }}>
+          <p className="whitespace-nowrap" style={txt(12, 600, "white")}>
+            2026 Seoul Women&apos;s University. All rights reserved
+          </p>
+          <div className="flex items-center" style={{ gap: "clamp(16px, 2.22vw, 32px)" }}>
+            <a href="https://www.instagram.com/swu_nmd/" target="_blank" rel="noopener noreferrer" className="whitespace-nowrap" style={{ ...txt(12, 600, "white"), textDecoration: "none" }}>@swu_nmd</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
@@ -253,25 +252,30 @@ function WorksContent() {
   const [selectedWork, setSelectedWork] = useState<Work | null>(null);
   const [visibleIds, setVisibleIds] = useState<Set<number>>(new Set());
   const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+  const savedScrollY = useRef(0);
 
   const openWork = (work: Work) => {
+    savedScrollY.current = window.scrollY;
     setSelectedWork(work);
     history.pushState({ workModal: work.id }, "");
   };
-  const closeWork = () => { setSelectedWork(null); };
+  const closeWork = () => {
+    setSelectedWork(null);
+    requestAnimationFrame(() => window.scrollTo(0, savedScrollY.current));
+  };
 
   useEffect(() => {
     const onPopState = (e: PopStateEvent) => {
-      if (e.state?.workModal) setSelectedWork(null);
+      if (e.state?.workModal) closeWork();
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [filtered, setFiltered] = useState(() => {
-    const arr = works.filter((w) => w.category === "XR");
-    return [...arr].sort(() => Math.random() - 0.5);
-  });
+  const [filtered, setFiltered] = useState(() =>
+    works.filter((w) => w.category === "XR")
+  );
 
   useEffect(() => {
     const arr = works.filter((w) => w.category === activeFilter);
@@ -296,11 +300,12 @@ function WorksContent() {
     );
     cardRefs.current.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [activeFilter]);
+  }, [filtered]);
 
   return (
     <div className="bg-white min-h-screen overflow-x-hidden flex flex-col" style={{ fontFamily: "Pretendard, sans-serif", marginTop: "calc(-1 * var(--nav-height, 0px))", paddingTop: "var(--nav-height, 0px)" }}>
 
+      <div style={{ display: selectedWork ? "none" : "contents" }}>
       {/* ── 카테고리 필터 탭 ───────────────────────────── */}
       <div
         className="flex items-center"
@@ -361,13 +366,11 @@ function WorksContent() {
               onMouseLeave={() => setHoveredId(null)}
             >
               {/* 썸네일 */}
-              {work.thumbnail && (
-                <img
-                  src={work.thumbnail}
-                  alt={work.name || ""}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              )}
+              <img
+                src={work.thumbnail ?? "/assets/default-thumbnail.png"}
+                alt={work.name || ""}
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+              />
               {/* 호버 오버레이 */}
               <div
                 className="absolute inset-0 flex items-center justify-center"
@@ -407,6 +410,8 @@ function WorksContent() {
           </div>
         </div>
       </footer>
+
+      </div>{/* end main content */}
 
       {/* ── 작품 상세 모달 ──────────────────────────────── */}
       {selectedWork && (
