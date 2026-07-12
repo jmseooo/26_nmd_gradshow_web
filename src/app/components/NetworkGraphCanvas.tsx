@@ -28,7 +28,7 @@ export default function NetworkGraphCanvas() {
     });
     graphRef.current = g;
     g.start();
-    g.setRotationNormalized(0, 0);
+    g.setRotationNormalized(0, 0.12);
 
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
@@ -37,7 +37,7 @@ export default function NetworkGraphCanvas() {
       return () => { g.destroy(); graphRef.current = null; };
     }
 
-    const drag = { active: false, startX: 0, startY: 0, baseNx: 0, baseNy: 0, accNx: 0, accNy: 0 };
+    const drag = { active: false, startX: 0, startY: 0, baseNx: 0, baseNy: 0.12, accNx: 0, accNy: 0.12 };
 
     const handleSelectStart = (e: Event) => {
       if (drag.active) e.preventDefault();
