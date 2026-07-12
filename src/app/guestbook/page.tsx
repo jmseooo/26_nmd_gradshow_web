@@ -23,13 +23,15 @@ function formatDate(iso: string) {
   return `${yy}.${mm}.${dd}`;
 }
 
-const POINT_COLORS = ["#FFEEF0", "#EEEEFF", "#FFEACA", "#E6F6C3"];
+const POINT_COLORS  = ["#FFD5DC", "#DCDEFF", "#FFE0B0", "#D5F2A8"];
+const POINT_BORDERS = ["#f49aaa", "#8888d8", "#f5b84a", "#7ec840"];
 
-// 위치(i) 대신 id 기준으로 색상 고정 — 비율·패턴·컬러 원래와 동일
-const getCardColor = (id: number) => {
+const getCardStyle = (id: number): { bg: string; border?: string } => {
   const row = Math.floor(id / 5);
   const col = id % 5;
-  return col === (row * 3) % 5 ? POINT_COLORS[row % 4] : "#e6f5f9";
+  if (col === (row * 3) % 5)
+    return { bg: POINT_COLORS[row % 4], border: POINT_BORDERS[row % 4] };
+  return { bg: "#e6f5f9" };
 };
 
 const PAGE_SIZE = 30;
@@ -264,6 +266,7 @@ export default function GuestbookPage() {
             >
               {messages.map((msg) => {
                 const isVisible = visibleIds.has(String(msg.id));
+                const cardStyle = getCardStyle(msg.id);
                 return (
                 <div
                   key={msg.id}
@@ -273,7 +276,8 @@ export default function GuestbookPage() {
                     else cardRefs.current.delete(String(msg.id));
                   }}
                   style={{
-                    backgroundColor: getCardColor(msg.id),
+                    backgroundColor: cardStyle.bg,
+                    borderTop: cardStyle.border ? `2px solid ${cardStyle.border}` : undefined,
                     aspectRatio: "1",
                     overflow: "hidden",
                     display: "flex",
