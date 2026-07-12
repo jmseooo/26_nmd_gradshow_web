@@ -119,7 +119,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
           gap: "clamp(8px, 0.83vw, 12px)",
           marginTop: "clamp(20px, 3.06vw, 44px)",
         }}>
-          {["팀원명", "팀원명", "팀원명", "팀원명"].map((name, i) => (
+          {(work.members ?? []).map((name, i) => (
             <div
               key={i}
               style={{
@@ -144,15 +144,26 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
         </div>
 
         {/* 프리뷰 영역 */}
-        <div style={{
-          marginTop: "clamp(24px, 4.31vw, 62px)",
-          width: "min(568px, calc(100% - clamp(32px, 11.11vw, 160px)))",
-          aspectRatio: "568 / 320",
-          backgroundColor: "#f3f3f3",
-          borderRadius: "clamp(8px, 1.11vw, 16px)",
-          overflow: "hidden",
-          flexShrink: 0,
-        }} />
+        {/* 상세 이미지 */}
+        {work.images && work.images.length > 0 && (
+          <div style={{
+            marginTop: "clamp(24px, 4.31vw, 62px)",
+            width: "min(568px, calc(100% - clamp(32px, 11.11vw, 160px)))",
+            display: "flex",
+            flexDirection: "column",
+            gap: "clamp(8px, 1.11vw, 16px)",
+            flexShrink: 0,
+          }}>
+            {work.images.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`${work.name || "작품"} ${i + 1}`}
+                style={{ width: "100%", height: "auto", borderRadius: "clamp(8px, 1.11vw, 16px)", display: "block" }}
+              />
+            ))}
+          </div>
+        )}
 
         {/* 작품 설명 */}
         <p style={{
@@ -330,6 +341,14 @@ function WorksContent() {
               onMouseEnter={() => setHoveredId(work.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
+              {/* 썸네일 */}
+              {work.thumbnail && (
+                <img
+                  src={work.thumbnail}
+                  alt={work.name || ""}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              )}
               {/* 호버 오버레이 */}
               <div
                 className="absolute inset-0 flex items-center justify-center"
@@ -340,7 +359,7 @@ function WorksContent() {
                   pointerEvents: "none",
                 }}
               >
-                <p style={{ ...txt(24, 600, "white"), textAlign: "center" }}>
+                <p style={{ ...txt(16, 600, "white"), textAlign: "center" }}>
                   {work.name || "작품명"}
                 </p>
               </div>
