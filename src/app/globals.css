@@ -94,6 +94,17 @@
   --radius-5xl: 180px;
 }
 
+/* ─── Skeleton Shimmer ──────────────────────────────────────────────────── */
+@keyframes sk-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.sk-img {
+  background: linear-gradient(90deg, #e6f5f9 25%, #d0eaf3 50%, #e6f5f9 75%);
+  background-size: 200% 100%;
+  animation: sk-shimmer 1.6s ease infinite;
+}
+
 /* ─── Page Transition ───────────────────────────────────────────────────── */
 @keyframes pageFadeIn {
   from { opacity: 0; transform: translateY(8px); }

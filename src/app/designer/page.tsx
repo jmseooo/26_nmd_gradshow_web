@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { designers } from "@/lib/designers";
 
 function txt(size: number, weight: number, color: string, tracking = -0.02): CSSProperties {
@@ -65,10 +66,10 @@ export default function DesignerPage() {
       {/* 배경 */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0, opacity: 0.4 }}>
         <div className="absolute w-full" style={{ top: "-278.92px", height: "1444.826px" }}>
-          <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" />
+          <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         </div>
         <div className="absolute w-full" style={{ top: "1166px", height: "1444.826px" }}>
-          <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" />
+          <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         </div>
       </div>
 
@@ -117,18 +118,27 @@ export default function DesignerPage() {
                 onMouseEnter={() => router.prefetch(`/student/${d.id}`)}
               >
                 <div
+                  className="sk-img"
                   style={{
+                    position: "relative",
                     width: "100%",
                     aspectRatio: "248.317 / 330",
                     borderRadius: "clamp(9px, 1.25vw, 18px)",
                     overflow: "hidden",
                   }}
+                  ref={(el) => { if (el) (el as HTMLElement).dataset.photoId = String(d.id); }}
                 >
-                  <img
+                  <Image
                     src={`/assets/students/${d.photo}`}
                     alt={d.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    loading={idx < 4 ? "eager" : "lazy"}
+                    fill
+                    sizes="(max-width: 767px) 50vw, 25vw"
+                    style={{ objectFit: "cover" }}
+                    priority={idx < 4}
+                    onLoad={(e) => {
+                      const wrap = e.currentTarget.closest(".sk-img") as HTMLElement | null;
+                      wrap?.classList.remove("sk-img");
+                    }}
                   />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0px" }}>

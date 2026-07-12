@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { designers } from "@/lib/designers";
 import { works } from "@/lib/works-data";
 import { notFound } from "next/navigation";
@@ -59,7 +60,7 @@ export default async function StudentPage({
       {/* ── 배경 ──────────────────────────────────────────── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0, opacity: 0.4 }}>
         <div className="absolute w-full" style={{ top: "-278.92px", height: "1444.826px" }}>
-          <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" />
+          <img alt="" src="/assets/hero-bg1.svg" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         </div>
       </div>
 
@@ -148,6 +149,7 @@ export default async function StudentPage({
           <div className="student-left-photo">
             <div
               style={{
+                position: "relative",
                 width: "100%",
                 aspectRatio: "3 / 4",
                 backgroundColor: "#e6f5f9",
@@ -155,10 +157,13 @@ export default async function StudentPage({
                 overflow: "hidden",
               }}
             >
-              <img
+              <Image
                 src={`/assets/students/${designer.photo}`}
                 alt={designer.name}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                fill
+                sizes="(max-width: 767px) 35vw, 17vw"
+                style={{ objectFit: "cover" }}
+                priority
               />
             </div>
           </div>
@@ -245,6 +250,7 @@ export default async function StudentPage({
                       <img
                         src={work.thumbnail}
                         alt={work.name}
+                        loading="lazy"
                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                       />
                     )}

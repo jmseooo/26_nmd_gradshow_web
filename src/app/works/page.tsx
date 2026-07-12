@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, Suspense, useCallback } from "react";
 import type { CSSProperties } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import Image from "next/image";
 import { works, type Work } from "@/lib/works-data";
 import { designers } from "@/lib/designers";
 
@@ -201,6 +202,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
                 key={i}
                 src={src}
                 alt={`${work.name || "작품"} ${i + 1}`}
+                loading={i === 0 ? "eager" : "lazy"}
                 style={{ width: "100%", height: "auto", borderRadius: "clamp(8px, 1.11vw, 16px)", display: "block" }}
               />
             ))}
@@ -237,6 +239,7 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
 function WorksContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
 
   const [activeFilter, setActiveFilter] = useState(() => {
     const idParam = searchParams.get("id");
@@ -254,7 +257,9 @@ function WorksContent() {
   });
 
   // URL 변화(back/forward 포함)로 모달 상태 동기화
+  // pathname 가드: /works를 벗어나는 순간 effect 무시 (모달 flash 방지)
   useEffect(() => {
+    if (pathname !== "/works") return;
     const idParam = searchParams.get("id");
     if (idParam) {
       const w = works.find((w) => w.id === Number(idParam));
@@ -264,7 +269,7 @@ function WorksContent() {
       const cat = searchParams.get("category");
       if (cat && filterTabs.some((t) => t.label === cat)) setActiveFilter(cat);
     }
-  }, [searchParams]);
+  }, [searchParams, pathname]);
 
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -371,9 +376,8 @@ function WorksContent() {
                 if (el) cardRefs.current.set(work.id, el);
                 else cardRefs.current.delete(work.id);
               }}
-              className="relative overflow-hidden"
+              className="relative overflow-hidden sk-img"
               style={{
-                backgroundColor: "#f3f3f3",
                 borderRadius: "clamp(12px, 1.67vw, 24px)",
                 aspectRatio: "408 / 229.527",
                 cursor: "pointer",
@@ -386,10 +390,13 @@ function WorksContent() {
               onMouseLeave={() => setHoveredId(null)}
             >
               {/* 썸네일 */}
-              <img
+              <Image
                 src={work.thumbnail ?? "/assets/card_web.png"}
                 alt={work.name || ""}
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                fill
+                sizes="(max-width: 767px) calc(100vw - 32px), calc((100vw - 160px) / 3)"
+                style={{ objectFit: "cover" }}
+                onLoad={() => cardRefs.current.get(work.id)?.classList.remove("sk-img")}
               />
               {/* 호버 오버레이 */}
               <div
