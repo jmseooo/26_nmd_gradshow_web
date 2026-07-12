@@ -60,7 +60,7 @@ export default function NetworkGraphCanvas() {
         return;
       }
       const rect = canvas.getBoundingClientRect();
-      const nx = Math.max(-0.5, Math.min(0.5, drag.baseNx + (e.clientX - drag.startX) / rect.width));
+      const nx = drag.baseNx + (e.clientX - drag.startX) / rect.width;
       const ny = Math.max(-0.5, Math.min(0.5, drag.baseNy + (e.clientY - drag.startY) / rect.height));
       drag.accNx = nx;
       drag.accNy = ny;
