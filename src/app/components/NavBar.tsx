@@ -49,26 +49,23 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
     return () => { window.removeEventListener("resize", debouncedCheck); clearTimeout(timer); };
   }, [compact]);
 
-  // 슬라이딩 pill 위치 계산 (CSS calc — 레이아웃 측정 불필요)
-  const activeIndex  = allItems.indexOf(activeItem);
-  const slidingPillBg = activeItem === "거점" && !isLight ? "#aedce9" : "#38b3d6";
-  const pillTotalW   = `calc(${pillW} + 2 * ${pillPadH})`;
-  const pillTranslateX = `calc(${activeIndex} * (${pillW} + 2 * ${pillPadH} + ${navGap}))`;
-
   // 가로 레이아웃 nav 아이템
   const navItems = allItems.map((item) => {
-    const isActive = item === activeItem;
-    const pillText = isActive && item === "거점" && !isLight ? "#38b3d6" : "#f7f7f7";
+    const isActive   = item === activeItem;
+    const isPillSlot = true;
+    const pillBg     = isActive && item === "거점" && !isLight ? "#aedce9" : "#38b3d6";
+    const pillText   = isActive && item === "거점" && !isLight ? "#38b3d6" : "#f7f7f7";
     return (
       <div
         key={item}
         className="flex items-center justify-center"
         style={{
-          position: "relative",
-          zIndex: 1,
-          width: pillW,
-          padding: `${pillPadV} ${pillPadH}`,
+          ...(isPillSlot
+            ? { width: pillW, padding: `${pillPadV} ${pillPadH}` }
+            : { padding: `${pillPadV} ${textPadH}` }),
           borderRadius: "100px",
+          backgroundColor: isActive ? pillBg : "transparent",
+          transition: `background-color ${T}`,
           flexShrink: 0,
         }}
         onClick={(e) => e.stopPropagation()}
@@ -285,24 +282,7 @@ export default function NavBar({ activeItem = "거점", isLight = true, compact 
                 />
               </div>
             )}
-            <div className="flex items-center flex-shrink-0" style={{ gap: navGap, marginLeft: "auto", position: "relative" }}>
-              {/* 슬라이딩 pill */}
-              <div
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  width: pillTotalW,
-                  borderRadius: "100px",
-                  backgroundColor: slidingPillBg,
-                  transform: `translateX(${pillTranslateX})`,
-                  transition: `transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background-color ${T}`,
-                  pointerEvents: "none",
-                  zIndex: 0,
-                }}
-              />
+            <div className="flex items-center flex-shrink-0" style={{ gap: navGap, marginLeft: "auto" }}>
               {navItems}
             </div>
           </div>
