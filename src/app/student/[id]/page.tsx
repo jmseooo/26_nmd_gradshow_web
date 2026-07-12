@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Link from "next/link";
 import { designers } from "@/lib/designers";
 import { works } from "@/lib/works-data";
 import { notFound } from "next/navigation";
@@ -229,23 +230,26 @@ export default async function StudentPage({
           ) : (
             designerWorks.map((work) => (
               <div key={work.id}>
-                <div
-                  style={{
-                    width: "100%",
-                    aspectRatio: "684 / 385",
-                    backgroundColor: "#f3f3f3",
-                    borderRadius: "clamp(10px, 1.67vw, 24px)",
-                    overflow: "hidden",
-                  }}
-                >
-                  {work.thumbnail && (
-                    <img
-                      src={work.thumbnail}
-                      alt={work.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  )}
-                </div>
+                <Link href={`/works?id=${work.id}`} style={{ display: "block", textDecoration: "none" }}>
+                  <div
+                    style={{
+                      width: "100%",
+                      aspectRatio: "684 / 385",
+                      backgroundColor: "#f3f3f3",
+                      borderRadius: "clamp(10px, 1.67vw, 24px)",
+                      overflow: "hidden",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {work.thumbnail && (
+                      <img
+                        src={work.thumbnail}
+                        alt={work.name}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    )}
+                  </div>
+                </Link>
                 <div style={{ marginTop: "clamp(8px, 0.83vw, 12px)", display: "flex", alignItems: "center", gap: "clamp(8px, 0.83vw, 12px)" }}>
                   <span
                     style={{

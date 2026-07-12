@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef, Suspense } from "react";
 import type { CSSProperties } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { works, type Work } from "@/lib/works-data";
+import { designers } from "@/lib/designers";
 
 /* ─── 카테고리 컬러 맵 ────────────────────────────────────────── */
 const categoryColor: Record<string, string> = {
@@ -114,16 +116,9 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
           gap: "clamp(8px, 0.83vw, 12px)",
           marginTop: "10px",
         }}>
-          {(work.members ?? []).map((name, i) => (
-            <div
-              key={i}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "6px 2px",
-              }}
-            >
+          {(work.members ?? []).map((name, i) => {
+            const designer = designers.find((d) => d.name === name);
+            const nameEl = (
               <p style={{
                 fontSize: "clamp(12px, 1.11vw, 16px)",
                 fontWeight: 500,
@@ -132,10 +127,23 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
                 lineHeight: 1.5,
                 whiteSpace: "nowrap",
               }}>
-                {name}
+                {name.replace(/ \d{2}$/, "")}
               </p>
-            </div>
-          ))}
+            );
+            return designer ? (
+              <Link
+                key={i}
+                href={`/student/${designer.id}`}
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "6px 2px", textDecoration: "none" }}
+              >
+                {nameEl}
+              </Link>
+            ) : (
+              <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "6px 2px" }}>
+                {nameEl}
+              </div>
+            );
+          })}
         </div>
 
         {/* 작품 설명 */}
@@ -231,7 +239,15 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
 /* ─── 페이지 ──────────────────────────────────────────────────── */
 function WorksContent() {
   const searchParams = useSearchParams();
+
+  const initialWork = (() => {
+    const idParam = searchParams.get("id");
+    if (idParam) return works.find((w) => w.id === Number(idParam)) ?? null;
+    return null;
+  })();
+
   const [activeFilter, setActiveFilter] = useState(() => {
+    if (initialWork) return initialWork.category;
     const cat = searchParams.get("category");
     return filterTabs.some((t) => t.label === cat) ? cat! : "XR";
   });
@@ -249,7 +265,7 @@ function WorksContent() {
     mq.addEventListener("change", handler);
     return () => mq.removeEventListener("change", handler);
   }, []);
-  const [selectedWork, setSelectedWork] = useState<Work | null>(null);
+  const [selectedWork, setSelectedWork] = useState<Work | null>(initialWork);
   const [visibleIds, setVisibleIds] = useState<Set<number>>(new Set());
   const cardRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const savedScrollY = useRef(0);
