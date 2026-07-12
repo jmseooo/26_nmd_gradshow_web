@@ -395,6 +395,7 @@ function WorksContent() {
                 alt={work.name || ""}
                 fill
                 sizes="(max-width: 767px) calc(100vw - 32px), calc((100vw - 160px) / 3)"
+                quality={92}
                 style={{ objectFit: "cover" }}
                 onLoad={() => cardRefs.current.get(work.id)?.classList.remove("sk-img")}
               />
