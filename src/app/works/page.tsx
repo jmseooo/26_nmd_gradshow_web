@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef, Suspense } from "react";
 import type { CSSProperties } from "react";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
 import { works, type Work } from "@/lib/works-data";
 import { designers } from "@/lib/designers";
 
@@ -45,7 +44,13 @@ const filterTabs = [
 
 /* ─── 작품 상세 모달 ──────────────────────────────────────────── */
 function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
+  const router = useRouter();
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const goToDesigner = (designerId: number) => {
+    window.history.replaceState(null, "", `/works?id=${work.id}`);
+    router.push(`/student/${designerId}`);
+  };
 
   return (
     <div
@@ -118,29 +123,22 @@ function WorkModal({ work, onClose }: { work: Work; onClose: () => void }) {
         }}>
           {(work.members ?? []).map((name, i) => {
             const designer = designers.find((d) => d.name === name);
-            const nameEl = (
-              <p style={{
-                fontSize: "clamp(12px, 1.11vw, 16px)",
-                fontWeight: 500,
-                color: "black",
-                letterSpacing: "-0.32px",
-                lineHeight: 1.5,
-                whiteSpace: "nowrap",
-              }}>
-                {name.replace(/ \d{2}$/, "")}
-              </p>
-            );
+            const displayName = name.replace(/ \d{2}$/, "");
             return designer ? (
-              <Link
+              <button
                 key={i}
-                href={`/student/${designer.id}`}
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "6px 2px", textDecoration: "none" }}
+                onClick={() => goToDesigner(designer.id)}
+                style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", padding: "6px 2px" }}
               >
-                {nameEl}
-              </Link>
+                <p style={{ fontSize: "clamp(12px, 1.11vw, 16px)", fontWeight: 500, color: "black", letterSpacing: "-0.32px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
+                  {displayName}
+                </p>
+              </button>
             ) : (
               <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "6px 2px" }}>
-                {nameEl}
+                <p style={{ fontSize: "clamp(12px, 1.11vw, 16px)", fontWeight: 500, color: "black", letterSpacing: "-0.32px", lineHeight: 1.5, whiteSpace: "nowrap" }}>
+                  {displayName}
+                </p>
               </div>
             );
           })}
@@ -253,6 +251,7 @@ function WorksContent() {
   });
 
   useEffect(() => {
+    if (searchParams.get("id")) return;
     const cat = searchParams.get("category");
     setActiveFilter(filterTabs.some((t) => t.label === cat) ? cat! : "XR");
   }, [searchParams]);
