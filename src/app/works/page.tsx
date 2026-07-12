@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, Suspense, useCallback } from "react";
 import type { CSSProperties } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import Image from "next/image";
 import { works, type Work } from "@/lib/works-data";
 import { designers } from "@/lib/designers";
 
@@ -400,13 +399,10 @@ function WorksContent() {
               onMouseLeave={() => setHoveredId(null)}
             >
               {/* 썸네일 */}
-              <Image
+              <img
                 src={work.thumbnail ?? "/assets/card_web.png"}
                 alt={work.name || ""}
-                fill
-                sizes="(max-width: 767px) calc(100vw - 32px), calc((100vw - 160px) / 3)"
-                quality={100}
-                style={{ objectFit: "cover" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 onLoad={() => cardRefs.current.get(work.id)?.classList.remove("sk-img")}
               />
               {/* 호버 오버레이 */}
