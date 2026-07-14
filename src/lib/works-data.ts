@@ -105,7 +105,8 @@ export const works: Work[] = [
   {
     id: 10, name: "Roam in Ceram", members: ["정윤서"], category: "XR",
     description: "도자기 세계관을 배경으로 한 몰입형 XR 인터랙티브 콘텐츠이다. 관람객은 도자기의 아름다운 질감과 디지털 판타지가 융합된 미지의 공간 속에서 세계를 깨우는 여정의 주인공이 된다. 가상의 도자기 구슬은 현실의 감각을 자극하며 게임과 현실의 경계를 허무는 열쇠가 된다. 신비로운 구슬을 매개로 가상 세계와 상호작용하며, 관람객은 단순한 플레이어를 넘어 세계의 일부로 거듭난다.",
-    thumbnail: "/assets/card_web.png",
+    thumbnail: "/assets/works/xr/XR_RoaminCeram_00.webp",
+    images: [],
   },
   {
     id: 11, name: "KEMIDEA", members: ["정지연"], category: "XR",
@@ -122,7 +123,8 @@ export const works: Work[] = [
   {
     id: 13, name: "ECHO", members: ["황태희"], category: "XR",
     description: "인류가 사라진 세계관 기반의 3D 어드벤처 게임. 작은 로봇 에코는 동료를 깨우기 위한 여정에서 탐험과 선택을 통해 진실을 마주한다. 플레이어는 두 가지 결말을 경험할 수 있다.",
-    thumbnail: "/assets/card_web.png",
+    thumbnail: "/assets/works/xr/XR_ECHO_00.webp",
+    images: [],
   },
 
   // ── MOTION ──────────────────────────────────────────────────────────────
