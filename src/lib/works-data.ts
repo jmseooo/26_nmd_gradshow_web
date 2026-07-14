@@ -165,7 +165,8 @@ export const works: Work[] = [
   {
     id: 22, name: "신화(神火)의 부름", members: ["정윤서"], category: "MOTION",
     description: "도자기 세계관을 배경으로 한 몰입형 XR 프로젝트 \"Roam in Ceram\"의 시네마틱 트레일러이다. 인게임의 주요 맵과 세계관 스토리를 중심으로, 플레이어가 탐험하게 될 세계를 소개하며 세상을 여행하는 주인공의 프롤로그를 서사적인 비주얼로 담아냈다.",
-    thumbnail: "/assets/card_web.png",
+    thumbnail: "/assets/works/mo/MO_신화(神火)의 부름_00.webp",
+    images: [],
   },
   {
     id: 23, name: "OMEGA POINT", members: ["조연진"], category: "MOTION",
