@@ -177,7 +177,7 @@ export const works: Work[] = [
     id: 24, name: "ECHO | Opening Cinematic", members: ["황태희"], category: "MOTION",
     description: "게임의 인트로 영상으로, 세계관과 현재 상황을 이해할 수 있도록 구성하였다. 세상이 무너지게 된 배경과, 주인공 에코가 희망을 되찾기 위한 여정을 시작하게 되는 장면을 담았다.",
     thumbnail: "/assets/works/mo/MO_ECHO_00.webp",
-    images: ["/assets/works/mo/MO_ECHO_00.jpg"],
+    images: [],
   },
   {
     id: 25, name: "UNBECOMING", members: ["황희주"], category: "MOTION",
