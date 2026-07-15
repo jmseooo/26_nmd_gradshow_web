@@ -165,7 +165,7 @@ export default function HeroSection() {
       `}</style>
       <div
         className="absolute"
-        style={{ right: "clamp(16px, 5.63vw, 81px)", bottom: "18%", width: "clamp(200px, 25.49vw, 367px)", height: "432px" }}
+        style={{ right: "clamp(16px, 5.63vw, 81px)", bottom: "18%", width: "clamp(200px, 25.49vw, 367px)", height: "432px", zIndex: 10 }}
       >
         {bubbles.map(({ id, text }, i) => {
           const fromBottom = (bubbles.length - 1 - i) * 48;
@@ -204,6 +204,7 @@ export default function HeroSection() {
         className="absolute flex items-center"
         onClick={(e) => e.stopPropagation()}
         style={{
+          zIndex: 10,
           ...(stackedLayout
             ? {
                 left: "calc(clamp(16px, 5.56vw, 80px) + 30px)",
@@ -225,7 +226,7 @@ export default function HeroSection() {
           ref={inputRef}
           type="text"
           className="guestbook"
-          placeholder="남기고 싶은 말이 있나요?"
+          placeholder="응원을 적어주세요"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter" && !e.nativeEvent.isComposing) submitMessage(); }}
