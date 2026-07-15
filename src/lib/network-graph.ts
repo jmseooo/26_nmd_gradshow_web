@@ -113,17 +113,17 @@ export class NetworkGraph {
     const hubs = Math.max(3, Math.round(count * 0.14));
     for (let i = 0; i < count; i++) {
       const isHub = i < hubs;
-      const rad = Math.pow(rnd(), 0.7) * 0.46;
+      const rad = Math.pow(rnd(), 0.7) * 0.48;
       const ang = rnd() * Math.PI * 2;
       this.homes.push({
         x: 0.5 + Math.cos(ang) * rad * (0.95 + rnd() * 0.1),
-        y: 0.5 + Math.sin(ang) * rad * (0.78 + rnd() * 0.1),
+        y: 0.5 + Math.sin(ang) * rad * (0.92 + rnd() * 0.1),
       });
       this.rNorm.push(isHub ? 19 + rnd() * 7 : 12 + rnd() * 9);
       this.colorKeys.push(isHub
         ? (rnd() < 0.7 ? 'teal' : 'green')
         : this.PALETTE[(rnd() * this.PALETTE.length) | 0]);
-      this.zJitter.push((rnd() - 0.5) * 0.5);
+      this.zJitter.push((rnd() - 0.5) * 0.9);
     }
     const seen = new Set<string>();
     this.EDGES = [];
@@ -300,7 +300,7 @@ export class NetworkGraph {
       const z1 = -wx * sy + wz * cy;
       const y1 = wy * cp + z1 * sp;
       const z2 = -wy * sp + z1 * cp;
-      const persp = FOCAL / (FOCAL - z2 - CAM);
+      const persp = Math.min(FOCAL / (FOCAL - z2 - CAM), 1.2);
       const df = Math.max(-1, Math.min(1, z2 / DEPTH));
       n.sr = n.r * persp * (1 + df * 0.30);
       n._px = W / 2 + x1 * persp;
