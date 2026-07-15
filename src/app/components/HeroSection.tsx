@@ -165,7 +165,7 @@ export default function HeroSection() {
       `}</style>
       <div
         className="absolute"
-        style={{ right: "clamp(16px, 5.63vw, 81px)", bottom: "18%", width: "clamp(200px, 25.49vw, 367px)", height: "432px", zIndex: 10 }}
+        style={{ right: "clamp(16px, 5.63vw, 81px)", bottom: "18%", width: "clamp(200px, 25.49vw, 367px)", height: "432px", zIndex: 100 }}
       >
         {bubbles.map(({ id, text }, i) => {
           const fromBottom = (bubbles.length - 1 - i) * 48;
@@ -204,7 +204,7 @@ export default function HeroSection() {
         className="absolute flex items-center"
         onClick={(e) => e.stopPropagation()}
         style={{
-          zIndex: 10,
+          zIndex: 100,
           ...(stackedLayout
             ? {
                 left: "calc(clamp(16px, 5.56vw, 80px) + 30px)",
