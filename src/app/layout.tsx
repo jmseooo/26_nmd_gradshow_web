@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: "우리의 거점 — 서울여자대학교 첨단미디어디자인전공 제2회 졸업전시",
   description: "서울여자대학교 첨단미디어디자인전공 제2회 졸업전시",
   icons: { icon: "/favicon.png" },
+  openGraph: {
+    title: "우리의 거점 — 서울여자대학교 첨단미디어디자인전공 제2회 졸업전시",
+    description: "서울여자대학교 첨단미디어디자인전공 제2회 졸업전시",
+    images: [{ width: 1200, height: 630 }],
+  },
 };
 
 export default function RootLayout({
