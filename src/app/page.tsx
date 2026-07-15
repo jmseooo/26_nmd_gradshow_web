@@ -188,7 +188,7 @@ export default function Home() {
             <img alt="PRINTAKU" src="/assets/printaku.svg" className="w-full h-full object-contain" loading="lazy" />
           </a>
           <a href="https://www.inclear.co.kr/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
-            <img alt="novelS" src="/assets/novels-logo.png" className="w-full h-full object-contain" loading="lazy" />
+            <img alt="inclear" src="/assets/inclear-logo.png" className="w-full h-full object-contain" loading="lazy" />
           </a>
           <a href="https://runwalk.kr/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0" style={{ width: "clamp(22px, 9.17vw, 132px)", height: "clamp(12px, 5.9vw, 85px)" }}>
             <img alt="RUNWALK" src="/assets/runwalk-logo.png" className="w-full h-full object-contain" loading="lazy" />
