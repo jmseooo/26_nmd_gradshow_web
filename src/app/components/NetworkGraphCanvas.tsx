@@ -22,7 +22,7 @@ export default function NetworkGraphCanvas() {
       nodeCount: 42,
       seed: 4,
       rotateSensitivity: 1,
-      depth: 1.3,
+      depth: 2.0,
       lineOpacity: 0.32,
       darkMode: true,
     });
