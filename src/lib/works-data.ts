@@ -49,7 +49,7 @@ export const works: Work[] = [
     id: 26, name: "BIMO", members: ["김수민", "박채원", "서유정", "전지민"], category: "UX",
     description: "BIMO는 AI와 함께 상상을 이어가는 인터랙티브 동화책 서비스이다. 아이의 그림이 캐릭터가 되고, 아이의 말과 선택이 이야기의 흐름에 반영되어 자신만의 동화를 만들어 나간다. AI는 결과물을 대신 만들어 주는 존재가 아니라 질문과 제안을 통해 창작을 함께 이어 가는 협력자로 작동하며, 아이가 창작의 주도권을 유지하도록 돕는다. 아이의 창작이 한 번의 결과물로 끝나지 않고 지속적으로 이어질 수 있도록 설계했으며, 캐릭터와 이야기가 쌓여 아이만의 세계를 만들어 가는 경험을 제공한다.",
     thumbnail: "/assets/works/ux/UX_BIMO_00.jpg",
-    images: ["/assets/works/ux/UX_BIMO_01.jpg","/assets/works/ux/UX_BIMO_02.jpg","/assets/works/ux/UX_BIMO_03.jpg","/assets/works/ux/UX_BIMO_04.jpg","/assets/works/ux/UX_BIMO_05.jpg","/assets/works/ux/UX_BIMO_06.jpg","/assets/works/ux/UX_BIMO_07.jpg"],
+    images: [],
   },
   {
     id: 27, name: "닿음", members: ["김지아", "김지유", "서한이"], category: "UX",
