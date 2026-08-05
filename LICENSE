@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 진민서 (Jin Minseo)
+Copyright (c) 2026 진민서
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,26 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-## 적용 범위 / Scope
-
-위 MIT 라이선스는 이 저장소의 **소스 코드에만** 적용됩니다.
-
-The MIT license above applies to the **source code only**.
-
-다음은 적용 대상이 아니며, 각 저작자에게 모든 권리가 있습니다.
-The following are NOT covered and all rights remain with their respective creators:
-
-- 졸업 작품 이미지 및 영상 / Graduation work images and videos (`public/assets/works/`)
-- 참여 디자이너의 프로필 사진 및 개인 정보 / Designer profile photos and personal information
-- 전시 아이덴티티 그래픽, 로고, 폰트 / Exhibition identity graphics, logos, and fonts
-- 작품 설명 등 전시 텍스트 / Exhibition texts including work descriptions
-
-이 자료들은 서울여자대학교 첨단미디어디자인전공 제2회 졸업전시 참여자들의 저작물입니다.
-사용 허가가 필요한 경우 각 저작자에게 문의하시기 바랍니다.
-
-These materials are the works of the participants of the 2nd Graduation
-Exhibition, Department of New Media Design, Seoul Women's University.
-Please contact the respective creators for permission to use them.
