@@ -90,7 +90,7 @@ export default function GuestbookClient({ initialMessages, initialHasMore, initi
     );
     cardRefs.current.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [messages]);
+  }, [messages, mounted]);
 
   const loadMore = async () => {
     if (!cursor || loadingMore) return;
