@@ -21,19 +21,32 @@ Figma 시안을 직접 그리고 그대로 코드로 옮겼습니다.
 
 ## 화면
 
-| 경로 | 설명 |
+전시 주제인 *'거점'* 을 표현한 네트워크 그래프. 외부 라이브러리 없이 Canvas 2D API로 직접 구현했고, 드래그로 회전시킬 수 있습니다.
+
+[![홈](docs/screenshot-home.jpg)](https://swunmd2026.com)
+
+작품 갤러리. 28개 작품을 4개 트랙(XR · MOTION · UI · UX)으로 필터링합니다.
+
+[![작품](docs/screenshot-works.jpg)](https://swunmd2026.com/works)
+
+컬러 · 타이포를 CSS 변수로 정의하고 한 페이지에 문서화했습니다.
+
+[![디자인 토큰](docs/screenshot-tokens.jpg)](https://swunmd2026.com/tokens)
+
+### 전체 화면
+
+| 화면 | 설명 |
 | --- | --- |
-| `/` | 히어로 · 전시 소개 · 카테고리 슬라이더 |
-| `/field` | 전시 주제를 네트워크 그래프로 표현한 인터랙션 페이지 |
-| `/works` | 작품 28개 갤러리 (XR · MOTION · UX · UI 필터) |
-| `/designer` | 참여 디자이너 25명 목록 |
-| `/student/[id]` | 디자이너 개인 페이지 (작품 · 연락처) |
-| `/guestbook` | 방명록 — Supabase 연동 |
-| `/tokens` | 컬러 · 타이포 디자인 토큰 문서 |
+| [홈](https://swunmd2026.com) | 네트워크 그래프 히어로 · 전시 소개 · 카테고리 슬라이더 |
+| [작품](https://swunmd2026.com/works) | 작품 28개 갤러리 (XR 10 · MOTION 10 · UX 5 · UI 3) |
+| [디자이너](https://swunmd2026.com/designer) | 참여 디자이너 25명 목록 |
+| [디자이너 상세](https://swunmd2026.com/student/1) | 개인 페이지 (작품 · 연락처) |
+| [방명록](https://swunmd2026.com/guestbook) | Supabase 연동, 실시간 반영 |
+| [디자인 토큰](https://swunmd2026.com/tokens) | 컬러 · 타이포 시스템 문서 |
 
 ## 이런 걸 만들었어요
 
-- **네트워크 그래프** — 외부 라이브러리 없이 Canvas 2D API로 직접 구현. 드래그 회전, 원점 복귀, 다크모드 대응 (`src/lib/network-graph.ts`)
+- **네트워크 그래프** — 외부 라이브러리 없이 Canvas 2D API로 직접 구현. 드래그 회전, 원점 복귀, 다크모드 대응 (`src/lib/network-graph.ts`, 의존성 0개)
 - **페이지 전환 애니메이션** — 라우트 이동 시 네비게이션은 유지하고 콘텐츠만 전환
 - **반응형 타이포그래피** — Figma의 1440px 기준 폰트 크기를 `clamp()` 기반 유틸로 변환해 모바일까지 비율 유지
 - **디자인 토큰** — 컬러 · 타이포를 CSS 변수로 정의하고 `/tokens`에서 문서화
@@ -70,7 +83,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 src/
 ├── app/
 │   ├── components/      # 네비게이션, 페이지 전환, 스크롤 인터랙션 등
-│   ├── field/           # 네트워크 그래프 페이지
+│   ├── field/           # 전시 현장 기록 (준비 중, 비공개)
 │   ├── works/           # 작품 갤러리
 │   ├── designer/        # 디자이너 목록
 │   ├── student/[id]/    # 디자이너 상세
