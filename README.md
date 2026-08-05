@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+<img src="src/app/opengraph-image.png" width="600" alt="우리의 거점">
 
-First, run the development server:
+# 우리의 거점
+
+서울여자대학교 첨단미디어디자인전공 **제2회 졸업전시** 웹사이트
+
+[**🔗 swunmd2026.com**](https://swunmd2026.com)
+
+</div>
+
+---
+
+## 소개
+
+25명의 졸업생과 28개의 졸업 작품을 아카이빙하는 전시 웹사이트입니다.
+전시 주제인 *'거점'* 을 인터랙티브 네트워크 그래프로 시각화하고, 작품 · 디자이너 · 방명록을 하나의 흐름으로 연결했습니다.
+
+Figma 시안을 직접 그리고 그대로 코드로 옮겼습니다.
+
+## 화면
+
+| 경로 | 설명 |
+| --- | --- |
+| `/` | 히어로 · 전시 소개 · 카테고리 슬라이더 |
+| `/field` | 전시 주제를 네트워크 그래프로 표현한 인터랙션 페이지 |
+| `/works` | 작품 28개 갤러리 (XR · MOTION · UX · UI 필터) |
+| `/designer` | 참여 디자이너 25명 목록 |
+| `/student/[id]` | 디자이너 개인 페이지 (작품 · 연락처) |
+| `/guestbook` | 방명록 — Supabase 연동 |
+| `/tokens` | 컬러 · 타이포 디자인 토큰 문서 |
+
+## 이런 걸 만들었어요
+
+- **네트워크 그래프** — 외부 라이브러리 없이 Canvas 2D API로 직접 구현. 드래그 회전, 원점 복귀, 다크모드 대응 (`src/lib/network-graph.ts`)
+- **페이지 전환 애니메이션** — 라우트 이동 시 네비게이션은 유지하고 콘텐츠만 전환
+- **반응형 타이포그래피** — Figma의 1440px 기준 폰트 크기를 `clamp()` 기반 유틸로 변환해 모바일까지 비율 유지
+- **디자인 토큰** — 컬러 · 타이포를 CSS 변수로 정의하고 `/tokens`에서 문서화
+- **방명록** — Supabase 기반 SSR + 스켈레톤 로딩
+
+## 기술 스택
+
+| | |
+| --- | --- |
+| 프레임워크 | Next.js 16 (App Router) · React 19 |
+| 언어 | TypeScript |
+| 스타일 | Tailwind CSS v4 · CSS Variables |
+| 데이터 | Supabase |
+| 폰트 | Pretendard Variable |
+| 배포 | Vercel |
+
+## 로컬 실행
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+루트에 `.env.local` 파일을 만들고 아래 값을 채워주세요. (방명록 페이지에만 필요합니다)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 구조
 
-## Learn More
+```
+src/
+├── app/
+│   ├── components/      # 네비게이션, 페이지 전환, 스크롤 인터랙션 등
+│   ├── field/           # 네트워크 그래프 페이지
+│   ├── works/           # 작품 갤러리
+│   ├── designer/        # 디자이너 목록
+│   ├── student/[id]/    # 디자이너 상세
+│   ├── guestbook/       # 방명록
+│   └── tokens/          # 디자인 토큰 문서
+└── lib/
+    ├── works-data.ts    # 작품 데이터
+    ├── designers.ts     # 디자이너 데이터
+    ├── network-graph.ts # 그래프 렌더링 엔진
+    └── supabase.ts      # Supabase 클라이언트
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+작품과 디자이너 정보는 CMS 없이 `src/lib`의 데이터 파일에서 관리합니다.
